@@ -7,40 +7,25 @@
  */
 defined('IN_IA') or exit('Access Denied');
 
-class Imeepos_runnerproModuleSite extends WeModuleSite {
+require_once IA_ROOT . '/addons/imeepos_runnerv2/version.php';
+require_once IA_ROOT . '/addons/imeepos_runnerv2/defines.php';
+require_once MEEPO_INC . 'functions.php';
 
-	public function doMobileList() {
-		//列表
-		global $_W,$_GPC;
-
-		include $this->template('v2/list');
+class Imeepos_runnerv2ModuleSite extends WeModuleSite {
+	public function getMenus(){
+		global $_W;
+        return array(
+    		array('title' => '管理后台', 'icon' => 'fa fa-shopping-cart', 'url' => $this->createWebUrl('index'))
+    	);
 	}
-	public function doMobileHome() {
-		//个人中心
-		global $_W,$_GPC;
-		
-		include $this->template('v2/home');
+	public function doWebWeb(){
+        m('route')->run();
+    }
+    public function doMobileMobile(){
+        m('route')->run(false);
+    }
+    public function payResult($params){
+        return m('order')->payResult($params);
 	}
-	public function doMobilePost() {
-		//发布
-		global $_W,$_GPC;
-		
-		include $this->template('v2/post');
-	}
-	public function doMobileSearch() {
-		//搜索
-		global $_W,$_GPC;
-		
-		include $this->template('v2/search');
-	}
-	public function doMobileDetail() {
-		//详情
-		global $_W,$_GPC;
-		
-		include $this->template('v2/detail');
-	}
-	public function doWebIndex(){
-		include $this->template('index');
-	}
-
+	public function __construct(){}
 }

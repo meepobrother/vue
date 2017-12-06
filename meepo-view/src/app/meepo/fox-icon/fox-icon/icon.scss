@@ -1,0 +1,420 @@
+@font-face {
+    font-family: 'fox-icon';
+    src: url('../font/fox-icon.eot?96646192');
+    src: url('../font/fox-icon.eot?96646192#iefix') format('embedded-opentype'), url('../font/fox-icon.woff?96646192') format('woff'), url('../font/fox-icon.ttf?96646192') format('truetype'), url('../font/fox-icon.svg?96646192#fox-icon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+
+
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+
+
+/*
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+    @font-face {
+      font-family: 'fox-icon';
+      src: url('../font/fox-icon.svg?96646192#fox-icon') format('svg');
+    }
+  }
+  */
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+    font-family: "fox-icon";
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    /* opacity: .8; */
+    /* For safety - reset parent styles, that can break glyph codes*/
+    font-variant: normal;
+    text-transform: none;
+    /* fix buttons height, for twitter bootstrap */
+    line-height: 1em;
+    /* Animation center compensation - margins should be symmetric */
+    /* remove if not needed */
+    margin-left: .2em;
+    /* you can be more comfortable with increased icons size */
+    /* font-size: 120%; */
+    /* Uncomment for 3D effect */
+    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-and-caret:before {
+    content: '\e800';
+}
+
+
+/* '' */
+
+.icon-up-nav:before {
+    content: '\e801';
+}
+
+
+/* '' */
+
+.icon-back:before {
+    content: '\e802';
+}
+
+
+/* '' */
+
+.icon-and-download:before {
+    content: '\e803';
+}
+
+
+/* '' */
+
+.icon-and-left:before {
+    content: '\e804';
+}
+
+
+/* '' */
+
+.icon-and-more-vertical:before {
+    content: '\e805';
+}
+
+
+/* '' */
+
+.icon-and-more:before {
+    content: '\e806';
+}
+
+
+/* '' */
+
+.icon-and-right:before {
+    content: '\e807';
+}
+
+
+/* '' */
+
+.icon-and-search:before {
+    content: '\e808';
+}
+
+
+/* '' */
+
+.icon-and-share:before {
+    content: '\e809';
+}
+
+
+/* '' */
+
+.icon-and-up:before {
+    content: '\e80a';
+}
+
+
+/* '' */
+
+.icon-gear:before {
+    content: '\e80b';
+}
+
+
+/* '' */
+
+.icon-down:before {
+    content: '\e80c';
+}
+
+
+/* '' */
+
+.icon-left:before {
+    content: '\e80d';
+}
+
+
+/* '' */
+
+.icon-list:before {
+    content: '\e80e';
+}
+
+
+/* '' */
+
+.icon-pages:before {
+    content: '\e80f';
+}
+
+
+/* '' */
+
+.icon-refresh:before {
+    content: '\e810';
+}
+
+
+/* '' */
+
+.icon-right:before {
+    content: '\e811';
+}
+
+
+/* '' */
+
+.icon-sound:before {
+    content: '\e812';
+}
+
+
+/* '' */
+
+.icon-sound2:before {
+    content: '\e813';
+}
+
+
+/* '' */
+
+.icon-sound3:before {
+    content: '\e814';
+}
+
+
+/* '' */
+
+.icon-up:before {
+    content: '\e815';
+}
+
+
+/* '' */
+
+.icon-sound4:before {
+    content: '\e816';
+}
+
+
+/* '' */
+
+.icon-bars:before {
+    content: '\e817';
+}
+
+
+/* '' */
+
+.icon-caret:before {
+    content: '\e818';
+}
+
+
+/* '' */
+
+.icon-and-down:before {
+    content: '\e819';
+}
+
+
+/* '' */
+
+.icon-close:before {
+    content: '\e81a';
+}
+
+
+/* '' */
+
+.icon-code:before {
+    content: '\e81b';
+}
+
+
+/* '' */
+
+.icon-compose:before {
+    content: '\e81c';
+}
+
+
+/* '' */
+
+.icon-down-nav:before {
+    content: '\e81d';
+}
+
+
+/* '' */
+
+.icon-download:before {
+    content: '\e81e';
+}
+
+
+/* '' */
+
+.icon-edit:before {
+    content: '\e81f';
+}
+
+
+/* '' */
+
+.icon-forward:before {
+    content: '\e820';
+}
+
+
+/* '' */
+
+.icon-home:before {
+    content: '\e821';
+}
+
+
+/* '' */
+
+.icon-info:before {
+    content: '\e822';
+}
+
+
+/* '' */
+
+.icon-left-nav:before {
+    content: '\e823';
+}
+
+
+/* '' */
+
+.icon-more-vertical:before {
+    content: '\e824';
+}
+
+
+/* '' */
+
+.icon-more:before {
+    content: '\e825';
+}
+
+
+/* '' */
+
+.icon-pause:before {
+    content: '\e826';
+}
+
+
+/* '' */
+
+.icon-person:before {
+    content: '\e827';
+}
+
+
+/* '' */
+
+.icon-play:before {
+    content: '\e828';
+}
+
+
+/* '' */
+
+.icon-plus:before {
+    content: '\e829';
+}
+
+
+/* '' */
+
+.icon-right-nav:before {
+    content: '\e82a';
+}
+
+
+/* '' */
+
+.icon-search:before {
+    content: '\e82b';
+}
+
+
+/* '' */
+
+.icon-share:before {
+    content: '\e82c';
+}
+
+
+/* '' */
+
+.icon-star-filled:before {
+    content: '\e82d';
+}
+
+
+/* '' */
+
+.icon-star:before {
+    content: '\e82e';
+}
+
+
+/* '' */
+
+.icon-stop:before {
+    content: '\e82f';
+}
+
+
+/* '' */
+
+.icon-trash:before {
+    content: '\e830';
+}
+
+
+/* '' */
+
+.icon-check:before {
+    content: '\e831';
+}
+
+
+/* '' */
+
+.icon-spin5:before {
+    content: '\e832';
+}
+
+
+/* '' */
+
+.icon-up-1:before {
+    content: '\e833';
+}
+
+
+/* '' */
+
+.icon-location:before {
+    content: '\e834';
+}
+
+
+/* '' */

@@ -1,0 +1,205 @@
+//
+// Mixins
+// --------------------------------------------------
+
+
+// General
+// --------------------------------------------------
+
+// Utilities
+// -------------------------
+
+// Clearfix
+// Source: http://nicolasgallagher.com/micro-clearfix-hack/
+//
+// For modern browsers
+// 1. The space content is one way to avoid an Opera bug when the
+//    contenteditable attribute is included anywhere else in the document.
+//    Otherwise it causes space to appear at the top and bottom of elements
+//    that are clearfixed.
+// 2. The use of `table` rather than `block` is only necessary if using
+//    `:before` to contain the top-margins of child elements.
+@mixin clearfix() {
+  &:before,
+  &:after {
+    display: table; // 2
+    content: " "; // 1
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// Box shadow
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow;
+          box-shadow: $shadow;
+}
+
+// Gradients
+@mixin linear-gradient($color-from, $color-to) {
+  background-color: $color-from; // Old browsers
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$color-from), color-stop(100%,$color-to)); // Chrome, Safari4+
+  background-image: -webkit-linear-gradient(top, $color-from 0%, $color-to 100%);           // Chrome10+, Safari5.1+
+  background-image:    -moz-linear-gradient(top, $color-from 0%, $color-to 100%);           // FF3.6+
+  background-image:     -ms-linear-gradient(top, $color-from 0%, $color-to 100%);           // IE10+
+  background-image:      -o-linear-gradient(top, $color-from 0%, $color-to 100%);           // Opera 11.10+
+  background-image:         linear-gradient(to bottom, $color-from 0%, $color-to 100%);     // W3C
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$color-from}', endColorstr='#{$color-to}', GradientType=0 ); // IE6-9
+}
+@mixin directional-gradient($color-from, $color-to, $deg: 45deg) {
+  background-color: $color-from; // Old browsers
+  background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0%,$color-from), color-stop(100%,$color-to)); // Chrome, Safari4+
+  background-image: -webkit-linear-gradient(45deg, $color-from 0%, $color-to 100%);           // Chrome10+, Safari5.1+
+  background-image:    -moz-linear-gradient(45deg, $color-from 0%, $color-to 100%);           // FF3.6+
+  background-image:     -ms-linear-gradient(45deg, $color-from 0%, $color-to 100%);           // IE10+
+  background-image:      -o-linear-gradient(45deg, $color-from 0%, $color-to 100%);           // Opera 11.10+
+  background-image:         linear-gradient(45deg, $color-from 0%, $color-to 100%);     // W3C
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$color-from}', endColorstr='#{$color-to}', GradientType=1 ); // IE6-9
+}
+
+// user-select
+@mixin user-select($select...) {
+  -webkit-user-select: $select;
+     -moz-user-select: $select;
+      -ms-user-select: $select;
+          user-select: $select;
+}
+
+
+// Transforms
+// --------------------------------------------------
+@mixin transform($transform...) {
+  -webkit-transform: $transform;
+      -ms-transform: $transform;
+          transform: $transform;
+}
+
+
+// Transitions
+// --------------------------------------------------
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+     -moz-transition: $transition;
+          transition: $transition;
+}
+@mixin transition-property($property...) {
+  -webkit-transition-property: $property;
+     -moz-transition-property: $property;
+          transition-property: $property;
+}
+@mixin transition-duration($duration...) {
+  -webkit-transition-duration: $duration;
+     -moz-transition-duration: $duration;
+          transition-duration: $duration;
+}
+@mixin transition-timing-function($function...) {
+  -webkit-transition-timing-function: $function;
+     -moz-transition-timing-function: $function;
+          transition-timing-function: $function;
+}
+
+
+// Animations
+// --------------------------------------------------
+@mixin animation-name($name) {
+  -webkit-animation-name: $name;
+     -moz-animation-name: $name;
+          animation-name: $name;
+}
+@mixin animation-duration($duration) {
+  -webkit-animation-duration: $duration;
+     -moz-animation-duration: $duration;
+          animation-duration: $duration;
+}
+@mixin animation-direction($direction) {
+  -webkit-animation-direction: $direction;
+     -moz-animation-direction: $direction;
+          animation-direction: $direction;
+}
+
+@mixin animation-timing-function($function) {
+  -webkit-animation-timing-function: $function;
+     -moz-animation-timing-function: $function;
+          animation-timing-function: $function;
+}
+
+
+// Misc
+// --------------------------------------------------
+@mixin hairline($type, $color, $offset) {
+  @if $type == single {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='1'><rect fill='#{$color}' x='0' y='0' width='100%' height='0.5'/></svg>");
+    background-position: $offset 100%;
+
+  } @else if $type == double {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='1'><rect fill='#{$color}' x='0' y='0' width='100%' height='0.5'/></svg>"),
+                      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='1'><rect fill='#{$color}' x='0' y='0' width='100%' height='0.5'/></svg>");
+    background-position: $offset 100%, $offset 0;
+  }
+  background-repeat: no-repeat;
+}
+
+@mixin scrollable($dir) {
+    display: block;
+    -webkit-overflow-scrolling: touch;
+
+    @if $dir == x {
+        overflow-x: auto;
+        overflow-y: hidden;
+    } @else if $dir == y {
+        overflow-x: hidden;
+        overflow-y: auto;
+    } @else if $dir == xy{
+        overflow: auto;
+    }
+
+}
+
+// Flex Layout
+// --------------------------------------------------
+@mixin flex-column-container(){
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-flow: column;
+    flex-flow:column;
+}
+
+@mixin flex-column-item-fixed(){
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+@mixin flex-column-item-fullfilled(){
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+}
+
+@mixin flex-row-container(){
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-flow: row;
+    flex-flow:row;
+}
+
+@mixin flex-row-item-fixed(){
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+@mixin flex-row-item-fullfilled(){
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+}

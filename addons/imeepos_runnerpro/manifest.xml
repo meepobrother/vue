@@ -2,7 +2,7 @@
 <manifest xmlns="http://www.we7.cc" versionCode="">
 	<application setting="false">
 		<name><![CDATA[跑腿2.0]]></name>
-		<identifie><![CDATA[imeepos_runnerpro]]></identifie>
+		<identifie><![CDATA[imeepos_runnerv2]]></identifie>
 		<version><![CDATA[1.1]]></version>
 		<type><![CDATA[business]]></type>
 		<ability><![CDATA[跑腿2.0]]></ability>
@@ -22,11 +22,9 @@
 	</platform>
 	<bindings>
 		<cover>
-			<entry title="任务大厅" do="list" state="" direct="false" />
-			<entry title="个人中心" do="home" state="" direct="false" />
-			<entry title="发布页" do="post" state="" direct="false" />
-			<entry title="搜索页" do="search" state="" direct="false" />
+			<entry title="同城跑腿" do="index" state="" direct="false" />
 		</cover>
+		<menu call="getMenus"></menu>
 	</bindings>
 	<permissions>
 	</permissions>
