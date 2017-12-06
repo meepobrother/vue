@@ -1,5 +1,6 @@
 ## vue
-> 应用开发流程
+
+> 应用开发流程:
 1. develop->release 新建release
 2. release->master 
 
