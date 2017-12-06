@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>跑腿2.0</title>
+    <meta name="keywords" content="跑腿2.0|跑腿公司|同城快递|互助跑腿|跑腿公司">
+    <meta name="description" content="小明跑腿专注即时同城快递，提供10分钟上门59分钟送达全城的同城快递及跑腿服务。同城快递找小明跑腿，7*24提供安全、高效、便捷的高端服务！小明跑腿，让生活更高效！">
+    <link rel="stylesheet" href="./addons/imeepos_runnerpro/template/welcome/css/style-index.css?t=333" />
+    <link rel="stylesheet" href="./addons/imeepos_runnerpro/template/welcome/css/uu/homeball.css">
+    <link rel="stylesheet" href="./addons/imeepos_runnerpro/template/welcome/css/uu/newbase.css">
+    <link rel="stylesheet" href="./addons/imeepos_runnerpro/template/welcome/css/uu/newstyle.css">
+    <link rel="stylesheet" href="./addons/imeepos_runnerpro/template/welcome/css/uu/swiper.css">
+    <link rel="stylesheet" href="./addons/imeepos_runnerpro/template/welcome/css/uu/video-js.css">
+
+    <!-- <link rel="stylesheet" href="./template/welcome/css/style-index.css?t=333" />
+    <link rel="stylesheet" href="./template/welcome/css/uu/homeball.css">
+    <link rel="stylesheet" href="./template/welcome/css/uu/newbase.css">
+    <link rel="stylesheet" href="./template/welcome/css/uu/newstyle.css">
+    <link rel="stylesheet" href="./template/welcome/css/uu/swiper.css">
+    <link rel="stylesheet" href="./template/welcome/css/uu/video-js.css"> -->
+</head>
+
+<body>
+    <div id="wrap">
+        <div class="navigation animated">
+            <div class="nav-wrap">
+                <div class="nav">
+                    <ul class="nav-list clearfix">
+                        <li><a href="https://meepo.com.cn/download/meepo-mac.zip" title="mac客户端">mac客户端</a></li>
+                        <li><a href="https://meepo.com.cn/download/meepo-win32.zip" title="win32客户端">win32客户端</a></li>
+                        <li><a href="https://meepo.com.cn/download/meepo-win64.zip" title="win64客户端">win64客户端</a></li>
+                    </ul>
+                    <div style="clear:both;"></div>
+                </div>
+                <div class="button-group">
+                    <ul id="nologin" class="button-list">
+                        <li><a href="https://meepo.com.cn/builder2" class="button regist" target="_blank">进入管理端</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section top">
+            <div id="homeBanner" class="banner banner-home" style="overflow:hidden;">
+                <div class="video-shadow"></div>
+                <video id="home-video" src="https://meepo.com.cn/addons/imeepos_runnerpro/assets/movie.mp4" autoplay muted loop></video>
+                <div class="banner-content">
+                    <h3>欢迎使用，跑腿2.0系统！</h3>
+                    <div class="row">
+                        <style>
+                            .row {
+                                justify-content: center;
+                                align-items: center;
+                            }
+                            
+                            .qrcode img {
+                                margin: 0 auto;
+                            }
+                        </style>
+                        <div class="qrcode" id="qrcode" style="background: #fff;text-align:center;height: 300px;width: 300px;margin-left: 10px; margin-right: 30px;{if empty($uniacid)}display:none;{/if}">
+                            <h5>微信扫码注册后台！</h5>
+                        </div>
+                        <div class="qrcode" id="qrcode_mobile" style="background: #fff;text-align:center;height: 300px;width: 300px;margin-left: 10px; margin-right: 30px;{if empty($uniacid)}display:none;{/if}">
+                            <h5>微信扫码体验下单</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://meepo.com.cn/meepo/libs/qrcode.min.js"></script>
+    <script src="https://meepo.com.cn/meepo/libs/zepto.min.js"></script>
+
+    <script>
+        $(function() {
+            $.get('https://meepo.com.cn/app/index.php?c=entry&do=open&a=&i=89&j=89&__do=login.getRandom&m=imeepos_runner', function(res) {
+                console.log(res);
+                var qrcode = new QRCode(document.getElementById("qrcode"), {
+                    text: "https://meepo.com.cn/app/index.php?c=entry&do=open&a=&i=2&j=2&__do=login.bindqrcode&m=imeepos_runner&r=" + res.info,
+                    width: 228,
+                    height: 228,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            }, 'json');
+
+            var qrcode = new QRCode(document.getElementById("qrcode_mobile"), {
+                text: "https://meepo.com.cn/app/index.php?c=entry&do=index&a=&i=2&j=2&m=imeepos_runner&r=" + new Date().getTime(),
+                width: 228,
+                height: 228,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        })
+    </script>
+</body>
+
+</html>

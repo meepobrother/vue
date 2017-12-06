@@ -1,0 +1,43 @@
+<style>
+    .meepo-row {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 5px;
+        margin-right: 20px;
+        margin-top: 10px;
+    }
+    
+    .meepo-row select {
+        max-width: 300px;
+    }
+    
+    .meepo-row .btn {
+        min-width: 4em;
+        line-height: 36px;
+        height: 36px;
+    }
+</style>
+{template 'welcome/html/welcome'}
+<script>
+    $(function() {
+        $('#save').click(function() {
+            var that = $(this);
+            that.html('保存中');
+            var uniacid = $('#uniacid').val();
+            $.post('', {
+                act: 'save',
+                uniacid: uniacid
+            }, function() {
+                setTimeout(function() {
+                    that.html('保存成功');
+                    $('#bindqrcode').show();
+                    $('#bindSystemCode').show();
+                    setTimeout(function() {
+                        that.html('保存');
+                    }, 300);
+                }, 300);
+            }, 'json')
+
+        })
+    })
+</script>
