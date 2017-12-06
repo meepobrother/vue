@@ -22,6 +22,10 @@ var saveVersion = function(version) {
     });
 }
 
+gulp.task('bump', ['bump.prerelease'], function() {
+
+})
+
 gulp.task('bump.minor', function() {
     bumpBuilder('minor');
 });
