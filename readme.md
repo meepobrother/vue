@@ -1,7 +1,13 @@
 ## vue
+> hotfix->develop->release->master
+
+> bug修复流程： 
+- master->hotfix
+- hotfix->master
+- hotfix->develop
 
 - master分支（1个）， 用于发布
-- develop分支（1个），开发新的功能
+- develop分支（1个），开发新的功能, dev不能直接到master, 
 - feature分支。同时存在多个。
 - release分支。同一时间只有1个，生命周期很短，只是为了发布。
 - hotfix分支。同一时间只有1个。生命周期较短，用了修复bug或小粒度修改发布。
