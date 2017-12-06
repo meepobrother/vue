@@ -1,10 +1,13 @@
 ## vue
-> hotfix->develop->release->master
+> 应用开发流程
+1. develop->release 新建release
+2. release->master 
 
 > bug修复流程： 
-1. master->hotfix
-2. hotfix->master
-3. hotfix->develop
+1. master->hotfix 新建分之
+2. hotfix->master 合并分之到master
+3. hotfix->develop 合并分之到develop
+4. 删除hotfix分之
 
 - master分支（1个）， 用于发布
 - develop分支（1个），开发新的功能, dev不能直接到master, 
