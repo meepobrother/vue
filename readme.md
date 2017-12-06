@@ -2,9 +2,9 @@
 > hotfix->develop->release->master
 
 > bug修复流程： 
-- 1. master->hotfix
-- 2. hotfix->master
-- 3. hotfix->develop
+1. master->hotfix
+2. hotfix->master
+3. hotfix->develop
 
 - master分支（1个）， 用于发布
 - develop分支（1个），开发新的功能, dev不能直接到master, 
