@@ -1,0 +1,29 @@
+{
+    "name": "vue",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "prepublish": "",
+        "publish": "",
+        "preinstall": "",
+        "install": "",
+        "preuninstall": ""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/meepobrother/vue.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/meepobrother/vue/issues"
+    },
+    "homepage": "https://github.com/meepobrother/vue#readme",
+    "dependencies": {},
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "mount-tasks": "^1.0.4"
+    }
+}
