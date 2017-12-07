@@ -1,11 +1,12 @@
-import { Component, OnInit, Input, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, Renderer2, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'fox-icon',
     template: `
         <ng-content></ng-content>
     `,
-    styleUrls: ['./fox-icon.scss']
+    styleUrls: ['./fox-icon.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class FoxIcon implements OnInit {
     @Input()

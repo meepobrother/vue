@@ -1,0 +1,84 @@
+// Variables
+@import "../../fox-core/sass/variables.scss";
+// Mixins
+@import "../../fox-core/sass/mixins.scss";
+// Components
+fox-page {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    @include flex-column-container();
+    z-index: index($elements, fox-page);
+    &>.bar {
+        @include flex-column-item-fixed();
+    }
+    // be out of screen and preparing for transition in
+    &.transition-out {
+        display: none;
+        // http://dev.w3.org/csswg/css-will-change/
+        will-change: transform;
+    }
+    // horizontal slide
+    &.fx-slide-left {
+        @include transform(translate3d(-25%, 0, 0));
+        opacity: 0.9;
+        /*box-shadow: -10px 0 10px -5px rgba(0, 0, 0, 0.2);*/
+    }
+    &.fx-slide-center {
+        @include transform(translate3d(0, 0, 0));
+        opacity: 1;
+    }
+    &.fx-slide-right {
+        @include transform(translate3d(100%, 0, 0));
+    }
+    // vertical slide
+    &.fx-slide-down {
+        @include transform(translate3d(0, 100%, 0));
+        opacity: 0.9;
+        /*box-shadow: -10px 0 10px -5px rgba(0, 0, 0, 0.2);*/
+    }
+    &.fx-slide-middle {
+        @include transform(translate3d(0, 0, 0));
+        opacity: 1;
+    }
+    &.fx-slide-up {
+        @include transform(translate3d(0, -100%, 0));
+        opacity: 0.9;
+    }
+    // fade in out
+    &.fx-fade-in {
+        opacity: 1;
+    }
+    &.fx-fade-out {
+        opacity: 0;
+        z-index: -1;
+    }
+    &.fx-display-hide {
+        display: none;
+    }
+    &.transition {
+        @include transition-duration(400ms);
+        // @include transition-timing-function(cubic-bezier(.1, .7, .1, 1));
+        @include animation-timing-function(cubic-bezier(.1, .7, .1, 1));
+    }
+    .page-loading-wrapper {
+        display: none;
+    }
+}
+
+fox-page.fox-page-loading .page-loading-wrapper {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    fox-icon {
+        color: #777;
+        font-size: 32px;
+    }
+}

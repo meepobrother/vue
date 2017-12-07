@@ -3,7 +3,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 @Component({
     selector: 'fox-range',
     template: `
-        <input type="range" [attr.step]="step" [attr.max]="max" style="width: 100%;" (change)="onChange()" [(ngModel)]="model">
+        <input type="range" min="30" [attr.step]="step" [attr.max]="max" style="width: 100%;" (change)="onChange()" [(ngModel)]="model">
     `,
     styleUrls: ['./fox-range.scss']
 })

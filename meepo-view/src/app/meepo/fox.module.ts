@@ -5,13 +5,17 @@ import { FormsModule } from '@angular/forms';
 import {
     FoxCalendar,
     FoxIcon,
-    FoxRange
+    FoxRange,
+    FoxPage,
+    FoxPageContent
 } from './index';
 @NgModule({
     declarations: [
         FoxCalendar,
         FoxIcon,
-        FoxRange
+        FoxRange,
+        FoxPage,
+        FoxPageContent
     ],
     imports: [
         CommonModule,
@@ -20,7 +24,9 @@ import {
     exports: [
         FoxCalendar,
         FoxIcon,
-        FoxRange
+        FoxRange,
+        FoxPage,
+        FoxPageContent
     ],
     providers: [],
 })

@@ -1,0 +1,10 @@
+// Variables
+@import "../../fox-core/sass/variables.scss";
+// Mixins
+@import "../../fox-core/sass/mixins.scss";
+// Components
+fox-page-content {
+    @include scrollable(y);
+    background-color: #fff;
+    @include flex-column-item-fullfilled();
+}

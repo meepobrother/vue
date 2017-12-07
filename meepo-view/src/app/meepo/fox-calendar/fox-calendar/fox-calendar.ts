@@ -54,19 +54,19 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
                 </div>
             </div>
         </div>
-        <div class="fox-calendar-month-detail">
+        <div class="fox-calendar-month-detail" *ngIf="isRow">
             <div class="fox-calendar-row" style="overflow: auto;">
                 <div class="fox-calendar-col" style="min-width: 3em;" (click)="select(col)" [ngClass]="col.type" *ngFor="let col of list">
                     <span class="fox-calendar-col-inner"> {{col.val}} </span>
                 </div>
             </div>
-
             <div class="fox-calendar-time-list">
                 <ul>
                     <li *ngFor="let item of timeList">{{item.val}}</li>
                 </ul>
             </div>
         </div>
+        <ng-content></ng-content>
     </div>
     `,
     styleUrls: ['./fox-calendar.scss']
@@ -135,36 +135,25 @@ export class FoxCalendar implements OnInit {
     ngOnInit() {
         this._month = this.lastDate.getMonth() + 1;
         this._year = this.lastDate.getFullYear();
-        this._day = this.lastDate.getDay();
-
-        const now = new Date();
-        const now_str = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
-        this.minDate = new Date(now_str);
-        console.log(this.minDate);
+        this._day = this.lastDate.getDate();
+        const __now = new Date();
+        this.minDate = new Date(__now.getFullYear(), __now.getMonth(), __now.getDate(), 0, 0);
         this.udpate();
-        setTimeout(() => {
-            this.createTimeList();
-        }, 300);
     }
 
     createTimeList() {
         const _now = new Date();
-        const start_str = `${this.year}-${this.month}-${this.day} 06:00`;
-        console.log(start_str);
-        const start_int = new Date(start_str).getTime();
-        const end_str = `${this.year}-${this.month}-${this.day} 22:00`;
-        const end_int = new Date(end_str).getTime();
+        const start_int = new Date(this.year, this.month - 1, this.day, 6, 0).getTime();
+        const end_int = new Date(this.year, this.month - 1, this.day, 22, 0).getTime();
         const time_len = this.timeLen * 60 * 1000;
         this.timeList = [];
         let now_time = start_int;
-        console.log(now_time);
         do {
             now_time += time_len;
             const __time = new Date();
             __time.setTime(now_time);
             let __minute: any = __time.getMinutes();
             __minute = __minute > 10 ? __minute : '0' + __minute;
-            console.log(__minute);
             this.timeList.push({
                 val: `${__time.getHours()}:${__minute}`
             });
