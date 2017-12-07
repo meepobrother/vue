@@ -60,6 +60,12 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
                     <span class="fox-calendar-col-inner"> {{col.val}} </span>
                 </div>
             </div>
+
+            <div class="fox-calendar-time-list">
+                <ul>
+                    <li *ngFor="let item of timeList">{{item.val}}</li>
+                </ul>
+            </div>
         </div>
     </div>
     `,
@@ -82,6 +88,14 @@ export class FoxCalendar implements OnInit {
     get year() {
         return this._year;
     }
+    _day: number = 0;
+    @Input()
+    set day(val: number) {
+        this._day = val;
+    }
+    get day() {
+        return this._day;
+    }
     _lastDate: Date = new Date();
     @Input()
     set lastDate(val: Date) {
@@ -89,6 +103,17 @@ export class FoxCalendar implements OnInit {
     }
     get lastDate() {
         return this._lastDate;
+    }
+
+    _timeLen: number = 30;
+    timeList: any[] = [];
+    @Input()
+    set timeLen(val: number) {
+        this._timeLen = val;
+        this.createTimeList();
+    }
+    get timeLen() {
+        return this._timeLen;
     }
 
     @Input() hasSelector: boolean = false;
@@ -110,8 +135,41 @@ export class FoxCalendar implements OnInit {
     ngOnInit() {
         this._month = this.lastDate.getMonth() + 1;
         this._year = this.lastDate.getFullYear();
-        this.minDate = new Date();
+        this._day = this.lastDate.getDay();
+
+        const now = new Date();
+        const now_str = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+        this.minDate = new Date(now_str);
+        console.log(this.minDate);
         this.udpate();
+        setTimeout(() => {
+            this.createTimeList();
+        }, 300);
+    }
+
+    createTimeList() {
+        const _now = new Date();
+        const start_str = `${this.year}-${this.month}-${this.day} 06:00`;
+        console.log(start_str);
+        const start_int = new Date(start_str).getTime();
+        const end_str = `${this.year}-${this.month}-${this.day} 22:00`;
+        const end_int = new Date(end_str).getTime();
+        const time_len = this.timeLen * 60 * 1000;
+        this.timeList = [];
+        let now_time = start_int;
+        console.log(now_time);
+        do {
+            now_time += time_len;
+            const __time = new Date();
+            __time.setTime(now_time);
+            let __minute: any = __time.getMinutes();
+            __minute = __minute > 10 ? __minute : '0' + __minute;
+            console.log(__minute);
+            this.timeList.push({
+                val: `${__time.getHours()}:${__minute}`
+            });
+        } while (now_time < end_int);
+        console.log(this.timeList);
     }
 
     setMinDate(val: Date = new Date()) {
@@ -153,7 +211,11 @@ export class FoxCalendar implements OnInit {
                     res.type = res.type.trim();
                     const check = this.canUse(res.type);
                     if (check.active) {
-                        res.type = 'normal';
+                        if (res.back) {
+                            res.type = res.back;
+                        } else {
+                            res.type = 'normal';
+                        }
                     }
                 });
             }
@@ -162,8 +224,13 @@ export class FoxCalendar implements OnInit {
                 this.list.map(list => {
                     list.map(res => {
                         res.type = res.type.trim();
-                        if (res.type.indexOf('active') !== -1) {
-                            res.type = 'normal';
+                        const check = this.canUse(res.type);
+                        if (check.active) {
+                            if (res.back) {
+                                res.type = res.back;
+                            } else {
+                                res.type = 'normal';
+                            }
                         }
                     });
                 });
@@ -171,14 +238,22 @@ export class FoxCalendar implements OnInit {
         }
         item.type = item.type.trim();
         if (item.type === 'normal') {
+            item.back = item.type;
             item.type = 'active';
             console.log('选中', item);
             this.onSelect.emit(item);
         } else if (item.type === 'active') {
-            item.type = 'normal';
+            item.type = item.back;
             console.log('取消', item);
             this.onSelect.emit(item);
+        } else if (item.type === 'next') {
+            item.back = item.type;
+            item.type = 'active';
+            console.log('选择', item);
+            this.onSelect.emit(item);
         }
+        this.day = item.val;
+        this.createTimeList();
     }
 
     udpate() {
@@ -187,6 +262,7 @@ export class FoxCalendar implements OnInit {
         } else {
             this.create();
         }
+        this.createTimeList();
     }
 
     create2() {
@@ -217,7 +293,6 @@ export class FoxCalendar implements OnInit {
                 "type": "next"
             });
         }
-        console.log(this.list);
     }
 
     create() {
@@ -229,7 +304,6 @@ export class FoxCalendar implements OnInit {
                 "val": j - (l - i - 1),
                 "type": "prev"
             });
-
         }
         for (let i = 1; i <= this.daysInMonth(this.month, this.year); i++) {
             let active = "",
@@ -240,11 +314,9 @@ export class FoxCalendar implements OnInit {
                 && this.lastDate.getDate() === i) {
                 active = "active";
             }
-
             if (!this.isInRange(new Date(this.year, this.month - 1, i))) {
                 type = "disable";
             }
-
             let arr = this.list[this.list.length - 1];
             if (arr.length > 6) {
                 arr = [];
@@ -259,7 +331,6 @@ export class FoxCalendar implements OnInit {
         this.list.map((item: any) => {
             count += item.length;
         });
-
         for (let i = count, j = 1; i < 42; i++ , j++) {
             let arr = this.list[this.list.length - 1];
             if (arr.length > 6) {
@@ -324,24 +395,20 @@ export class FoxCalendar implements OnInit {
         } else {
             this.btnPrevYearDisable = false;
         }
-
         if (this.minDate && month - 2 < this.minDate.getMonth()) {
             this.btnPrevMonthDisable = true;
         } else {
             this.btnPrevMonthDisable = false;
         }
-
         if (this.maxDate && year + 1 > this.maxDate.getFullYear()) {
             this.btnNextYearDisable = true;
         } else {
             this.btnNextYearDisable = false;
         }
-
         if (this.maxDate && month > this.maxDate.getMonth()) {
             this.btnNextMonthDisable = true;
         } else {
             this.btnNextMonthDisable = false;
         }
     }
-
 }

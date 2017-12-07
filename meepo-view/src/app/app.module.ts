@@ -1,10 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-
 import { FoxModule } from './meepo/fox.module';
 
 @NgModule({
@@ -13,7 +12,8 @@ import { FoxModule } from './meepo/fox.module';
   ],
   imports: [
     BrowserModule,
-    FoxModule
+    FoxModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

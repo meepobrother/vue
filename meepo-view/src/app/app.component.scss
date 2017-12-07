@@ -1,0 +1,19 @@
+.row-list {
+    display: flex;
+    flex-direction: column;
+    .row-item {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        .row-item-left {
+            padding: 0px 10px;
+        }
+        .row-item-body {
+            flex: 1;
+        }
+        .row-item-right {
+            padding: 0px 10px;
+        }
+    }
+}

@@ -1,0 +1,56 @@
+// Variables
+@import "../../fox-core/sass/variables.scss";
+// Mixins
+@import "../../fox-core/sass/mixins.scss";
+// Components
+// --------------------------------------------------
+$height: 2px;
+$activeBarColor: #53d76a;
+$defaultBarColor: #ddd;
+$handleHeight: 29px;
+input[type=range] {
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: none;
+    vertical-align: top;
+    outline: none;
+    -webkit-appearance: none;
+    height: $height;
+    background-image: -webkit-gradient(linear, left top, left bottom, from($defaultBarColor), to($defaultBarColor));
+    background-image: -webkit-linear-gradient($defaultBarColor, $defaultBarColor);
+    background-image: linear-gradient($defaultBarColor, $defaultBarColor);
+    background-position: left center;
+    -webkit-background-size: 100% $height;
+    background-size: 100% $height;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    height: 31px;
+    &::-webkit-slider-thumb {
+        cursor: pointer;
+        -webkit-appearance: none;
+        position: relative;
+        height: $handleHeight;
+        width: $handleHeight;
+        background-color: #fff;
+        border: 1px solid $defaultBarColor;
+        -webkit-border-radius: $handleHeight + 1;
+        border-radius: $handleHeight + 1;
+        // box-shadow: inset 0 -3px 3px rgba(0, 0, 0, 0.025), 0 1px 4px rgba(0, 0, 0, 0.15), 0 4px 4px rgba(0, 0, 0, 0.1);
+        top: 0;
+        margin: 0;
+        padding: 0;
+    }
+    &::-webkit-slider-thumb:before {
+        position: absolute;
+        top: 13px;
+        right: 0px;
+        left: -1024px;
+        width: 1024px;
+        height: $height;
+        background-color: $activeBarColor;
+        content: '';
+        margin: 0;
+        padding: 0;
+    }
+}

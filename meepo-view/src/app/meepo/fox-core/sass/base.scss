@@ -1,0 +1,177 @@
+//
+// Base styles
+// --------------------------------------------------
+
+// Use box sizing on all the things!
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: $font-family-default;
+    font-size: $font-size-default;
+    line-height: $line-height-default;
+    color: #000;
+    background-color: #efeff4;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+// Layout
+// -----------------------------------
+
+// bars' base style
+.bar{
+    position: relative;
+    top:0;
+    left:0;
+    padding: 0;
+    margin: 0;
+    cursor: default;
+    height: $bar-base-height;
+    width: 100%;
+    background: #f8f8f8;
+    color: #1f1f21;
+    border-bottom: 1px solid #ddd;
+    font-weight: 400;
+    display: block;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    white-space: nowrap;
+    overflow: hidden;
+    word-spacing: 0;
+
+    &.bottom{
+        border-bottom:none;
+        border-top: 1px solid #ddd;
+    }
+
+    @include user-select(none);
+    @include box-shadow(none);
+}
+
+// Global Top Toolbar
+body > .bar{
+    position: absolute;
+}
+
+// Global Bottom Toolbar
+body > .bar.bottom{
+    bottom: 0;
+    top: auto;
+}
+
+body > .bar:not(.bottom) ~ fox-page{
+    padding-top: 44px;
+  // @include flex-column-item-fixed();
+}
+
+body > .bar.bottom ~ fox-page{
+    padding-bottom: 44px;
+  // @include flex-column-item-fixed();
+}
+
+body > fox-tabbar.bar.bottom ~ fox-page{
+    padding-bottom: 49px;
+  // @include flex-column-item-fixed();
+}
+
+// Universal link styling
+a {
+    color: $primary-color;
+    text-decoration: none;
+
+    &:active {
+        // color: darken($primary-color, 10%);
+    }
+}
+
+// Disabled style
+[disabled] {
+    opacity: 0.3;
+    cursor: default;
+    pointer-events: none;
+}
+
+// fox-template
+fox-template {
+    visibility: hidden;
+}
+
+fox-template.fox-template-renderred {
+    visibility: visible;
+}
+
+// Wrapper to be used around all content not in .bar-title and .bar-tab
+// .content {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   bottom: 0;
+//   left: 0;
+//   overflow: auto;
+//   background-color: #fff;
+//   -webkit-overflow-scrolling: touch;
+// }
+
+// Hack to force all relatively and absolutely positioned elements still render while scrolling
+// Note: This is a bug for "-webkit-overflow-scrolling: touch"
+// .content > * {
+//   @include transform(translateZ(0));
+// }
+
+// Pad top/bottom of content so it doesn't hide behind bars.
+// Note: For these to work, content must come after both bars in the markup
+// .bar-nav ~ .content {
+//   padding-top: $bar-base-height;
+// }
+// .bar-header-secondary ~ .content {
+//   padding-top: ($bar-base-height*2);
+// }
+
+// Footer bar padding
+// .bar-footer ~ .content {
+//   padding-bottom: $bar-base-height;
+// }
+// .bar-footer-secondary ~ .content {
+//   padding-bottom: ($bar-base-height*2);
+// }
+
+// Tab bar padding
+// .bar-tab ~ .content {
+//   padding-bottom: $bar-tab-height;
+// }
+// .bar-footer-secondary-tab ~ .content {
+//   padding-bottom: ($bar-tab-height+$bar-base-height);
+// }
+
+// Utility classes
+.content-padded {
+    margin: $bar-side-spacing;
+}
+.pull-left {
+    float: left;
+}
+.pull-right {
+    float: right;
+}
+.clearfix {
+    @include clearfix();
+}

@@ -178,3 +178,63 @@ fox-calendar.bottom.active .fox-calendar-detail {
 .fox-calendar-toolbar.active {
     display: -webkit-box;
 }
+
+.fox-calendar-time-list {
+    margin-top: 0px;
+    ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        list-style: none;
+        position: relative;
+        &:before {
+            content: " ";
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            height: 1px;
+            border-top: 1px solid #D9D9D9;
+            color: #D9D9D9;
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+        }
+        li {
+            min-width: 4em;
+            line-height: 44px;
+            height: 44px;
+            text-align: center;
+            position: relative;
+            &:before {
+                content: " ";
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 1px;
+                bottom: 0;
+                border-right: 1px solid #D9D9D9;
+                color: #D9D9D9;
+                -webkit-transform-origin: 100% 0;
+                transform-origin: 100% 0;
+                -webkit-transform: scaleX(0.5);
+                transform: scaleX(0.5);
+            }
+            &:after {
+                content: " ";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                height: 1px;
+                border-bottom: 1px solid #D9D9D9;
+                color: #D9D9D9;
+                -webkit-transform-origin: 0 100%;
+                transform-origin: 0 100%;
+                -webkit-transform: scaleY(0.5);
+                transform: scaleY(0.5);
+            }
+        }
+    }
+}
