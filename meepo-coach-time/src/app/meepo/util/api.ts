@@ -2,6 +2,7 @@ import { Injectable, InjectionToken, Inject } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+
 @Injectable()
 export class ApiService {
     static that: any;
@@ -58,7 +59,7 @@ export class ApiService {
 
     getUrl(routes, params, full) {
         routes = routes.replace(/\//ig, ".");
-        let url = this.options.baseUrl.replace('ROUTES', routes);
+        let url = `${this.options.siteroot}app/index.php?c=entry&i=${this.options.uniacid}&do=${routes}&m=imeepos_runnerpro`
         if (params) {
             if (typeof (params) === 'object') {
                 url += "&" + this.toQueryString(params);
@@ -104,6 +105,10 @@ export class ApiService {
         const ua = navigator.userAgent.toLowerCase();
         const isWX = '' + ua.match(/MicroMessenger/i) === "micromessenger";
         return isWX;
+    }
+
+    post(url, post) {
+        return this.http.post(url, post, { headers: this.header });
     }
 }
 

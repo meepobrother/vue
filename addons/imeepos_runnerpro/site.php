@@ -34,7 +34,10 @@ class Imeepos_runnerproModuleSite extends WeModuleSite
 
     public function payResult($params)
     {
-        // return m('order')->payResult($params);
+        $tid = $params['tid'];
+        if ($this->isInString($tid, 'COACH')) {
+            $this->payResultCoach($params);
+        }
     }
     public function __construct()
     {
@@ -42,18 +45,63 @@ class Imeepos_runnerproModuleSite extends WeModuleSite
         $_W['page']['title'] = M('common')->changeTitle($_W['page']['title']);
     }
 
-    public function doMobilePay(){
+    public function doMobilePay()
+    {
         global $_W,$_GPC;
         $tid = trim($_GPC['tid']);
-        if(empty($tid)){
-            itoast('参数错误', $this->createMobileUrl('runner_index'),'error');
+        if (empty($tid)) {
+            itoast('参数错误', $this->createMobileUrl('runner_index'), 'error');
+        }
+        // 检查前缀
+        if ($this->isInString($tid, 'COACH')) {
+            $params = $this->payCoach($tid);
+        } else {
+            itoast('订单格式错误', $this->createMobileUrl('runner_index'), 'error');
+        }
+        
+        $this->pay($params);
+    }
+
+    private function isInString($haystack, $needle)
+    {
+        $array = explode($needle, $haystack);
+        return count($array) > 1;
+    }
+
+    private function payCoach($tid)
+    {
+        $log = pdo_get('imeepos_runner4_coach_log', array('tid'=>$tid));
+        if (empty($log)) {
+            itoast('参数错误', $this->createMobileUrl('runner_index'), 'error');
         }
         $params = array();
-        $params['fee'] = '1';
-        $params['title'] = '测试';
-        $params['tid'] = M('common')->createNO('core_paylog','tid','');
+        $params['fee'] = $log['total'];
+        $params['title'] = $log['title'] ? $log['title'] : '预约';
+        $params['tid'] = $log['tid'];
         $params['ordersn'] = $params['tid'];
-        $_W['page']['title'] = M('common')->changeTitle($_W['page']['title']);
-        $this->pay($params);
+        $params['user'] = $_W['member']['uid'] ? $_W['member']['uid'] : $_W['openid'];
+        return $params;
+    }
+
+    private function payResultCoach($params)
+    {
+        $fee = intval($params['fee']);
+        $data = array(
+            'status' => ($params['result'] == 'success' ? 1 : 0),
+            'payType' => $params['type']
+        );
+        $tid = $params['tid'];
+        $log = pdo_get('imeepos_runner4_coach_log', array('tid'=>$tid));
+        if (1 <= $log['status']) {
+            return true;
+        }
+        if ($params['from'] == 'return') {
+            if (pdo_update('imeepos_runner4_coach_log', $data, array('id'=>$log['id']))) {
+                unset($data['payType']);
+                pdo_update('imeepos_runner4_coach_log_time', $data, array('coachId'=>$log['coachId']));
+                itoast('支付成功', $this->createMobileUrl('runner_index'), 'success');
+                return true;
+            }
+        }
     }
 }

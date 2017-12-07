@@ -1,7 +1,6 @@
 <?php
-if(!pdo_tableexists('ims_imeepos_runner3_detail')){
-    pdo_query("
-    CREATE TABLE `ims_imeepos_runner3_detail` (
+if (!pdo_tableexists('imeepos_runner3_detail')) {
+    pdo_query("CREATE TABLE ".tablename('imeepos_runner3_detail')."` (
         `id` int(11) NOT NULL AUTO_INCREMENT,
         `uniacid` int(11) DEFAULT '0',
         `taskid` int(11) DEFAULT '0',
@@ -43,13 +42,11 @@ if(!pdo_tableexists('ims_imeepos_runner3_detail')){
         `steps` text,
         PRIMARY KEY (`id`),
         KEY `IDX_TASKID` (`taskid`)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-    ");
-}    
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;");
+}
 
-if(!pdo_tableexists('ims_imeepos_runner3_member')){
-    pdo_query("
-    CREATE TABLE `ims_imeepos_runner3_member` (
+if (!pdo_tableexists('imeepos_runner3_member')) {
+    pdo_query("CREATE TABLE ".tablename('imeepos_runner3_member')." (
         `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
         `uid` int(11) unsigned NOT NULL,
         `uniacid` int(11) unsigned NOT NULL,
@@ -89,13 +86,11 @@ if(!pdo_tableexists('ims_imeepos_runner3_member')){
         KEY `INDEX_HASH` (`hash`),
         KEY `IDX_OPENID` (`openid`),
         KEY `IDX_UNIACID` (`uniacid`)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-    ");
-}    
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+}
 
-if(!pdo_tableexists('ims_imeepos_runner3_detail')){
-    pdo_query("
-    CREATE TABLE `ims_imeepos_runner3_paylog` (
+if (!pdo_tableexists('imeepos_runner3_detail')) {
+    pdo_query("CREATE TABLE ".tablename('imeepos_runner3_detail')." (
         `id` int(11) NOT NULL AUTO_INCREMENT,
         `uniacid` int(11) DEFAULT '0',
         `tid` varchar(64) DEFAULT '',
@@ -107,19 +102,85 @@ if(!pdo_tableexists('ims_imeepos_runner3_detail')){
         `type` varchar(32) DEFAULT '',
         `taskid` int(10) DEFAULT '0',
         PRIMARY KEY (`id`)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-    ");
-}    
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;");
+}
 
-if(!pdo_tableexists('ims_imeepos_runner3_detail')){
-    pdo_query("
-    CREATE TABLE `ims_imeepos_runner3_setting` (
+if (!pdo_tableexists('imeepos_runner3_detail')) {
+    pdo_query("CREATE TABLE ".tablename('imeepos_runner3_detail')." (
         `id` int(11) NOT NULL AUTO_INCREMENT,
         `uniacid` int(11) DEFAULT '0',
         `code` varchar(640) DEFAULT '',
         `value` text,
         PRIMARY KEY (`id`),
         KEY `IDX_CODE` (`code`)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-    ");
-}    
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;");
+}
+
+
+if (!pdo_tableexists('imeepos_runner4_member_skill')) {
+    pdo_query("CREATE TABLE ".tablename('imeepos_runner4_member_skill')." (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `openid` varchar(64) DEFAULT '',
+        `fee` decimal(10,2) DEFAULT '0.00',
+        `timeLen` int(11) DEFAULT '30',
+        `avatar` varchar(320) DEFAULT '',
+        `title` varchar(128) DEFAULT '',
+        `desc` varchar(640) DEFAULT '',
+        `content` tinytext,
+        `create_time` int(11) DEFAULT '0',
+        `status` tinyint(2) DEFAULT '0',
+        PRIMARY KEY (`id`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8");
+}
+
+if (!pdo_tableexists('imeepos_runner4_coach_log')) {
+    pdo_query("CREATE TABLE ".tablename('imeepos_runner4_coach_log')." (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `coachId` int(11) DEFAULT '0',
+        `desc` varchar(640) DEFAULT '',
+        `coachTime` text,
+        `count` int(11) DEFAULT '0',
+        `total` decimal(10,2) DEFAULT '0.00',
+        `fee` decimal(10,2) DEFAULT '0.00',
+        `openid` varchar(64) DEFAULT '',
+        `toOpenid` varchar(64) DEFAULT '',
+        `create_time` int(11) DEFAULT '0',
+        `tid` varchar(64) DEFAULT '',
+        `status` tinyint(2) DEFAULT '0',
+        PRIMARY KEY (`id`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8");
+}
+if (!pdo_fieldexists('imeepos_runner4_coach_log', 'title')) {
+    pdo_query("ALTER TABLE ".tablename('imeepos_runner4_coach_log')." ADD COLUMN `title` varchar(320) NULL DEFAULT '';");
+}
+
+if (!pdo_fieldexists('imeepos_runner4_coach_log', 'payType')) {
+    pdo_query("ALTER TABLE ".tablename('imeepos_runner4_coach_log')." ADD COLUMN `payType` varchar(32) NULL DEFAULT '';");
+}
+if (!pdo_fieldexists('imeepos_runner4_coach_log', 'timeIds')) {
+    pdo_query("ALTER TABLE ".tablename('imeepos_runner4_coach_log')." ADD COLUMN `timeIds` text");
+}
+
+if(!pdo_tableexists('imeepos_runner4_coach_log_time')){
+    pdo_query("CREATE TABLE ".tablename("imeepos_runner4_coach_log_time")." (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `year` int(11) DEFAULT '0',
+        `month` int(11) DEFAULT '0',
+        `day` int(11) DEFAULT '0',
+        `hour` int(11) DEFAULT '0',
+        `minute` int(11) DEFAULT '0',
+        `coachId` int(11) DEFAULT '0',
+        `val` varchar(32) DEFAULT '',
+        `openid` varchar(64) DEFAULT '',
+        `toOpenid` varchar(64) DEFAULT '',
+        `create_time` int(11) DEFAULT '0',
+        PRIMARY KEY (`id`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8");
+}
+
+if (!pdo_fieldexists('imeepos_runner4_coach_log_time', 'timeInt')) {
+    pdo_query("ALTER TABLE ".tablename('imeepos_runner4_coach_log')." ADD COLUMN `timeInt` int(11) NULL DEFAULT '0';");
+}
+if (!pdo_fieldexists('imeepos_runner4_coach_log_time', 'status')) {
+    pdo_query("ALTER TABLE ".tablename('imeepos_runner4_coach_log_time')." ADD COLUMN `status` tinyint(2) NULL DEFAULT '0';");
+}

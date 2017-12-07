@@ -68,7 +68,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
             </p>
             <div class="fox-calendar-time-list">
                 <ul>
-                    <li [class.active]="item.active" (click)="selectTime(item)" *ngFor="let item of timeList">{{item.val}}</li>
+                    <li [class.disable]="item.disable" [class.active]="item.active" (click)="selectTime(item)" *ngFor="let item of timeList">{{item.val}}</li>
                 </ul>
             </div>
         </div>
@@ -86,6 +86,7 @@ export class FoxCalendar implements OnInit {
     get month() {
         return this._month;
     }
+
     _year: number = 2017;
     @Input()
     set year(val: number) {
@@ -94,6 +95,7 @@ export class FoxCalendar implements OnInit {
     get year() {
         return this._year;
     }
+
     _day: number = 0;
     @Input()
     set day(val: number) {
@@ -120,6 +122,7 @@ export class FoxCalendar implements OnInit {
     set minute(val: number) {
         this._minute = val;
     }
+
     _lastDate: Date = new Date();
     @Input()
     set lastDate(val: Date) {
@@ -145,6 +148,7 @@ export class FoxCalendar implements OnInit {
     @Input() isRow: boolean = true;
     @Input() multi: boolean = false;
     @Output() onSelect: EventEmitter<any> = new EventEmitter();
+    @Output() daySelect: EventEmitter<any> = new EventEmitter();
 
     list: any[] = [];
     minDate: any;
@@ -154,12 +158,12 @@ export class FoxCalendar implements OnInit {
     btnNextYearDisable: boolean = false;
     btnNextMonthDisable: boolean = false;
 
-    timeStart: any = {
+    @Input() timeStart: any = {
         hour: 0,
         minute: 0
     };
 
-    timeEnd: any = {
+    @Input() timeEnd: any = {
         hour: 24,
         minute: 0
     };
@@ -181,30 +185,31 @@ export class FoxCalendar implements OnInit {
 
     createTimeList() {
         const _now = new Date();
+        const _now_int = _now.getTime();
+        
         const start_date = new Date(this.year, this.month - 1, this.day, this.timeStart.hour, this.timeStart.minute);
-        const start_int = new Date(this.year, this.month - 1, this.day, this.timeStart.hour, this.timeStart.minute).getTime();
+        const start_int = start_date.getTime();
         const end_int = new Date(this.year, this.month - 1, this.day, this.timeEnd.hour, this.timeEnd.minute).getTime();
         const time_len = this.timeLen * 60 * 1000;
         this.timeList = [];
         let now_time = start_int;
-        let __start_minute: any = start_date.getMinutes();
-        __start_minute = __start_minute > 10 ? __start_minute : '0' + __start_minute;
         this.timeList.push({
-            val: `${start_date.getHours()}:${__start_minute}`,
+            val: this.getNowFormatDate(start_date, 'hh:mm'),
             hour: start_date.getHours(),
-            minute: start_date.getMinutes()
+            minute: start_date.getMinutes(),
+            disable: (now_time < _now_int)
         });
         do {
             now_time += time_len;
             if (now_time < end_int) {
                 const __time = new Date();
                 __time.setTime(now_time);
-                let __minute: any = __time.getMinutes();
-                __minute = __minute > 10 ? __minute : '0' + __minute;
+                
                 this.timeList.push({
-                    val: `${__time.getHours()}:${__minute}`,
+                    val: this.getNowFormatDate(__time, 'hh:mm'),
                     hour: __time.getHours(),
-                    minute: __time.getMinutes()
+                    minute: __time.getMinutes(),
+                    disable: (now_time < _now_int)
                 });
             }
         } while (now_time + time_len < end_int);
@@ -243,7 +248,17 @@ export class FoxCalendar implements OnInit {
     }
 
     selectTime(item: any) {
-        item['active'] = !item['active'];
+        if(!item.disable){
+            item['active'] = !item['active'];
+            this.hour = item.hour;
+            this.minute = item.minute;
+            let data = {
+                hour: item.hour,
+                minute: item.minute,
+                add: item['active']
+            };
+            this.finish(data);
+        }
     }
 
     select(item: any) {
@@ -289,18 +304,25 @@ export class FoxCalendar implements OnInit {
             item.type = 'active';
         }
         this.day = item.val;
-        this.finish();
-        this.createTimeList();
-    }
-
-    finish() {
-        this.onSelect.emit({
+        this.daySelect.emit({
             year: this.year,
             month: this.month,
             day: this.day,
-            hour: this.hour,
-            minute: this.minute
+            add: item.type === 'active'
         });
+        this.createTimeList();
+    }
+
+    finish(data) {
+        let item = {
+            year: this.year,
+            month: this.month,
+            day: this.day,
+            hour: data.hour,
+            minute: data.minute,
+            add: data.add
+        };
+        this.onSelect.emit(item);
     }
 
     udpate() {
@@ -458,5 +480,21 @@ export class FoxCalendar implements OnInit {
         } else {
             this.btnNextMonthDisable = false;
         }
+    }
+
+    getNowFormatDate(date, fmt) {
+        let o = {
+            "M+": date.getMonth() + 1, //月份 
+            "d+": date.getDate(), //日 
+            "h+": date.getHours(), //小时 
+            "m+": date.getMinutes(), //分 
+            "s+": date.getSeconds(), //秒 
+            "q+": Math.floor((date.getMonth() + 3) / 3), //季度 
+            "S": date.getMilliseconds() //毫秒 
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
     }
 }

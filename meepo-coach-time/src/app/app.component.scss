@@ -23,8 +23,17 @@
     margin-bottom: 10px;
 }
 
+.weui-btn_loading.weui-btn_primary {
+    background-color: #007aff;
+}
+
 .weui-msg__desc {
     padding: 5px 10px;
     margin: 0px;
     background-color: #e4e4e4;
+}
+
+.weui-btn_primary:not(.weui-btn_disabled):active {
+    color: hsla(0, 0%, 100%, .6);
+    background-color: #007aff;
 }
