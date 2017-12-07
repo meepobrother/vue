@@ -207,6 +207,10 @@ fox-calendar.bottom.active .fox-calendar-detail {
             height: 44px;
             text-align: center;
             position: relative;
+            &.active {
+                background-color: #007aff;
+                color: #fff;
+            }
             &:before {
                 content: " ";
                 position: absolute;

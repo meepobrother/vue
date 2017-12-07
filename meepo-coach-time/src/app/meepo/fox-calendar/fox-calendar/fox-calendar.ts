@@ -62,7 +62,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
             </div>
             <div class="fox-calendar-time-list">
                 <ul>
-                    <li *ngFor="let item of timeList">{{item.val}}</li>
+                    <li [class.active]="item.active" (click)="selectTime(item)" *ngFor="let item of timeList">{{item.val}}</li>
                 </ul>
             </div>
         </div>
@@ -95,6 +95,24 @@ export class FoxCalendar implements OnInit {
     }
     get day() {
         return this._day;
+    }
+
+    _hour: number;
+    @Input()
+    get hour() {
+        return this._minute;
+    }
+    set hour(val: number) {
+        this._minute = val;
+    }
+
+    _minute: any;
+    @Input()
+    get minute() {
+        return this._minute;
+    }
+    set minute(val: number) {
+        this._minute = val;
     }
     _lastDate: Date = new Date();
     @Input()
@@ -130,6 +148,16 @@ export class FoxCalendar implements OnInit {
     btnNextYearDisable: boolean = false;
     btnNextMonthDisable: boolean = false;
 
+    timeStart: any = {
+        hour: 0,
+        minute: 0
+    };
+
+    timeEnd: any = {
+        hour: 24,
+        minute: 0
+    };
+
     constructor() { }
 
     ngOnInit() {
@@ -143,21 +171,33 @@ export class FoxCalendar implements OnInit {
 
     createTimeList() {
         const _now = new Date();
-        const start_int = new Date(this.year, this.month - 1, this.day, 6, 0).getTime();
-        const end_int = new Date(this.year, this.month - 1, this.day, 22, 0).getTime();
+        const start_date = new Date(this.year, this.month - 1, this.day, this.timeStart.hour, this.timeStart.minute);
+        const start_int = new Date(this.year, this.month - 1, this.day, this.timeStart.hour, this.timeStart.minute).getTime();
+        const end_int = new Date(this.year, this.month - 1, this.day, this.timeEnd.hour, this.timeEnd.minute).getTime();
         const time_len = this.timeLen * 60 * 1000;
         this.timeList = [];
         let now_time = start_int;
+        let __start_minute: any = start_date.getMinutes();
+        __start_minute = __start_minute > 10 ? __start_minute : '0' + __start_minute;
+        this.timeList.push({
+            val: `${start_date.getHours()}:${__start_minute}`,
+            hour: start_date.getHours(),
+            minute: start_date.getMinutes()
+        });
         do {
             now_time += time_len;
-            const __time = new Date();
-            __time.setTime(now_time);
-            let __minute: any = __time.getMinutes();
-            __minute = __minute > 10 ? __minute : '0' + __minute;
-            this.timeList.push({
-                val: `${__time.getHours()}:${__minute}`
-            });
-        } while (now_time < end_int);
+            if (now_time < end_int) {
+                const __time = new Date();
+                __time.setTime(now_time);
+                let __minute: any = __time.getMinutes();
+                __minute = __minute > 10 ? __minute : '0' + __minute;
+                this.timeList.push({
+                    val: `${__time.getHours()}:${__minute}`,
+                    hour: __time.getHours(),
+                    minute: __time.getMinutes()
+                });
+            }
+        } while (now_time + time_len < end_int);
         console.log(this.timeList);
     }
 
@@ -191,6 +231,10 @@ export class FoxCalendar implements OnInit {
             disable: type.indexOf('disable') !== -1,
             next: type.indexOf('next') !== -1
         };
+    }
+
+    selectTime(item: any) {
+        item['active'] = !item['active'];
     }
 
     select(item: any) {
@@ -257,7 +301,8 @@ export class FoxCalendar implements OnInit {
     create2() {
         this.updateSelect(this._year, this._month);
         this.list = [];
-        for (let i = 1; i <= this.daysInMonth(this.month, this.year); i++) {
+        const day = this.lastDate.getDate();
+        for (let i = day; i <= this.daysInMonth(this.month, this.year); i++) {
             let active = "",
                 type = "normal";
             if (
