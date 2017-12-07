@@ -31,6 +31,7 @@ class Imeepos_runnerproModuleSite extends WeModuleSite
     {
         // m('route')->run(false);
     }
+
     public function payResult($params)
     {
         // return m('order')->payResult($params);
@@ -43,13 +44,16 @@ class Imeepos_runnerproModuleSite extends WeModuleSite
 
     public function doMobilePay(){
         global $_W,$_GPC;
+        $tid = trim($_GPC['tid']);
+        if(empty($tid)){
+            itoast('参数错误', $this->createMobileUrl('runner_index'),'error');
+        }
         $params = array();
         $params['fee'] = '1';
         $params['title'] = '测试';
         $params['tid'] = M('common')->createNO('core_paylog','tid','');
         $params['ordersn'] = $params['tid'];
         $_W['page']['title'] = M('common')->changeTitle($_W['page']['title']);
-        // print_r($_W['page']['title']);
         $this->pay($params);
     }
 }

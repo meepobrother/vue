@@ -21,7 +21,11 @@
         "url": "https://github.com/meepobrother/vue/issues"
     },
     "homepage": "https://github.com/meepobrother/vue#readme",
-    "dependencies": {},
+    "dependencies": {
+        "@angular/common": "^5.1.0",
+        "@angular/core": "^5.1.0",
+        "@angular/forms": "^5.1.0"
+    },
     "devDependencies": {
         "gulp": "^3.9.1",
         "gulp-bump": "^2.8.0",
