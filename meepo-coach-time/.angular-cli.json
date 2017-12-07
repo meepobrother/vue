@@ -5,7 +5,7 @@
     },
     "apps": [{
         "root": "src",
-        "outDir": "dist",
+        "outDir": "../addons/imeepos_runnerpro/template/mobile/coach-time",
         "assets": [
             "assets",
             "favicon.ico"

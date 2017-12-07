@@ -55,11 +55,17 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
             </div>
         </div>
         <div class="fox-calendar-month-detail" *ngIf="isRow">
+            <p class="weui-msg__desc">
+                请选择预约日期
+            </p>
             <div class="fox-calendar-row" style="overflow: auto;">
                 <div class="fox-calendar-col" style="min-width: 3em;" (click)="select(col)" [ngClass]="col.type" *ngFor="let col of list">
                     <span class="fox-calendar-col-inner"> {{col.val}} </span>
                 </div>
             </div>
+            <p class="weui-msg__desc">
+                选择预约时间及时长，每个30分钟！可选择多个！
+            </p>
             <div class="fox-calendar-time-list">
                 <ul>
                     <li [class.active]="item.active" (click)="selectTime(item)" *ngFor="let item of timeList">{{item.val}}</li>
@@ -169,6 +175,10 @@ export class FoxCalendar implements OnInit {
         this.udpate();
     }
 
+    onTouch(e: any) {
+        console.log('touch');
+    }
+
     createTimeList() {
         const _now = new Date();
         const start_date = new Date(this.year, this.month - 1, this.day, this.timeStart.hour, this.timeStart.minute);
@@ -198,7 +208,6 @@ export class FoxCalendar implements OnInit {
                 });
             }
         } while (now_time + time_len < end_int);
-        console.log(this.timeList);
     }
 
     setMinDate(val: Date = new Date()) {
@@ -273,20 +282,25 @@ export class FoxCalendar implements OnInit {
         if (item.type === 'normal') {
             item.back = item.type;
             item.type = 'active';
-            console.log('选中', item);
-            this.onSelect.emit(item);
         } else if (item.type === 'active') {
             item.type = item.back;
-            console.log('取消', item);
-            this.onSelect.emit(item);
         } else if (item.type === 'next') {
             item.back = item.type;
             item.type = 'active';
-            console.log('选择', item);
-            this.onSelect.emit(item);
         }
         this.day = item.val;
+        this.finish();
         this.createTimeList();
+    }
+
+    finish() {
+        this.onSelect.emit({
+            year: this.year,
+            month: this.month,
+            day: this.day,
+            hour: this.hour,
+            minute: this.minute
+        });
     }
 
     udpate() {

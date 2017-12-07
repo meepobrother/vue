@@ -4,14 +4,33 @@
 <head>
     <meta charset="utf-8">
     <title>MeepoView</title>
-
+    <base href="{STATIC_PATH}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <script src="https://meepo.com.cn/meepo/libs/vconsole.min.js"></script>
+    <!-- <script src="https://meepo.com.cn/meepo/libs/vconsole.min.js"></script>
     <script>
         var vConsole = new VConsole();
         console.log('Hello world');
+    </script> -->
+    <!-- {if !empty($_GPC['do'])} -->
+    <script>
+        var config = {
+            siteroot: "{php echo $_W['siteroot']}",
+            openid: "{php echo $_W['openid']}",
+            uniacid: "{php echo $_W['uniacid']}",
+            staticUrl: "{STATIC_PATH}"
+        };
     </script>
+    <!-- {else} -->
+    <script>
+        var config = {
+            siteroot: "https://meepo.com.cn/",
+            openid: "fromUser",
+            uniacid: "2",
+            staticUrl: "./"
+        };
+    </script>
+    <!-- {/if} -->
 </head>
 
 <body>

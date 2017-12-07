@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ApiService } from './util/api';
 
 import {
     FoxCalendar,
     FoxIcon,
     FoxRange,
     FoxPage,
-    FoxPageContent
+    FoxPageContent,
+    FoxDialog
 } from './index';
 @NgModule({
     declarations: [
@@ -15,7 +17,8 @@ import {
         FoxIcon,
         FoxRange,
         FoxPage,
-        FoxPageContent
+        FoxPageContent,
+        FoxDialog
     ],
     imports: [
         CommonModule,
@@ -26,8 +29,11 @@ import {
         FoxIcon,
         FoxRange,
         FoxPage,
-        FoxPageContent
+        FoxPageContent,
+        FoxDialog
     ],
-    providers: [],
+    providers: [
+        ApiService
+    ],
 })
 export class FoxModule { }

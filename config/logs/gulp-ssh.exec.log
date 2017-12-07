@@ -1,7 +1,9 @@
-Last login: Wed Dec  6 13:14:03 2017 from 125.121.40.3
+Last login: Thu Dec  7 10:38:17 2017 from 125.121.40.3
 
 Welcome to Alibaba Cloud Elastic Compute Service !
 
+rm -rf /data/wwwroot/meepo.com.cn/addons/imeepos_runnerpro/ && mkdir /data/wwwroot/meepo.com.cn/addons/imeepos_runnerpro/
+exit
 [37;40m[[32;40mroot[37;40m@iZ28yvuwds4Z [35;40m~[0m]# rm -rf /data/wwwroot/meepo.com.cn/addons/imeepos_runnerpr o/ && mkdir /data/wwwroot/meepo.com.cn/addons/imeepos_runnerpro/
 [37;40m[[32;40mroot[37;40m@iZ28yvuwds4Z [35;40m~[0m]# exit
 logout
