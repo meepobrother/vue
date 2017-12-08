@@ -48,4 +48,4 @@ if ($_GPC['act'] == 'save') {
     }
     die(json_encode($_POST));
 }
-include $this->template('welcome');
+include $this->template('index');

@@ -8,12 +8,14 @@
     <meta name="keywords" content="跑腿2.0|跑腿公司|同城快递|互助跑腿|跑腿公司">
     <meta name="description" content="小明跑腿专注即时同城快递，提供10分钟上门59分钟送达全城的同城快递及跑腿服务。同城快递找小明跑腿，7*24提供安全、高效、便捷的高端服务！小明跑腿，让生活更高效！">
     <link rel="stylesheet" href="{MODULE_URL}template/welcome/css/style-index.css" />
-    <link rel="stylesheet" href="{MODULE_URL}template/welcome/css/uu/homeball.css">
-    <link rel="stylesheet" href="{MODULE_URL}template/welcome/css/uu/newbase.css">
-    <link rel="stylesheet" href="{MODULE_URL}template/welcome/css/uu/newstyle.css">
-    <link rel="stylesheet" href="{MODULE_URL}template/welcome/css/uu/swiper.css">
-    <link rel="stylesheet" href="{MODULE_URL}template/welcome/css/uu/video-js.css">
-
+    <link rel="stylesheet" href="{MODULE_URL}assets/pc/homeball.css">
+    <link rel="stylesheet" href="{MODULE_URL}assets/pc/newbase.css">
+    <link rel="stylesheet" href="{MODULE_URL}assets/pc/newstyle.css">
+    <style>
+        .banner-content .row {
+            justify-content: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -47,7 +49,7 @@
                             </div>
                         </li>
 
-                        <li><a href="{php echo $this->createWebUrl('index')}" class="button regist" target="_blank">进入管理端</a></li>
+                        <li><a href="{php echo $_W['siteroot'].'web/'.$this->createWebUrl('index')}" class="button regist" target="_blank">进入管理端</a></li>
                     </ul>
                 </div>
             </div>
