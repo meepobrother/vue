@@ -2626,6 +2626,15 @@ gulp-sftp@^0.1.5:
     ssh2 "~0.3.3"
     through2 "~0.4.2"
 
+gulp-shell@^0.6.3:
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/gulp-shell/-/gulp-shell-0.6.3.tgz#2eaa6edfffa8bdff7a8f0b9f9852876f33331c6b"
+  dependencies:
+    async "^2.1.5"
+    gulp-util "^3.0.8"
+    lodash "^4.17.4"
+    through2 "^2.0.3"
+
 gulp-ssh@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/gulp-ssh/-/gulp-ssh-0.6.0.tgz#d09454eae3113fb68c2b5f425143775c4cecbf45"
@@ -2634,7 +2643,7 @@ gulp-ssh@^0.6.0:
     ssh2 "~0.5.0"
     through2 "^2.0.1"
 
-gulp-util@^3.0.0, gulp-util@^3.0.6, gulp-util@^3.0.7, gulp-util@~3.0.0:
+gulp-util@^3.0.0, gulp-util@^3.0.6, gulp-util@^3.0.7, gulp-util@^3.0.8, gulp-util@~3.0.0:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
   dependencies:
@@ -3904,6 +3913,10 @@ md5@^2.2.1:
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
+
+meepo-fox@^1.0.1-19:
+  version "1.0.1-19"
+  resolved "https://registry.yarnpkg.com/meepo-fox/-/meepo-fox-1.0.1-19.tgz#16cf69089a5747e19fb23b57143523f627aa6cd0"
 
 mem@^1.1.0:
   version "1.1.0"
@@ -6153,7 +6166,7 @@ through2@^0.6.1:
     readable-stream ">=1.0.33-1 <1.1.0-0"
     xtend ">=4.0.0 <4.1.0-0"
 
-through2@^2.0.0, through2@^2.0.1:
+through2@^2.0.0, through2@^2.0.1, through2@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/through2/-/through2-2.0.3.tgz#0004569b37c7c74ba39c43f3ced78d1ad94140be"
   dependencies:

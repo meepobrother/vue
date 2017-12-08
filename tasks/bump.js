@@ -3,11 +3,12 @@ var bump = require('gulp-bump');
 var fs = require('fs');
 var semver = require('semver');
 let filter = require('gulp-filter');
-
+const shell = require('gulp-shell');
 var jsonFiles = [
     './bower.json',
     './package.json',
-    './src/manifest.json'
+    './src/manifest.json',
+    './meepo-fox/package.json'
 ];
 
 var getPackageJson = function() {
@@ -24,7 +25,7 @@ var saveVersion = function(version) {
 
 gulp.task('bump', ['bump.prerelease'], function() {
 
-})
+});
 
 gulp.task('bump.minor', function() {
     bumpBuilder('minor');
