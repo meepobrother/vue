@@ -1,0 +1,41 @@
+<fox-page>
+    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" [src]="coach.avatar">
+        </div>
+        <div class="weui-media-box__bd">
+            <h4 class="weui-media-box__title">
+                {{coach.title}}
+                <span style="color: red;">{{coach.fee}}元/{{coach.timeLen}}分钟</span>
+            </h4>
+            <p class="weui-media-box__desc">{{coach.desc}}</p>
+        </div>
+    </a>
+    <fox-calendar [hasSelect]="hasSelect" [timeStart]="widget.time.start" [timeEnd]="widget.time.end" [lastDate]="widget.lastDate" (onSelect)="onSelect($event)" (daySelect)="daySelect($event)" [(timeLen)]="coach.timeLen"></fox-calendar>
+    <p class="weui-msg__desc">
+        请输入留言说明
+    </p>
+    <div class="weui-cells weui-cells_form" style="margin: 0px;">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <textarea class="weui-textarea" [(ngModel)]="form.desc" (change)="onTextareaChange()" placeholder="请输入留言说明" rows="3"></textarea>
+                <div class="weui-textarea-counter"><span>{{form.desc.length}}</span>/200</div>
+            </div>
+        </div>
+    </div>
+    <p class="weui-msg__desc">
+        <label for="weuiAgree" class="weui-agree">
+            <input id="weuiAgree" checked type="checkbox" class="weui-agree__checkbox">
+            <span class="weui-agree__text">
+                阅读并同意 <a (click)="showTiaokuan = !showTiaokuan" href="javascript:void(0);">《相关条款》</a>
+            </span>
+        </label>
+    </p>
+    <a href="javascript:;" [class.weui-btn_loading]="widget.loading" (click)="post()" class="weui-btn weui-btn_primary">
+        <i class="weui-loading" *ngIf="widget.loading"></i> 提交 &nbsp;({{form.time.length * coach.fee}}元)
+    </a>
+</fox-page>
+
+<fox-dialog class="effect-scaleIn" [class.active]="showTiaokuan" (onClose)="showTiaokuan = !showTiaokuan">
+    <div [innerHtml]="widget.content"></div>
+</fox-dialog>

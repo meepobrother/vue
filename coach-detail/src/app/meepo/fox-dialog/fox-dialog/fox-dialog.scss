@@ -1,0 +1,181 @@
+// Variables
+@import "../../fox-core/sass/variables.scss";
+// Mixins
+@import "../../fox-core/sass/mixins.scss";
+// Components
+@-webkit-keyframes scaleIn {
+    from {
+        -webkit-transform: scale(1.2);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes scaleOut {
+    from {
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: scale(0.8);
+        opacity: 0;
+    }
+}
+
+fox-dialog {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: index($elements, fox-dialog);
+    visibility: hidden;
+    -webkit-transition: background-color 300ms ease-in-out;
+    -moz-transition: background-color 300ms ease-in-out;
+    transition: background-color 300ms ease-in-out;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+fox-dialog.active {
+    visibility: visible;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+fox-dialog.hide {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+fox-dialog.effect-scaleIn .dialog-container.active {
+    -webkit-animation-name: scaleIn;
+    -webkit-animation-duration: 0.2s;
+    -webkit-animation-fill-mode: both;
+    -webkit-animation-timing-function: ease-in-out;
+}
+
+fox-dialog.effect-scaleIn.hide .dialog-container {
+    -webkit-animation-name: scaleOut;
+}
+
+fox-dialog .dialog-container {
+    background: rgba(255, 255, 255, 0.9);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    padding: 5px 10px;
+}
+
+fox-popup-dialog .popup-head {
+    padding: 15px 0px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+fox-popup-dialog .popup-title {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+}
+
+fox-popup-dialog .popup-sub-title {
+    margin: 5px 0 0 0;
+    padding: 0;
+    font-weight: normal;
+    font-size: 11px;
+}
+
+fox-popup-dialog .popup-body {
+    padding: 10px;
+}
+
+fox-popup-dialog .popup-buttons .button.button-positive {
+    border-color: #145fd7;
+    background-color: #4a87ee;
+    color: #fff;
+}
+
+fox-popup-dialog .popup-buttons.row {
+    margin: 10px;
+}
+
+fox-popup-dialog .popup-buttons .button {
+    border: none;
+    margin: 0px 5px;
+    min-height: 40px;
+    border-radius: 2px;
+    line-height: 20px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #b2b2b2;
+    background-color: #f8f8f8;
+    color: #444;
+}
+
+fox-popup-dialog .popup-buttons .button:first-child {
+    margin-left: 0px;
+}
+
+fox-popup-dialog .popup-buttons .button:last-child {
+    margin-right: 0px;
+}
+
+fox-popup-dialog .col {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    display: block;
+    padding: 5px;
+    width: 100%;
+}
+
+fox-popup-dialog .row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+fox-popup-dialog .popup-open {
+    pointer-events: none;
+}
+
+fox-popup-dialog .popup-open.modal-open .modal {
+    pointer-events: none;
+}
+
+fox-popup-dialog .popup-open .popup-backdrop,
+.popup-open .popup {
+    pointer-events: auto;
+}
+
+fox-popup-dialog .fox-popup-container {
+    min-width: 230px;
+    min-height: 100px;
+}
+
+fox-popup-dialog .fox-popup-text {
+    outline: none;
+    width: 100%;
+    background: #fff;
+    border: none;
+    display: block;
+    padding-top: 2px;
+    height: 34px;
+    color: #111;
+    vertical-align: middle;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.popup-title {
+    overflow: hidden;
+}
