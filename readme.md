@@ -20,3 +20,11 @@
 
 ### 注意：master, develop 不能直接在上面开发
 ### 注意：feature用于开发功能, hotfix用于修复master bug
+
+```
+registry.npmjs.org/:_authToken=f5b13e5c-1240-4993-9945-1a354cb34bb8
+electron_mirror=https://npm.taobao.org/mirrors/electron/
+strict-ssl=false
+registry = https://registry.npm.taobao.org
+registry=http://registry.npmjs.org/
+```
