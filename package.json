@@ -34,12 +34,15 @@
         "@angular/router": "^5.0.0",
         "core-js": "^2.4.1",
         "meepo-fox": "^1.0.1-21",
+        "query-string": "^5.0.1",
         "rxjs": "^5.5.2",
         "store": "^2.0.12",
+        "urijs": "^1.19.0",
         "weui": "^1.1.2",
         "zone.js": "^0.8.14"
     },
     "devDependencies": {
+        "@angular/cli": "1.6.0",
         "@angular/compiler-cli": "^5.0.0",
         "@angular/language-service": "^5.0.0",
         "@types/core-js": "^0.9.43",

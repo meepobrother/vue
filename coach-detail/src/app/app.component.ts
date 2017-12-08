@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'meepo-fox';
+import { ApiService } from './meepo-fox';
+import * as queryString from 'query-string';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,6 +11,8 @@ export class AppComponent implements OnInit {
   title = 'app';
   timeList: any[] = [];
   showTiaokuan: boolean = false;
+
+  parsed = queryString.parse(location.search);
 
   widget: any = {
     content: '58同城杭州家装频道免费提供给您大量真实有效的杭州家装服务,杭州装修公司,杭州装修队信息查询，同时您可以免费发布杭州家装服务,杭州家装公司,杭州装修队信息。专业的杭州家装服务信息就在58同城杭州家装服务频道。-58.com',
@@ -35,7 +39,7 @@ export class AppComponent implements OnInit {
     desc: '同城预约专注即时同城快递，提供10分钟上门59分钟送达全城的同城快递及跑腿服务。同城快递找小明跑腿，7*24提供安全、高效、便捷的高端服务！小明跑腿，让生活更高效！',
     fee: 10,
     timeLen: 30,
-    id: 1
+    id: this.parsed.id ? this.parsed.id : 1
   };
 
   form: any = {
