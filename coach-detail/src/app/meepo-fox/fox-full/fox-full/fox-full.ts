@@ -4,9 +4,7 @@ import { Component, OnInit, Input } from '@angular/core';
     selector: 'fox-full',
     template: `
     <div class="shop-logo-big">
-        <div class="shop-img">
-            <img [src]="logo" alt="">
-        </div>
+        <ng-content></ng-content>
     </div>
     `,
     styleUrls: ['./fox-full.scss']

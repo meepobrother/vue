@@ -11,15 +11,14 @@ export class AppSetting implements OnInit {
     title: string = '保存';
     loading: boolean = false;
     constructor(
-        public coach: CoachService
+        public coach$: CoachService
     ) { }
 
     ngOnInit() { }
 
     save() {
         this.loading = true;
-        this.coach.updateCoach().subscribe(res => {
-            console.log(res);
+        this.coach$.updateCoach().subscribe(res => {
             this.loading = false;
         });
     }

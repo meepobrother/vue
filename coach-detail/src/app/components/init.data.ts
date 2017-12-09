@@ -26,6 +26,14 @@ export const defaultWidget = {
     max: 200,
     loading: false,
     action: 'pay',
+    detail: {
+        avatar: 'https://meepo.com.cn/addons/imeepos_runnerpro/icon.jpg',
+        title: '同城预约',
+        desc: '',
+        city: '杭州',
+        role: '已通过实名认证',
+        hasCollect: false
+    },
     time: {
         start: {
             hour: 7,

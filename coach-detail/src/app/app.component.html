@@ -1,5 +1,5 @@
 <fox-page>
-    <fox-main></fox-main>
+    <fox-main [widget]="coach$.widget.detail"></fox-main>
     <fox-tabs [items]="coach$.widget.tabs" (onSelect)="selectTabs($event)">
         <app-coach *ngIf="tab === 'coach'"></app-coach>
         <app-star *ngIf="tab === 'star'"></app-star>

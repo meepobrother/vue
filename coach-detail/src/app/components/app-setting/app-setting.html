@@ -19,17 +19,22 @@
     </a>
     <div class="weui-cell">
         <div class="weui-cell__bd">
-            <input class="weui-input" type="text" placeholder="请输入标题">
+            <input class="weui-input" [(ngModel)]="coach$.widget.detail.title" type="text" placeholder="请输入标题">
         </div>
     </div>
     <div class="weui-cell">
         <div class="weui-cell__bd">
-            <textarea class="weui-textarea" placeholder="请输入简介" rows="3"></textarea>
+            <textarea class="weui-textarea" [(ngModel)]="coach$.widget.detail.desc" placeholder="请输入简介" rows="3"></textarea>
             <div class="weui-textarea-counter"><span>0</span>/200</div>
         </div>
     </div>
 </div>
 
 <div class="weui-btn-area">
-    <a class="weui-btn weui-btn_primary" (click)="save()" href="javascript:">保存</a>
+    <a class="weui-btn weui-btn_primary" *ngIf="!loading" (click)="save()" href="javascript:">
+        保存
+    </a>
+    <a class="weui-btn weui-btn_primary" *ngIf="loading" disabled (click)="save()" href="javascript:">
+        <i class="weui-loading"></i> 保存
+    </a>
 </div>
