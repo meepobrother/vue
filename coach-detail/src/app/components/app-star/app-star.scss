@@ -1,0 +1,98 @@
+.mf {
+    padding-bottom: 1px;
+}
+
+.border_t {
+    position: relative;
+    overflow: hidden;
+    clear: both;
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 1px;
+        background-color: #e8ebf0;
+        -webkit-transform: scaleY(.5);
+        transform: scaleY(.5);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+    }
+    &:first-of-type:before {
+        left: 0;
+    }
+}
+
+.comcon {
+    position: relative;
+    padding: .15rem;
+    i.jingh {
+        position: absolute;
+        display: block;
+        background: url(//static.daojia.com/fe/h5/djh5/css/images/icon_lr_jh_afb0255.png) no-repeat top;
+        background-size: 100%;
+        width: 40px;
+        height: 40px;
+        right: 10px;
+        top: 10px;
+    }
+    .uinfo {
+        font-size: 0;
+        .uleft {
+            display: inline-block;
+            margin-right: 10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 30px;
+            vertical-align: top;
+            overflow: hidden;
+            .uhead {
+                width: 100%;
+                height: 100%;
+                -o-object-fit: cover;
+                object-fit: cover;
+            }
+        }
+        .uright {
+            display: inline-block;
+            .utel {
+                font-size: 15px;
+                line-height: 20px;
+                color: #525a66;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .ustar {
+                height: 15px;
+                margin: 3px 0 5px;
+                width: 75px;
+                background: url(//static.daojia.com/fe/h5/djh5/css/images/icon_star_a9a4ea1.png) repeat-x 0 0;
+                background-size: 15px;
+                transform: scale(.8);
+                -webkit-transform: scale(.8);
+                transform-origin: 0 0;
+                -webkit-transform-origin: 0 0;
+                div {
+                    height: 15px;
+                    background: url(//static.daojia.com/fe/h5/djh5/css/images/icon_star_a9a4ea1.png) repeat-x 0 -25px;
+                    background-size: 15px;
+                }
+            }
+        }
+    }
+}
+
+.pjwrap {
+    padding-left: 40px;
+    .pjcon {
+        font-size: 15px;
+    }
+    .utime {
+        color: #848c99;
+        font-size: 12px;
+        margin-top: 5px;
+        line-height: 15px;
+    }
+}

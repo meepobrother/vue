@@ -2,6 +2,7 @@
     <fox-main></fox-main>
     <fox-tabs [items]="coach$.widget.tabs" (onSelect)="selectTabs($event)">
         <app-coach *ngIf="tab === 'coach'"></app-coach>
+        <app-star *ngIf="tab === 'star'"></app-star>
         <app-field *ngIf="tab === 'field'"></app-field>
     </fox-tabs>
 </fox-page>

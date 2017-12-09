@@ -8,7 +8,15 @@ export const defaultCoach = {
     fee: 10,
     timeLen: 30,
     id: parsed.id ? parsed.id : 1,
-    itmes: []
+    itmes: [],
+    stars: [{
+        avatar: 'https://images.daojia.com/dop/custom/12601bba1ccb4b4af531e3a9ed5265ee.png@300w_300h_1wh.jpg',
+        nickname: '咚咚',
+        jingh: true,
+        content: '很好',
+        create_time: '2017.11.09',
+        title: '洗衣做饭'
+    }]
 };
 
 export const defaultWidget = {

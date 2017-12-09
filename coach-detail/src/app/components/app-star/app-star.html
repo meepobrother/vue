@@ -1,0 +1,27 @@
+<div class="business-pj" style="display: block;padding: 5px 10px;">
+    <div class="mf">
+        <div class="commentinfo border_t" *ngFor="let item of items">
+            <div class="comcon border-com">
+                <i class="jingh" *ngIf="item.jingh"></i>
+                <div class="uinfo">
+                    <div class="uleft">
+                        <img class="uhead" [src]="item.avatar">
+                    </div>
+                    <div class="uright">
+                        <div class="utel">{{item.nickname}}</div>
+                        <div class="ustar">
+                            <div style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pjwrap">
+                    <div class="pjcon">{{item.content}}</div>
+                    <div class="utime">
+                        <span>{{item.create_time}}</span>
+                        <span>{{item.title}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
