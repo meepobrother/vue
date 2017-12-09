@@ -9,7 +9,7 @@ import { defaultCoach } from '../init.data';
 export class AppStar implements OnInit {
     items: any[] = defaultCoach.stars;
     constructor(
-        public coach: CoachService
+        public coach$: CoachService
     ) { }
 
     ngOnInit() { }

@@ -14,7 +14,9 @@ export class AppSetting implements OnInit {
         public coach$: CoachService
     ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.coach$.widget.timeLen = 30;
+    }
 
     save() {
         this.loading = true;
@@ -41,7 +43,7 @@ export class AppSetting implements OnInit {
         };
     }
 
-    foxPickerTimeLenChange(e: any){
+    foxPickerTimeLenChange(e: any) {
         this.coach$.widget.timeLen = e.value;
     }
 }

@@ -1,22 +1,22 @@
 <div class="weui-cells" style="margin: 0px;">
-    <a class="weui-cell weui-cell_access" href="javascript:;">
+    <a class="weui-cell weui-cell_access" href="javascript:;" foxPickerTime (foxPickerTimeChange)="foxPickerTimeChangeStart($event)">
         <div class="weui-cell__bd">
             <p>开始时间</p>
         </div>
-        <div class="weui-cell__ft" foxPickerTime (foxPickerTimeChange)="foxPickerTimeChangeStart($event)">{{coach$.widget.time.start.label || '请选择'}}</div>
+        <div class="weui-cell__ft">{{coach$.widget.time.start.label || '请选择'}}</div>
     </a>
-    <a class="weui-cell weui-cell_access" href="javascript:;">
+    <a class="weui-cell weui-cell_access" href="javascript:;" foxPickerTime (foxPickerTimeChange)="foxPickerTimeChangeEnd($event)">
         <div class="weui-cell__bd">
             <p>结束时间</p>
         </div>
-        <div class="weui-cell__ft" foxPickerTime (foxPickerTimeChange)="foxPickerTimeChangeEnd($event)">{{coach$.widget.time.end.label || '请选择'}}</div>
+        <div class="weui-cell__ft">{{coach$.widget.time.end.label || '请选择'}}</div>
     </a>
-    <a class="weui-cell weui-cell_access" href="javascript:;">
+    <!-- <a class="weui-cell weui-cell_access" href="javascript:;" foxPickerTimeLen (foxPickerTimeLenChange)="foxPickerTimeLenChange($event)">
         <div class="weui-cell__bd">
             <p>时长周期</p>
         </div>
-        <div class="weui-cell__ft" foxPickerTimeLen (foxPickerTimeLenChange)="foxPickerTimeLenChange($event)">{{coach$.widget.timeLen || '请选择'}}</div>
-    </a>
+        <div class="weui-cell__ft">{{coach$.widget.timeLen || '请选择'}}</div>
+    </a> -->
     <div class="weui-cell">
         <div class="weui-cell__bd">
             <input class="weui-input" [(ngModel)]="coach$.widget.detail.title" type="text" placeholder="请输入标题">

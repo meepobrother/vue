@@ -6,7 +6,7 @@ if (file_exists($file)) {
 }
 define('STATIC_PATH', MODULE_URL."template/mobile/coach/detail/");
 $act = isset($_GPC['act']) ? trim($_GPC['act']) : '';
-
+$user = mc_fansinfo($_W['openid']);
 if ($act == 'list') {
     $sql = "SELEC * FROM ".tablename('imeepos_runner4_member_skill')." WHERE uniacid=:uniacid ";
     $params = array();
@@ -14,6 +14,7 @@ if ($act == 'list') {
     $list = pdo_fetchall($sql, $params);
     $re = array();
     $re['list'] = $list;
+
     ToJson($re);
 }
 
@@ -28,8 +29,11 @@ if ($act == 'update') {
     
     $id = isset($_GPC['id']) ? intval($_GPC['id']) : 0;
     $data = array();
+    $input['detail']['avatar'] = $user['avatar'];
+    $input['detail']['openid'] = $_W['openid'];
     $data['setting'] = serialize($input);
-
+    $data['avatar'] = $user['avatar'];
+    $data['openid'] = $_W['openid'];
     pdo_update('imeepos_runner4_member_skill', $data, array('id'=>$id));
     ToJson($data);
 }
@@ -55,6 +59,21 @@ if ($act == 'detail') {
     $detail = pdo_get('imeepos_runner4_member_skill', array('id'=>$id));
     $detail['setting'] = unserialize($detail['setting']);
     $re['detail'] = $detail;
+    $sql = "SELECT openid,create_time,status,title,star FROM ".tablename("imeepos_runner4_coach_log")." WHERE coachId=:coachId AND status>0 ORDER BY create_time DESC";
+    $params = array();
+    $params[':coachId'] = $id;
+    $stars = pdo_fetchall($sql, $params);
+    foreach ($stars as &$star) {
+        $member = pdo_get("imeepos_runner3_member", array('openid'=>$star['openid']));
+        $star['avatar'] = $member['avatar'];
+        $star['nickname'] = $member['nickname'];
+        $star['create_time'] = date('y-m-d H:i', $star['create_time']);
+    }
+    unset($star);
+
+    $re['stars'] = $stars;
+    $starsTotal = pdo_fetchcolumn("SELECT COUNT(*) FROM ".tablename('imeepos_runner4_coach_log')." WHERE coachId=:coachId AND status>0", $params);
+    $re['starsTotal'] = $starsTotal;
     ToJson($re);
 }
 
@@ -108,6 +127,7 @@ if ($act == 'create') {
     $data['tid'] = M('common')->createNO('imeepos_runner4_coach_log', 'tid', 'COACH');
     $data['status'] = 0;
     $data['title'] = $coach['title'];
+    $data['star'] = 0;
     pdo_insert('imeepos_runner4_coach_log', $data);
     $data['id'] = pdo_insertid();
     ToJson($data);

@@ -69,6 +69,8 @@ export class CoachService {
             this.hasSelect = res.hasSelect;
             this.coach = res.detail;
             this.widget = { ...this.widget, ...res.detail.setting };
+            this.widget.tabs[1].num = res.starsTotal;
+            this.coach.stars = res.stars;
         });
     }
 

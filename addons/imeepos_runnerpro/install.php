@@ -163,7 +163,9 @@ if (!pdo_fieldexists('imeepos_runner4_coach_log', 'payType')) {
 if (!pdo_fieldexists('imeepos_runner4_coach_log', 'timeIds')) {
     pdo_query("ALTER TABLE ".tablename('imeepos_runner4_coach_log')." ADD COLUMN `timeIds` text");
 }
-
+if (!pdo_fieldexists('imeepos_runner4_coach_log', 'star')) {
+    pdo_query("ALTER TABLE ".tablename('imeepos_runner4_coach_log')." ADD COLUMN `star` int(3) NULL DEFAULT '0'");
+}
 if(!pdo_tableexists('imeepos_runner4_coach_log_time')){
     pdo_query("CREATE TABLE ".tablename("imeepos_runner4_coach_log_time")." (
         `id` int(11) NOT NULL AUTO_INCREMENT,

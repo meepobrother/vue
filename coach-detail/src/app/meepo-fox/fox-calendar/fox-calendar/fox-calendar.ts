@@ -207,6 +207,7 @@ export class FoxCalendar implements OnInit {
     }
 
     setSelect() {
+        console.log('setSelect', this.timeList);
         this._hasSelect.map((select: any) => {
             this.timeList.map((time: any) => {
                 if (time.timeInt === select.timeInt) {

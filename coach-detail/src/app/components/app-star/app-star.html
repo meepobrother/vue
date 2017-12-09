@@ -1,6 +1,6 @@
 <div class="business-pj" style="display: block;padding: 0px 10px;">
     <div class="mf">
-        <div class="commentinfo border_t" *ngFor="let item of items">
+        <div class="commentinfo border_t" *ngFor="let item of coach$.coach.stars">
             <div class="comcon border-com">
                 <i class="jingh" *ngIf="item.jingh"></i>
                 <div class="uinfo">
@@ -10,7 +10,7 @@
                     <div class="uright">
                         <div class="utel">{{item.nickname}}</div>
                         <div class="ustar">
-                            <div style="width: 100%;"></div>
+                            <div [style.width.%]="item.star"></div>
                         </div>
                     </div>
                 </div>
