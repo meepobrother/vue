@@ -1,0 +1,33 @@
+<?php
+
+if(!pdo_tableexists('imeepos_runner4_order_goods')){
+    $sql = "CREATE TABLE ".tablename('imeepos_runner4_order_goods')." (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `uniacid` int(11) NOT NULL DEFAULT '0',
+        `title` varchar(64) NOT NULL DEFAULT '',
+        `desc` varchar(320) NOT NULL DEFAULT '',
+        `status` tinyint(2) NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
+    pdo_query($sql);
+}    
+if(!pdo_fieldexists('imeepos_runner4_order_goods','tags')){
+    $sql = "ALTER TABLE ".tablename('imeepos_runner4_order_goods')." ADD COLUMN `tags` text NOT NULL AFTER `status`;";
+    pdo_query($sql);
+}
+if(!pdo_fieldexists('imeepos_runner4_order_goods','displayorder')){
+    $sql = "ALTER TABLE ".tablename('imeepos_runner4_order_goods')." ADD COLUMN `displayorder` int(11) NOT NULL DEFAULT '0'";
+    pdo_query($sql);
+}
+
+if(!pdo_fieldexists('imeepos_runner4_order_goods','fid')){
+    $sql = "ALTER TABLE ".tablename('imeepos_runner4_order_goods')." ADD COLUMN `fid` int(11) NOT NULL DEFAULT '0'";
+    pdo_query($sql);
+}
+
+
+if(!pdo_fieldexists('imeepos_runner4_order_goods','fee')){
+    $sql = "ALTER TABLE ".tablename('imeepos_runner4_order_goods')." ADD COLUMN `fee` decimal(10,2) NOT NULL DEFAULT '0,00'";
+    pdo_query($sql);
+}
+return $this;

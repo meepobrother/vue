@@ -149,5 +149,10 @@ export class CoachService {
     checkHasRole(role, roles) {
         return roles.indexOf(role) !== -1;
     }
+
+    getSkillGroup() {
+        const url = this.api.getUrl('coach_detail', { act: 'groups' }, false);
+        return this.api.get(url);
+    }
 }
 

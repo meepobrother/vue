@@ -72,6 +72,12 @@ export const defaultWidget = {
             active: false,
             code: 'setting',
             role: 'owner'
+        },
+        {
+            title: '入驻',
+            active: false,
+            code: 'join',
+            role: 'member'
         }
     ]
 };

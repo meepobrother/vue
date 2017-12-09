@@ -1,13 +1,13 @@
 .shop-logo-big {
     display: block;
-    position: fixed;
+    position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     background: #fff;
-    z-index: 12;
-    overflow: hidden;
+    z-index: 999;
+    overflow: auto;
     .shop-img {
         width: 100%;
         background: #fff;
