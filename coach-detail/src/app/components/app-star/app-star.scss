@@ -96,3 +96,32 @@
         line-height: 15px;
     }
 }
+
+.star-dialog {
+    padding: 0 10px;
+    display: block;
+}
+
+.float-bottom {
+    position: fixed !important;
+    bottom: 10px;
+    right: 10px;
+}
+
+:host {
+    display: flex;
+    flex-direction: column;
+    .business-pj {
+        flex: 1;
+        overflow: auto;
+    }
+}
+
+.footer-flex {
+    height: 55px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 10px 0px 0px;
+}

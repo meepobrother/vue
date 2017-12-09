@@ -16,7 +16,9 @@ import {
     FoxFull,
     FoxMain,
     FoxPickerTime,
-    FoxPickerTimeLen
+    FoxPickerTimeLen,
+    FoxTextarea,
+    FoxStar
 } from './public_api';
 
 const commponents = [
@@ -32,7 +34,9 @@ const commponents = [
     FoxFull,
     FoxMain,
     FoxPickerTime,
-    FoxPickerTimeLen
+    FoxPickerTimeLen,
+    FoxTextarea,
+    FoxStar
 ];
 
 @NgModule({

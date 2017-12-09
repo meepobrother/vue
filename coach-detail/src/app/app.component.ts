@@ -10,7 +10,7 @@ import { CoachService } from './components/coach.service';
 export class AppComponent implements OnInit {
   title = 'app';
   tab: any = {};
-  roles: string[] = ['member', 'owner'];
+
   constructor(
     public coach$: CoachService
   ) { }

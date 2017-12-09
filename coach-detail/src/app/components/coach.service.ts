@@ -7,6 +7,9 @@ import {
 } from './init.data';
 @Injectable()
 export class CoachService {
+
+    roles: string[] = ['member', 'owner'];
+
     coach: any = defaultCoach;
     widget: any = defaultWidget;
     form: any = defaultForm;
@@ -141,6 +144,10 @@ export class CoachService {
     updateCoach() {
         const url = this.api.getUrl('coach_detail', { id: this.coach.id, act: 'update' }, false);
         return this.api.post(url, this.widget);
+    }
+
+    checkHasRole(role, roles) {
+        return roles.indexOf(role) !== -1;
     }
 }
 

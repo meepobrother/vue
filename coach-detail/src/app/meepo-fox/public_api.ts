@@ -11,6 +11,8 @@ export * from './fox-tabs';
 export * from './fox-full';
 export * from './fox-main';
 export * from './fox-picker';
+export * from './fox-textarea';
+export * from './fox-star';
 
 export { ApiService } from './util/api';
 

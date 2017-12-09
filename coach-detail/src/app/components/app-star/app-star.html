@@ -25,3 +25,25 @@
         </div>
     </div>
 </div>
+<div class="footer-flex">
+    <a class="weui-btn weui-btn_primary weui-btn_mini" [attr.disabled]="hasPostPermission" (click)="showDialog = !showDialog" href="javascript:">我要评价</a>
+</div>
+<fox-full class="star-dialog" *ngIf="showDialog">
+    <div class="star-dialog-body ">
+        <div class="weui-cells" style="margin: 0px;">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <p>评星</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <fox-star></fox-star>
+                </div>
+            </div>
+        </div>
+        <fox-textarea [(model)]="form.content" placeholder="请输入留言"></fox-textarea>
+        <div class="weui-btn-area">
+            <a class="weui-btn weui-btn_primary" href="javascript:">发送</a>
+            <a class="weui-btn weui-btn_default" (click)="showDialog = !showDialog" href="javascript:">关闭</a>
+        </div>
+    </div>
+</fox-full>
