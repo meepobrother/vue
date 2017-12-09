@@ -2,7 +2,7 @@
     请选择预约项目 &nbsp;<span style="color: red;">({{coach$.coach.fee}}元/{{coach$.coach.timeLen}}分钟)</span>
 </p>
 <fox-tags [items]="coach$.coach.items" (onSelect)="onSelectTag($event)"></fox-tags>
-<fox-calendar [hasSelect]="coach$.hasSelect" [timeStart]="coach$.widget.time.start" [timeEnd]="coach$.widget.time.end" [lastDate]="coach$.widget.lastDate" (onSelect)="onSelect($event)" (daySelect)="daySelect($event)" [(timeLen)]="coach$.widget.timeLen"></fox-calendar>
+<fox-calendar [hasSelect]="coach$.hasSelect" [timeStart]="coach$.widget.time.start" [timeEnd]="coach$.widget.time.end" (onSelect)="onSelect($event)" (daySelect)="daySelect($event)" [(timeLen)]="coach$.widget.timeLen"></fox-calendar>
 <p class="weui-msg__desc">
     请输入留言说明
 </p>

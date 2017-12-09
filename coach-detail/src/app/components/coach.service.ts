@@ -23,7 +23,6 @@ export class CoachService {
     ) { }
 
     selectTabs(e) {
-        // console.log(e);
     }
 
     onInit(cache = true) {
@@ -49,6 +48,7 @@ export class CoachService {
         this.coach.title = e.title;
         this.coach.fee = e.fee;
         this.coach.timeLen = e.timeLen;
+        this.form.title = e.title;
     }
 
     onTextareaChange() {
@@ -74,15 +74,27 @@ export class CoachService {
         });
     }
 
+    gethasSelect() {
+        const url = this.api.getUrl('coach_detail', {
+            id: this.coach.id,
+            act: 'detail',
+            year: this.year,
+            month: this.month,
+            day: this.day
+        }, false);
+        this.api.get(url).subscribe((res: any) => {
+            this.hasSelect = res.hasSelect;
+        });
+    }
+
     daySelect(e: any) {
         this.day = e.day;
         this.year = e.year;
         this.month = e.month;
-        this.init();
+        this.gethasSelect();
     }
 
     onSelect(e: any) {
-        console.log(e);
         if (e.add) {
             this.form.time.push(e);
         } else {

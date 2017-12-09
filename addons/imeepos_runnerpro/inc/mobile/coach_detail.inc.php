@@ -14,7 +14,6 @@ if ($act == 'list') {
     $list = pdo_fetchall($sql, $params);
     $re = array();
     $re['list'] = $list;
-
     ToJson($re);
 }
 
@@ -126,7 +125,7 @@ if ($act == 'create') {
     $data['create_time'] = time();
     $data['tid'] = M('common')->createNO('imeepos_runner4_coach_log', 'tid', 'COACH');
     $data['status'] = 0;
-    $data['title'] = $coach['title'];
+    $data['title'] = $input['title'];
     $data['star'] = 0;
     pdo_insert('imeepos_runner4_coach_log', $data);
     $data['id'] = pdo_insertid();
