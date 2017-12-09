@@ -1,7 +1,7 @@
 <?php
 global $_W,$_GPC;
 include MODULE_ROOT."inc/mobile/__init.php";
-define('STATIC_PATH', MODULE_URL."template/mobile/coach/time/");
+define('STATIC_PATH', MODULE_URL."template/mobile/coach/detail/");
 
 $act = isset($_GPC['act']) ? trim($_GPC['act']) : '';
 
@@ -42,6 +42,7 @@ if ($act == 'detail') {
     $re = array();
     $re['hasSelect'] = $list;
     $re['params'] = $params;
+    $re['detail'] = pdo_get('imeepos_runner4_member_skill',array('id'=>$id));
     die(json_encode($re));
 }
 
@@ -106,4 +107,4 @@ if ($act == 'create') {
     die(json_encode($data));
 }
 
-include $this->template('coach/time/index');
+include $this->template('coach/detail/index');

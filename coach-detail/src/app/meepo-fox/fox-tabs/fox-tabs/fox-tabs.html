@@ -1,0 +1,13 @@
+<div class="business-switch">
+    <div class="checked">
+        <ul style="top: 0px;">
+            <li (click)="_select(item)" [class.active]="item.active" *ngFor="let item of items;index as i;">
+                {{item.title}}
+                <span *ngIf="item.num>0">({{item.num}}+)</span>
+            </li>
+        </ul>
+    </div>
+    <div class="business-table">
+        <ng-content></ng-content>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+.business-switch {
+    width: 100%;
+    .checked {
+        height: 42px;
+        ul {
+            position: relative;
+            height: 42px;
+            line-height: 42px;
+            display: flex;
+            font-size: 16px;
+            font-family: PingFangSC-Semibold;
+            color: #525a66;
+            background: #fff;
+            list-style: none;
+            &:before {
+                content: '';
+                display: block;
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 1px;
+                background-color: #E8EBF0;
+                -webkit-transform: scaleY(0.5);
+                transform: scaleY(0.5);
+                -webkit-transform-origin: 0 1px;
+                transform-origin: 0 1px;
+            }
+            li {
+                position: relative;
+                flex: 1;
+                height: 42px;
+                line-height: 42px;
+                text-align: center;
+                span {
+                    margin-left: 4px;
+                    font-size: 13px;
+                    color: #848c99;
+                    vertical-align: middle;
+                    font-family: PingFangSC-Regular;
+                }
+                &.active {
+                    &:after {
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        left: 50%;
+                        bottom: 0;
+                        margin-left: -27.6%;
+                        width: 55.2%;
+                        height: 2px;
+                        background-color: #E6454A;
+                    }
+                }
+            }
+        }
+    }
+}

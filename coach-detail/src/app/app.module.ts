@@ -5,10 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { FoxModule } from './meepo-fox';
-
+import { AppCoach } from './components';
+import { CoachService } from './components/coach.service';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AppCoach
   ],
   imports: [
     BrowserModule,
@@ -16,7 +18,9 @@ import { FoxModule } from './meepo-fox';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    CoachService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

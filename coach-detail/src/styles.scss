@@ -5,6 +5,13 @@
     padding: 0px;
 }
 
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+
 // Variables
 @import "./sass/variables.scss";
 // Mixins

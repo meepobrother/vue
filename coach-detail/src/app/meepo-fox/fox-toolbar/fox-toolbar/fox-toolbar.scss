@@ -1,0 +1,63 @@
+// Variables
+@import "../../fox-core/sass/variables.scss";
+// Mixins
+@import "../../fox-core/sass/mixins.scss";
+// Components
+fox-toolbar {
+    z-index: index($elements, fox-toolbar);
+    fox-icon {
+        color: $primary-color;
+    }
+    fox-icon.icon {
+        font-size: 1.28em;
+    }
+    &>* {
+        line-height: $bar-base-height;
+        position: absolute;
+        bottom: 1px;
+    }
+    & .left {
+        left: 0;
+        padding-left: 5px;
+        text-align: left;
+        background: #f8f8f8;
+    }
+    & .right {
+        right: 0;
+        margin-right: 5px;
+        text-align: right;
+        background: #f8f8f8;
+    }
+    &>h1 {
+        transition: all 400ms;
+        position: absolute;
+        bottom: 1px;
+        display: block;
+        width: 44%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        padding: 0;
+        left: 28%;
+        margin: 0 auto;
+        font-size: 16px;
+        font-weight: 500;
+        color: #1f1f21;
+        text-align: center;
+        white-space: nowrap;
+        opacity: 1;
+        // z-index: 10;
+        background: #f8f8f8;
+    }
+    &>h1.prev {
+        color: $primary-color;
+        left: 0;
+        margin-left: 34px;
+        width: 25%;
+        text-align: left !important;
+        text-decoration: none;
+        font-weight: normal;
+        font-size: 16px;
+        letter-spacing: 0;
+        z-index: 1;
+    }
+}

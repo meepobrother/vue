@@ -19,12 +19,12 @@
 }
 
 .weui-btn_primary {
-    background-color: #007aff;
+    background-color: #007aff !important;
     margin-bottom: 10px;
 }
 
 .weui-btn_loading.weui-btn_primary {
-    background-color: #007aff;
+    background-color: #007aff !important;
 }
 
 .weui-msg__desc {
@@ -35,5 +35,5 @@
 
 .weui-btn_primary:not(.weui-btn_disabled):active {
     color: hsla(0, 0%, 100%, .6);
-    background-color: #007aff;
+    background-color: #007aff !important;
 }

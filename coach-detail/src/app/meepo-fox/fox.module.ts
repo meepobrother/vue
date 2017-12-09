@@ -9,29 +9,38 @@ import {
     FoxRange,
     FoxPage,
     FoxPageContent,
-    FoxDialog
+    FoxDialog,
+    FoxTags,
+    FoxToolbar,
+    FoxTabs,
+    FoxFull,
+    FoxMain
 } from './public_api';
+
+const commponents = [
+    FoxCalendar,
+    FoxIcon,
+    FoxRange,
+    FoxPage,
+    FoxPageContent,
+    FoxDialog,
+    FoxTags,
+    FoxToolbar,
+    FoxTabs,
+    FoxFull,
+    FoxMain
+];
 
 @NgModule({
     declarations: [
-        FoxCalendar,
-        FoxIcon,
-        FoxRange,
-        FoxPage,
-        FoxPageContent,
-        FoxDialog
+        ...commponents
     ],
     imports: [
         CommonModule,
         FormsModule
     ],
     exports: [
-        FoxCalendar,
-        FoxIcon,
-        FoxRange,
-        FoxPage,
-        FoxPageContent,
-        FoxDialog
+        ...commponents
     ],
     providers: [
         ApiService
