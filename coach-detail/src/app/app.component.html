@@ -1,3 +1,4 @@
+<fox-header></fox-header>
 <fox-main [widget]="coach$.widget.detail"></fox-main>
 <fox-tabs [roles]="coach$.roles" [items]="coach$.widget.tabs" (onSelect)="selectTabs($event)">
     <app-coach *ngIf="tab.code === 'coach'"></app-coach>

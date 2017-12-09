@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { CoachService } from '../coach.service';
 
 @Component({
@@ -20,5 +20,9 @@ export class AppJoin implements OnInit {
 
     post() {
 
+    }
+
+    cancel() {
+        window.location.reload();
     }
 }

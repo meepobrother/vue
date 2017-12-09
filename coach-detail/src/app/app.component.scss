@@ -44,11 +44,14 @@ html {
     height: 100%;
     width: 100%;
     display: block;
-    position: relative;
 }
 
-app-root {
-    overflow: auto;
+.h10 {
+    height: 10px;
+}
+
+app-star {
+    background: #fff;
 }
 
 // fox-main {

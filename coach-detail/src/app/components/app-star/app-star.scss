@@ -6,22 +6,6 @@
     position: relative;
     overflow: hidden;
     clear: both;
-    &:before {
-        content: "";
-        display: block;
-        position: absolute;
-        right: 0;
-        top: 0;
-        height: 1px;
-        background-color: #e8ebf0;
-        -webkit-transform: scaleY(.5);
-        transform: scaleY(.5);
-        -webkit-transform-origin: 0 0;
-        transform-origin: 0 0;
-    }
-    &:first-of-type:before {
-        left: 0;
-    }
 }
 
 .comcon {

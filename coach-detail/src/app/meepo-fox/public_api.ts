@@ -13,6 +13,7 @@ export * from './fox-main';
 export * from './fox-picker';
 export * from './fox-textarea';
 export * from './fox-star';
+export * from './fox-header';
 
 export { ApiService } from './util/api';
 

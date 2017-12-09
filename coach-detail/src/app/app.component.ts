@@ -23,4 +23,5 @@ export class AppComponent implements OnInit {
     this.tab = e;
     this.coach$.selectTabs(e);
   }
+
 }
