@@ -11,7 +11,9 @@
             </div>
         </div>
     </div>
-    <div class="bar_favorites shop-collection collect_btn">
-        <span></span>收藏
+    <div class="bar_favorites shop-collection collect_btn" (click)="collect()">
+        <span *ngIf="!widget.hasCollect"></span>
+        <i *ngIf="!widget.hasCollect">收藏</i>
+        <i *ngIf="widget.hasCollect">已收藏</i>
     </div>
 </div>

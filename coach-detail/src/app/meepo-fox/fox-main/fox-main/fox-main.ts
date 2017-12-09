@@ -10,9 +10,13 @@ export class FoxMain implements OnInit {
         avatar: 'https://meepo.com.cn/addons/imeepos_runnerpro/icon.jpg',
         title: '同城预约',
         city: '杭州',
-        role: '已通过实名认证'
+        role: '已通过实名认证',
+        hasCollect: false
     };
     constructor() { }
-
     ngOnInit() { }
+
+    collect() {
+        this.widget.hasCollect = !this.widget.hasCollect;
+    }
 }
