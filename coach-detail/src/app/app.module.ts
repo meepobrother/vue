@@ -5,14 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { FoxModule } from './meepo-fox';
-import { AppCoach, AppField, AppStar } from './components';
+import { AppCoach, AppField, AppStar, AppSetting } from './components';
 import { CoachService } from './components/coach.service';
 @NgModule({
   declarations: [
     AppComponent,
     AppCoach,
     AppField,
-    AppStar
+    AppStar,
+    AppSetting
   ],
   imports: [
     BrowserModule,

@@ -26,15 +26,23 @@ export class CoachService {
         console.log(e);
     }
 
-    onInit() {
-        if (!this.hasInit) {
-            const now = new Date();
-            this.day = now.getDate();
-            this.year = now.getFullYear();
-            this.month = now.getMonth() + 1;
-            this.init();
-            this.hasInit = true;
+    onInit(cache = true) {
+        if (cache) {
+            if (!this.hasInit) {
+                this.init2();
+            }
+        } else {
+            this.init2();
         }
+    }
+
+    init2() {
+        const now = new Date();
+        this.day = now.getDate();
+        this.year = now.getFullYear();
+        this.month = now.getMonth() + 1;
+        this.init();
+        this.hasInit = true;
     }
 
     onSelectTag(e: any) {
@@ -113,6 +121,11 @@ export class CoachService {
             if (new RegExp("(" + k + ")").test(fmt))
                 fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
         return fmt;
+    }
+
+    updateCoach() {
+        const url = this.api.getUrl('coach_detail', { id: this.coach.id }, false);
+        return this.api.post(url, this.coach);
     }
 }
 

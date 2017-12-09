@@ -40,18 +40,27 @@ export const defaultWidget = {
         {
             title: '预约',
             active: true,
-            code: 'coach'
+            code: 'coach',
+            role: 'member'
         },
         {
-            title: '评价',
+            title: '记录',
             active: false,
             num: 0,
-            code: 'star'
+            code: 'star',
+            role: 'member'
         },
         {
             title: '名片',
             active: false,
-            code: 'field'
+            code: 'field',
+            role: 'member'
+        },
+        {
+            title: '设置',
+            active: false,
+            code: 'setting',
+            role: 'owner'
         }
     ]
 };
