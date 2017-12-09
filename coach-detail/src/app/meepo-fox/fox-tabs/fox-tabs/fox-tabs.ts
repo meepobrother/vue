@@ -7,14 +7,17 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class FoxTabs implements OnInit {
     @Input() items: any[] = [];
-
+    @Input() roles: string[] = ['member'];
     @Output() onSelect: EventEmitter<any> = new EventEmitter();
     constructor() { }
 
     ngOnInit() {
-        this.items.map(res => {
+        this.items.map((res, index) => {
             if (res.active) {
                 this._select(res);
+            }
+            if (this.roles.indexOf(res.role) === -1) {
+                this.items.splice(index, 1)
             }
         });
     }

@@ -9,7 +9,8 @@ import { CoachService } from './components/coach.service';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  tab: string;
+  tab: any = {};
+  roles: string[] = ['member', 'owner'];
   constructor(
     public coach$: CoachService
   ) { }
@@ -18,7 +19,7 @@ export class AppComponent implements OnInit {
     this.coach$.onInit();
   }
   selectTabs(e: any) {
-    this.tab = e.code;
+    this.tab = e;
     console.log(this.tab);
     this.coach$.selectTabs(e);
   }

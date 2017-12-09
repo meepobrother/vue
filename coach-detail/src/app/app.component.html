@@ -1,9 +1,9 @@
 <fox-page>
     <fox-main [widget]="coach$.widget.detail"></fox-main>
-    <fox-tabs [items]="coach$.widget.tabs" (onSelect)="selectTabs($event)">
-        <app-coach *ngIf="tab === 'coach'"></app-coach>
-        <app-star *ngIf="tab === 'star'"></app-star>
-        <app-field *ngIf="tab === 'field'"></app-field>
-        <app-setting *ngIf="tab === 'setting'"></app-setting>
+    <fox-tabs [roles]="roles" [items]="coach$.widget.tabs" (onSelect)="selectTabs($event)">
+        <app-coach *ngIf="tab.code === 'coach'"></app-coach>
+        <app-star *ngIf="tab.code === 'star'"></app-star>
+        <app-field *ngIf="tab.code === 'field'"></app-field>
+        <app-setting *ngIf="tab.code === 'setting'"></app-setting>
     </fox-tabs>
 </fox-page>

@@ -29,7 +29,7 @@ export const defaultWidget = {
     detail: {
         avatar: 'https://meepo.com.cn/addons/imeepos_runnerpro/icon.jpg',
         title: '同城预约',
-        desc: '',
+        desc: '同城预约同城预约同城预约同城预约同城预约同城预约同城预约同城预约同城预约同城预约',
         city: '杭州',
         role: '已通过实名认证',
         hasCollect: false
@@ -59,7 +59,7 @@ export const defaultWidget = {
             role: 'member'
         },
         {
-            title: '名片',
+            title: '二维码',
             active: false,
             code: 'field',
             role: 'member'
