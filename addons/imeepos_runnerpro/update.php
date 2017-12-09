@@ -184,3 +184,7 @@ if (!pdo_fieldexists('imeepos_runner4_coach_log_time', 'timeInt')) {
 if (!pdo_fieldexists('imeepos_runner4_coach_log_time', 'status')) {
     pdo_query("ALTER TABLE ".tablename('imeepos_runner4_coach_log_time')." ADD COLUMN `status` tinyint(2) NULL DEFAULT '0';");
 }
+
+if (!pdo_fieldexists('imeepos_runner4_member_skill', 'setting')) {
+    pdo_query("ALTER TABLE ".tablename('imeepos_runner4_member_skill')." ADD COLUMN `setting` text;");
+}

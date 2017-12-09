@@ -8,7 +8,7 @@ import { CoachService } from '../coach.service';
     styleUrls: ['./app-setting.scss']
 })
 export class AppSetting implements OnInit {
-    title: string = '保存';
+    btn_title: string = '保存';
     loading: boolean = false;
     constructor(
         public coach$: CoachService
@@ -19,7 +19,29 @@ export class AppSetting implements OnInit {
     save() {
         this.loading = true;
         this.coach$.updateCoach().subscribe(res => {
-            this.loading = false;
+            this.btn_title = '保存成功';
+            setTimeout(() => {
+                this.loading = false;
+                this.btn_title = '保存';
+            }, 1000);
         });
+    }
+
+    foxPickerTimeChangeStart(e: any) {
+        this.coach$.widget.time.start = {
+            ...e.value,
+            label: e.label
+        };
+    }
+
+    foxPickerTimeChangeEnd(e: any) {
+        this.coach$.widget.time.end = {
+            ...e.value,
+            label: e.label
+        };
+    }
+
+    foxPickerTimeLenChange(e: any){
+        this.coach$.widget.timeLen = e.value;
     }
 }

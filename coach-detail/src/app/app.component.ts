@@ -18,9 +18,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.coach$.onInit();
   }
+
   selectTabs(e: any) {
     this.tab = e;
-    console.log(this.tab);
     this.coach$.selectTabs(e);
   }
 }

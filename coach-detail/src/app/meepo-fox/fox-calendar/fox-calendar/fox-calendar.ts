@@ -68,7 +68,8 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
             </p>
             <div class="fox-calendar-time-list">
                 <ul>
-                    <li [class.disable]="item.disable" [class.active]="item.active" (click)="selectTime(item)" *ngFor="let item of timeList">{{item.val}}</li>
+                    <li [class.disable]="item.disable" [class.active]="item.active"
+                        (click)="selectTime(item)" *ngFor="let item of timeList">{{item.val}}</li>
                 </ul>
             </div>
         </div>
@@ -80,14 +81,15 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class FoxCalendar implements OnInit {
     _month: number = 1;
     _hasSelect: any[] = [];
-    @Input() 
-    get hasSelect(){
+    @Input()
+    get hasSelect() {
         return this._hasSelect;
     }
-    set hasSelect(val: any[]){
+    set hasSelect(val: any[]) {
         this._hasSelect = val;
         this.setSelect();
     }
+
     @Input()
     set month(val: number) {
         this._month = val;
@@ -167,15 +169,31 @@ export class FoxCalendar implements OnInit {
     btnNextYearDisable: boolean = false;
     btnNextMonthDisable: boolean = false;
 
-    @Input() timeStart: any = {
+    _timeStart: any = {
         hour: 0,
         minute: 0
     };
+    @Input()
+    set timeStart(val: any) {
+        this._timeStart = val;
+        this.udpate();
+    }
+    get timeStart() {
+        return this._timeStart;
+    }
 
-    @Input() timeEnd: any = {
+    _timeEnd: any = {
         hour: 24,
         minute: 0
     };
+    @Input()
+    set timeEnd(val: any) {
+        this._timeEnd = val;
+        this.udpate();
+    }
+    get timeEnd() {
+        return this._timeEnd;
+    }
 
     constructor() { }
 
@@ -188,10 +206,10 @@ export class FoxCalendar implements OnInit {
         this.udpate();
     }
 
-    setSelect(){
-        this._hasSelect.map((select: any)=>{
-            this.timeList.map((time: any)=>{
-                if(time.timeInt == select.timeInt){
+    setSelect() {
+        this._hasSelect.map((select: any) => {
+            this.timeList.map((time: any) => {
+                if (time.timeInt === select.timeInt) {
                     time.disable = true;
                 }
             });
@@ -205,7 +223,7 @@ export class FoxCalendar implements OnInit {
     createTimeList() {
         const _now = new Date();
         const _now_int = _now.getTime();
-        
+
         const start_date = new Date(this.year, this.month - 1, this.day, this.timeStart.hour, this.timeStart.minute);
         const start_int = start_date.getTime();
         const end_int = new Date(this.year, this.month - 1, this.day, this.timeEnd.hour, this.timeEnd.minute).getTime();
@@ -269,11 +287,11 @@ export class FoxCalendar implements OnInit {
     }
 
     selectTime(item: any) {
-        if(!item.disable){
+        if (!item.disable) {
             item['active'] = !item['active'];
             this.hour = item.hour;
             this.minute = item.minute;
-            let data = {
+            const data = {
                 hour: item.hour,
                 minute: item.minute,
                 timeInt: item.timeInt,
@@ -336,7 +354,7 @@ export class FoxCalendar implements OnInit {
     }
 
     finish(data) {
-        let item = {
+        const item = {
             year: this.year,
             month: this.month,
             day: this.day,
@@ -506,18 +524,19 @@ export class FoxCalendar implements OnInit {
     }
 
     getNowFormatDate(date, fmt) {
-        let o = {
-            "M+": date.getMonth() + 1, //月份 
-            "d+": date.getDate(), //日 
-            "h+": date.getHours(), //小时 
-            "m+": date.getMinutes(), //分 
-            "s+": date.getSeconds(), //秒 
-            "q+": Math.floor((date.getMonth() + 3) / 3), //季度 
-            "S": date.getMilliseconds() //毫秒 
+        const o = {
+            "M+": date.getMonth() + 1,
+            "d+": date.getDate(),
+            "h+": date.getHours(),
+            "m+": date.getMinutes(),
+            "s+": date.getSeconds(),
+            "q+": Math.floor((date.getMonth() + 3) / 3),
+            "S": date.getMilliseconds()
         };
         if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
-        for (var k in o)
-            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        for (const k in o)
+            if (new RegExp("(" + k + ")").test(fmt))
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
         return fmt;
     }
 }

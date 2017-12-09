@@ -23,7 +23,7 @@ export class CoachService {
     ) { }
 
     selectTabs(e) {
-        console.log(e);
+        // console.log(e);
     }
 
     onInit(cache = true) {
@@ -68,6 +68,7 @@ export class CoachService {
         this.api.get(url).subscribe((res: any) => {
             this.hasSelect = res.hasSelect;
             this.coach = res.detail;
+            this.widget = { ...this.widget, ...res.detail.setting };
         });
     }
 
@@ -124,8 +125,8 @@ export class CoachService {
     }
 
     updateCoach() {
-        const url = this.api.getUrl('coach_detail', { id: this.coach.id }, false);
-        return this.api.post(url, this.coach);
+        const url = this.api.getUrl('coach_detail', { id: this.coach.id, act: 'update' }, false);
+        return this.api.post(url, this.widget);
     }
 }
 

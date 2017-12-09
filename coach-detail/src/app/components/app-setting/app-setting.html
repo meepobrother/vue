@@ -3,19 +3,19 @@
         <div class="weui-cell__bd">
             <p>开始时间</p>
         </div>
-        <div class="weui-cell__ft">请选择</div>
+        <div class="weui-cell__ft" foxPickerTime (foxPickerTimeChange)="foxPickerTimeChangeStart($event)">{{coach$.widget.time.start.label || '请选择'}}</div>
     </a>
     <a class="weui-cell weui-cell_access" href="javascript:;">
         <div class="weui-cell__bd">
             <p>结束时间</p>
         </div>
-        <div class="weui-cell__ft">请选择</div>
+        <div class="weui-cell__ft" foxPickerTime (foxPickerTimeChange)="foxPickerTimeChangeEnd($event)">{{coach$.widget.time.end.label || '请选择'}}</div>
     </a>
     <a class="weui-cell weui-cell_access" href="javascript:;">
         <div class="weui-cell__bd">
             <p>时长周期</p>
         </div>
-        <div class="weui-cell__ft">请选择</div>
+        <div class="weui-cell__ft" foxPickerTimeLen (foxPickerTimeLenChange)="foxPickerTimeLenChange($event)">{{coach$.widget.timeLen || '请选择'}}</div>
     </a>
     <div class="weui-cell">
         <div class="weui-cell__bd">
@@ -32,9 +32,9 @@
 
 <div class="weui-btn-area">
     <a class="weui-btn weui-btn_primary" *ngIf="!loading" (click)="save()" href="javascript:">
-        保存
+        {{btn_title}}
     </a>
     <a class="weui-btn weui-btn_primary" *ngIf="loading" disabled (click)="save()" href="javascript:">
-        <i class="weui-loading"></i> 保存
+        <i class="weui-loading"></i> {{btn_title}}
     </a>
 </div>

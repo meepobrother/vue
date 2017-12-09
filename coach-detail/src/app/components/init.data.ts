@@ -26,6 +26,7 @@ export const defaultWidget = {
     max: 200,
     loading: false,
     action: 'pay',
+    timeLen: 30,
     detail: {
         avatar: 'https://meepo.com.cn/addons/imeepos_runnerpro/icon.jpg',
         title: '同城预约',
@@ -37,11 +38,13 @@ export const defaultWidget = {
     time: {
         start: {
             hour: 7,
-            minute: 0
+            minute: 0,
+            label: '07:00'
         },
         end: {
             hour: 22,
-            minute: 0
+            minute: 0,
+            label: '22:00'
         }
     },
     tabs: [

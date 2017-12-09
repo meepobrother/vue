@@ -1,19 +1,37 @@
 <?php
 global $_W,$_GPC;
-include MODULE_ROOT."inc/mobile/__init.php";
+$file = IA_ROOT."/addons/imeepos_runnerpro/inc/mobile/__init.php";
+if (file_exists($file)) {
+    require_once $file;
+}
 define('STATIC_PATH', MODULE_URL."template/mobile/coach/detail/");
-
 $act = isset($_GPC['act']) ? trim($_GPC['act']) : '';
 
-if($act == 'list'){
+if ($act == 'list') {
     $sql = "SELEC * FROM ".tablename('imeepos_runner4_member_skill')." WHERE uniacid=:uniacid ";
     $params = array();
     $params['uniacid'] = $_W['uniacid'];
-    $list = pdo_fetchall($sql,$params);
-
+    $list = pdo_fetchall($sql, $params);
     $re = array();
     $re['list'] = $list;
-    die(json_encode($re));
+    ToJson($re);
+}
+
+if ($act == 'update') {
+    $input = $_GPC['__input'];
+    unset($input['selected']);
+    unset($input['lastDate']);
+    unset($input['loading']);
+    unset($input['max']);
+    unset($input['content']);
+    unset($input['tabs']);
+    
+    $id = isset($_GPC['id']) ? intval($_GPC['id']) : 0;
+    $data = array();
+    $data['setting'] = serialize($input);
+
+    pdo_update('imeepos_runner4_member_skill', $data, array('id'=>$id));
+    ToJson($data);
 }
 
 if ($act == 'detail') {
@@ -31,30 +49,18 @@ if ($act == 'detail') {
     $params['day'] = $day;
     
     $list = pdo_fetchall($sql, $params);
-
-    header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Credentials: true");
-    header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
-    header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
-    header('P3P: CP="CAO PSA OUR"');
-    header("Content-Type: application/json; charset=utf-8");
-
     $re = array();
     $re['hasSelect'] = $list;
     $re['params'] = $params;
-    $re['detail'] = pdo_get('imeepos_runner4_member_skill',array('id'=>$id));
-    die(json_encode($re));
+    $detail = pdo_get('imeepos_runner4_member_skill', array('id'=>$id));
+    $detail['setting'] = unserialize($detail['setting']);
+    $re['detail'] = $detail;
+    ToJson($re);
 }
 
 if ($act == 'create') {
     $input = $_GPC['__input'];
-    header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Credentials: true");
-    header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
-    header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
-    header('P3P: CP="CAO PSA OUR"');
-    header("Content-Type: application/json; charset=utf-8");
-
+    
     $data = array();
     $data['coachId'] = isset($input['id']) ? intval($input['id']) : 0;
     if (empty($data['coachId'])) {
@@ -104,7 +110,7 @@ if ($act == 'create') {
     $data['title'] = $coach['title'];
     pdo_insert('imeepos_runner4_coach_log', $data);
     $data['id'] = pdo_insertid();
-    die(json_encode($data));
+    ToJson($data);
 }
 
 include $this->template('coach/detail/index');

@@ -14,7 +14,9 @@ import {
     FoxToolbar,
     FoxTabs,
     FoxFull,
-    FoxMain
+    FoxMain,
+    FoxPickerTime,
+    FoxPickerTimeLen
 } from './public_api';
 
 const commponents = [
@@ -28,7 +30,9 @@ const commponents = [
     FoxToolbar,
     FoxTabs,
     FoxFull,
-    FoxMain
+    FoxMain,
+    FoxPickerTime,
+    FoxPickerTimeLen
 ];
 
 @NgModule({

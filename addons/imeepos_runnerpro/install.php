@@ -133,6 +133,10 @@ if(!pdo_tableexists('imeepos_runner4_member_skill')){
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8");
 }
 
+if (!pdo_fieldexists('imeepos_runner4_member_skill', 'setting')) {
+    pdo_query("ALTER TABLE ".tablename('imeepos_runner4_member_skill')." ADD COLUMN `setting` text;");
+}
+
 if(!pdo_tableexists('imeepos_runner4_coach_log')){
     pdo_query("CREATE TABLE ".tablename('imeepos_runner4_coach_log')." (
         `id` int(11) NOT NULL AUTO_INCREMENT,

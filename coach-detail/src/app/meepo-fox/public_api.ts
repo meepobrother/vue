@@ -10,6 +10,7 @@ export * from './fox-tabs';
 
 export * from './fox-full';
 export * from './fox-main';
+export * from './fox-picker';
 
 export { ApiService } from './util/api';
 
