@@ -17,6 +17,7 @@ export class CoachService {
     timeList: any[] = [];
     showTiaokuan: boolean = false;
 
+    hasInit: boolean = false;
     constructor(
         public api: ApiService
     ) { }
@@ -26,11 +27,14 @@ export class CoachService {
     }
 
     onInit() {
-        const now = new Date();
-        this.day = now.getDate();
-        this.year = now.getFullYear();
-        this.month = now.getMonth() + 1;
-        this.init();
+        if (!this.hasInit) {
+            const now = new Date();
+            this.day = now.getDate();
+            this.year = now.getFullYear();
+            this.month = now.getMonth() + 1;
+            this.init();
+            this.hasInit = true;
+        }
     }
 
     onSelectTag(e: any) {

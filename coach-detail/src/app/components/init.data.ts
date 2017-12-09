@@ -41,9 +41,9 @@ export const defaultWidget = {
             code: 'star'
         },
         {
-            title: '资料',
+            title: '名片',
             active: false,
-            coach: 'field'
+            code: 'field'
         }
     ]
 };

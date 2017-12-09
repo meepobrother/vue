@@ -23,7 +23,7 @@ if ($act == 'detail') {
     $day = isset($_GPC['day']) ? intval($_GPC['day']) : 0;
     
     $time = time();
-    $sql = "SELECT * FROM ".tablename('imeepos_runner4_coach_log_time')." WHERE coachId=:coachId AND year=:year AND month=:month AND day=:day";
+    $sql = "SELECT * FROM ".tablename('imeepos_runner4_coach_log_time')." WHERE coachId=:coachId AND year=:year AND month=:month AND day=:day AND status > 0";
     $params = array();
     $params['coachId'] = $id;
     $params['year'] = $year;

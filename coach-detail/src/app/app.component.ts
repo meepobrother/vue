@@ -13,8 +13,13 @@ export class AppComponent implements OnInit {
   constructor(
     public coach$: CoachService
   ) { }
+
+  ngOnInit() {
+    this.coach$.onInit();
+  }
   selectTabs(e: any) {
     this.tab = e.code;
+    console.log(this.tab);
     this.coach$.selectTabs(e);
   }
 }

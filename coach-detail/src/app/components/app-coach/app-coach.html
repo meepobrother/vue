@@ -1,3 +1,6 @@
+<p class="weui-msg__desc">
+    请选择预约项目 &nbsp;<span style="color: red;">({{coach$.coach.fee}}元/{{coach$.coach.timeLen}}分钟)</span>
+</p>
 <fox-tags [items]="coach$.coach.items" (onSelect)="onSelectTag($event)"></fox-tags>
 <fox-calendar [hasSelect]="coach$.hasSelect" [timeStart]="coach$.widget.time.start" [timeEnd]="coach$.widget.time.end" [lastDate]="coach$.widget.lastDate" (onSelect)="onSelect($event)" (daySelect)="daySelect($event)" [(timeLen)]="coach$.coach.timeLen"></fox-calendar>
 <p class="weui-msg__desc">
@@ -16,7 +19,7 @@
     <label for="weuiAgree" class="weui-agree">
         <input id="weuiAgree" checked type="checkbox" class="weui-agree__checkbox">
         <span class="weui-agree__text">
-            阅读并同意 <a (click)="showTiaokuan = !showTiaokuan" href="javascript:void(0);">《相关条款》</a>
+            阅读并同意 <a (click)="coach$.showTiaokuan = !coach$.showTiaokuan" href="javascript:void(0);">《相关条款》</a>
         </span>
     </label>
 </p>
