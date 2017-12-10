@@ -192,3 +192,7 @@ if (!pdo_fieldexists('imeepos_runner4_member_skill', 'setting')) {
 if (!pdo_fieldexists('imeepos_runner4_coach_log', 'star')) {
     pdo_query("ALTER TABLE ".tablename('imeepos_runner4_coach_log')." ADD COLUMN `star` int(3) NULL DEFAULT '0'");
 }
+
+if (!pdo_fieldexists('imeepos_runner4_member_skill', 'uniacid')) {
+    pdo_query("ALTER TABLE ".tablename('imeepos_runner4_member_skill')." ADD COLUMN `uniacid` int(11) NOT NULL DEFAULT '0'");
+}

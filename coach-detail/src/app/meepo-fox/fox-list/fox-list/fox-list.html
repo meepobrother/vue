@@ -1,0 +1,21 @@
+<ul class="body__list">
+    <li class="body__item" *ngFor="let item of items">
+        <a class="list__item" (click)="_onItem(item)" href="javascript:;">
+            <div class="item__thumb">
+                <div class="thumb__img" style="opacity: 1;">
+                    <img style="width: 100%;" [src]="item.avatar">
+                </div>
+            </div>
+            <div class="item__entry">
+                <div class="entry__head">
+                    <div class="entry__title">{{item.title}}</div>
+                </div>
+                <div class="entry__desc">{{item.desc}}</div>
+                <div class="entry__price">
+                    <span class="real__num">{{item.fee}}</span>
+                    <span class="real__unit">元</span>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>

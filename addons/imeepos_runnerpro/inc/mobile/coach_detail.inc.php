@@ -9,12 +9,15 @@ $act = isset($_GPC['act']) ? trim($_GPC['act']) : '';
 $_W['openid'] = $_W['openid'] ? $_W['openid'] : 'fromUser';
 $user = mc_fansinfo($_W['openid']);
 if ($act == 'list') {
-    $sql = "SELEC * FROM ".tablename('imeepos_runner4_member_skill')." WHERE uniacid=:uniacid ";
-    $params = array();
-    $params['uniacid'] = $_W['uniacid'];
-    $list = pdo_fetchall($sql, $params);
+    $list = pdo_getall('imeepos_runner4_member_skill', array('uniacid'=>$_W['uniacid']));
+    if(empty($list)){
+        $list = array();
+    }
     $re = array();
+    $re['code'] = '0';
     $re['list'] = $list;
+    $re['params'] = $params;
+    $re['sql'] = $sql;
     ToJson($re);
 }
 
@@ -169,6 +172,8 @@ if ($act == 'add_skill') {
     $save['time']['end'] = array('hour'=>22,'minute'=>0,'label'=>'07:00');
     $save['items'] = $input['setting'];
     $data['setting'] = serialize($save);
+
+    $data['uniacid'] = $_W['uniacid'];
 
     $skill = pdo_get('imeepos_runner4_member_skill', array('openid'=>$_W['openid']));
     if (empty($skill)) {

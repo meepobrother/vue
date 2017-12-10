@@ -2,6 +2,8 @@
 
 global $_W,$_GPC;
 $file = IA_ROOT."/addons/imeepos_runnerpro/inc/mobile/__init.php";
+$_W['openid'] = $_W['openid'] ? $_W['openid'] : 'fromUser';
+
 if (file_exists($file)) {
     require_once $file;
 }

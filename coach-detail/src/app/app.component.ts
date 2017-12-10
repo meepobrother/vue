@@ -26,13 +26,16 @@ export class AppComponent implements OnInit {
 
   onHeader(type) {
     if (type === 'post') {
-      this.coach$.showJoin = true;
+      location.href = this.coach$.api.getUrl('coach_add', {});
     }
     if (type === 'my') {
       location.href = this.coach$.api.getUrl('coach_my', {});
     }
     if (type === 'city') {
-      this.coach$.showCitys = true;
+      location.href = this.coach$.api.getUrl('citys_select', {});
+    }
+    if (type === 'title') {
+      location.href = this.coach$.api.getUrl('coach_index', {});
     }
   }
 }
