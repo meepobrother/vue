@@ -8,7 +8,15 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app';
 
-  list: any[] = [{}, {}, {}, {}];
+  list: any[] = [{
+    image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/001.jpg'
+  }, {
+    image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/001.jpg'
+  }, {
+    image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/001.jpg'
+  }, {
+    image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/001.jpg'
+  }];
 
   cubes: any[] = [
     {

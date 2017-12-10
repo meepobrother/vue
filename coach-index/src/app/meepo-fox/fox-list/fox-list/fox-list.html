@@ -2,7 +2,9 @@
     <li class="body__item" *ngFor="let item of items">
         <a class="list__item" href="javascript:;">
             <div class="item__thumb">
-                <div class="thumb__img" style="opacity: 1;"></div>
+                <div class="thumb__img" style="opacity: 1;">
+                    <img style="width: 100%;" [src]="item.image">
+                </div>
             </div>
             <div class="item__entry">
                 <div class="entry__head">
