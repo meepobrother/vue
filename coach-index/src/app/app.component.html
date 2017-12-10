@@ -1,16 +1,10 @@
 <fox-header [widget]="coach.header" (onClick)="onHeader($event)"></fox-header>
 <fox-swiper [hasPage]="true">
-    <fox-swiper-item>
+    <fox-swiper-item *ngFor="let adv of widget.advs">
         <img src="https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/001.jpg">
     </fox-swiper-item>
-    <fox-swiper-item>
-        <img src="https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/002.jpg">
-    </fox-swiper-item>
-    <fox-swiper-item>
-        <img src="https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/003.jpg">
-    </fox-swiper-item>
 </fox-swiper>
-<!-- <fox-swiper-tags [items]="items"></fox-swiper-tags> -->
-<!-- <fox-cube [items]="cubes"></fox-cube> -->
+<fox-swiper-tags [items]="widget.items"></fox-swiper-tags>
+<fox-cube [items]="widget.cubes"></fox-cube>
 <fox-list [items]="list" (onItem)="onItem($event)"></fox-list>
 <fox-footer></fox-footer>

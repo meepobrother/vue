@@ -9,63 +9,71 @@ const parsed = queryString.parse(location.search);
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  widget: any = {
+    advs: [{
+      image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/001.jpg'
+    },{
+      image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/002.jpg'
+    },{
+      image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/003.jpg'
+    }],
+    items: [{
+      title: '测试',
+      image: ''
+    }, {
+      title: '测试',
+      image: ''
+    }, {
+      title: '测试',
+      image: ''
+    }, {
+      title: '测试',
+      image: ''
+    }, {
+      title: '测试',
+      image: ''
+    }, {
+      title: '测试',
+      image: ''
+    }, {
+      title: '测试',
+      image: ''
+    }, {
+      title: '测试',
+      image: ''
+    }, {
+      title: '测试',
+      image: ''
+    }, {
+      title: '测试',
+      image: ''
+    }, {
+      title: '测试',
+      image: ''
+    }, {
+      title: '测试',
+      image: ''
+    }, {
+      title: '测试',
+      image: ''
+    }],
+    cubes: [
+      {
+        title: '标题',
+        desc: '简介',
+        image: ''
+      },
+      {
+        title: '标题',
+        desc: '简介',
+        image: ''
+      }
+    ]
+  };
   title = 'app';
 
   list: any[] = [];
 
-  cubes: any[] = [
-    {
-      title: '标题',
-      desc: '简介',
-      image: ''
-    },
-    {
-      title: '标题',
-      desc: '简介',
-      image: ''
-    }
-  ];
-
-  items: any[] = [{
-    title: '测试',
-    image: ''
-  }, {
-    title: '测试',
-    image: ''
-  }, {
-    title: '测试',
-    image: ''
-  }, {
-    title: '测试',
-    image: ''
-  }, {
-    title: '测试',
-    image: ''
-  }, {
-    title: '测试',
-    image: ''
-  }, {
-    title: '测试',
-    image: ''
-  }, {
-    title: '测试',
-    image: ''
-  }, {
-    title: '测试',
-    image: ''
-  }, {
-    title: '测试',
-    image: ''
-  }, {
-    title: '测试',
-    image: ''
-  }, {
-    title: '测试',
-    image: ''
-  }, {
-    title: '测试',
-    image: ''
-  }];
 
   constructor(
     public coach: CoachService
