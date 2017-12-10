@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     selector: 'fox-list',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./fox-list.scss']
 })
 export class FoxList implements OnInit {
+    @Input() items: any[] = [];
     constructor() { }
-
     ngOnInit() { }
 }

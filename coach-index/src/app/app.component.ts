@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app';
 
+  list: any[] = [{}, {}, {}, {}];
+
   cubes: any[] = [
     {
       title: '标题',
