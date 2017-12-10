@@ -1,0 +1,17 @@
+<!-- 类型 {$widget['type']} -->
+<!--{if $widget['type']=='meepo-grids'}-->
+<div class="weui-grids" style="
+    {loop $widget['containerStyle'] $key $value}
+        {$key}:{$value};
+    {/loop}
+">
+    <!--{loop $widget['items'] $item}-->
+    <a href="{$item['link']}" class="weui-grid" style="width:{php echo 100/$widget['colNum']}%;">
+        <div class="weui-grid__icon ">
+            <img src="{php echo $item['image']}">
+        </div>
+        <p class="weui-grid__label ">{php echo $item['title']}</p>
+    </a>
+    <!--{/loop}-->
+</div>
+<!--{/if}-->

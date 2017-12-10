@@ -1,0 +1,53 @@
+<style>
+    .weui-dialog,
+    .weui-mask,
+    .weui-toast {
+        visibility: inherit;
+    }
+</style>
+<!--{if $widget['type'] == 'meepo-form-btn'}-->
+<a href="javascript:;" id="weui-btn-{$widget['code']}" data-post={php echo json_encode($widget[ '__post'])} class="weui-btn weui-btn_primary weui-btn" style="
+    margin: 0px;
+    {loop $widget['containerStyle'] $key $style}
+        {php echo $key}:{php echo $style};
+    {/loop}
+">
+    <i class="{$widget['icon']}"></i>{$widget['content']}
+</a>
+<script>
+    $(function() {
+        $("#weui-btn-{$widget['code']}").on('click', function() {
+            // 获取数据
+            // console.log(formsData);
+            var __post = $(this).data('post');
+            formsData = $.extend(__post, formsData);
+            var d = JSON.stringify(formsData);
+            var encrypted = Base64.encode(d);
+            var __post = {
+                __input: {
+                    encrypted: encrypted
+                }
+            }
+            $.post("{php echo $this->createMobileUrl('open')}&__do={$widget['__do']}", __post, function(res) {
+                console.log(res);
+                if (res.code == 0) {
+                    weui.toast(res.msg, 1500);
+                } else if (res.code == 999) {
+                    // 扫码
+
+                } else {
+                    weui.confirm(res.msg, function() {
+                        console.log('确认');
+                        // 进入链接
+                        window.location.href = "{php echo $widget['success']}";
+                    }, function() {
+                        console.log('取消');
+                    }, {
+                        title: '温馨提示'
+                    });
+                }
+            }, 'json');
+        });
+    });
+</script>
+<!--{/if}-->

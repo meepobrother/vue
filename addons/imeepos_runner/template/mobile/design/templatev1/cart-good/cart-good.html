@@ -1,0 +1,46 @@
+<!-- {if $widget['type'] == 'cart-good'} -->
+<!-- {loop $widget['children'] $item} -->
+<div class="cart_good">
+    <div class="ico">
+        <i class="fa fa-check-circle-o" style="color:#0C9;"></i>
+    </div>
+    <div class="img" ><img src="{$item['thumb']}" /></div>
+    <div class="info">
+        <div class='inner'>
+            <div class="name" >
+                {$item['title']}
+            </div>
+            <!-- {if $item['optionid'] != 0} -->
+                <div class="optionsel">
+                    <div class='content'>
+                        <div class="cinner">
+                            {if $item['optiontitle'] != ''}
+                            {$item['optiontitle']}
+                            {else}
+                            未选规格
+                            {/if}
+                        </div>
+                    </div>
+                    <div class="cico"><i class="fa fa-angle-down"></i></div>
+                </div>
+            <!-- {/if} -->
+        </div>
+    </div>
+    <div class="other">
+        <div class="price">
+            {$item['marketprice']}
+        </div>
+        <div class="price1">
+            <span class='line'>
+                {$item['productprice']}
+            </span>
+        </div>
+        <div class="num">
+            <div class="leftnav">-</div>
+            <input type="text" class="shownum" value="{$item['total']}" />
+            <div class="rightnav">+</div>
+        </div>
+    </div>
+</div>
+<!-- {/loop} -->
+<!-- {/if} -->

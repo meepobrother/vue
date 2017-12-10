@@ -1,0 +1,42 @@
+<!-- {if $widget['type'] == 'uu-header'} -->
+<style>
+    .meepo-header {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        overflow: hidden;
+        z-index: 9;
+    }
+    
+    .layout-body {
+        padding-top: 44px;
+    }
+    
+    .meepo-header a {
+        color: #000;
+    }
+</style>
+<header class="meepo-header">
+    <div class="header-left click-to-url">
+        <a href="{$widget['left']['link']}">
+            <i class="{$widget['left']['icon']}"></i>
+            <span>{$widget['left']['title']}</span>
+        </a>
+    </div>
+    <span class="title">{$widget['content']}</span>
+    <div class="header-right click-to-url">
+        <a href="{$widget['right']['link']}">
+            <span class="curCity">{$widget['right']['title']}</span>
+            <i class="{$widget['right']['icon']}"></i>
+        </a>
+    </div>
+</header>
+
+<script>
+    $('.click-to-url').click(function() {
+        var url = $(this).data('url');
+        window.location.href = url;
+    });
+</script>
+<!-- {/if} -->

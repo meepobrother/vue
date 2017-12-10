@@ -1,0 +1,29 @@
+<!-- {if $widget['type'] == 'jd-home-list'} -->
+<ul class="in-list bdt-1px bdb-1px">
+    <!-- {loop $widget['items'] $item} -->
+    <li data-href="{$item['link']}">
+        <div class="in-item my-item" >
+            <div class="couponIn-icon w-18">
+                <img src="{$item['image']}">
+            </div>
+            <div class="in-item-info my-item bdb-1px">
+                <div class="fl">
+                    <span class="myJD-Order">{$item['title']}</span>
+                </div>
+                <div class="fr">
+                    <span class="myJD-arrow"></span>
+                </div>
+            </div>
+        </div>
+    </li>
+    <!-- {/loop} -->
+</ul>
+
+<script>
+$(function(){
+    $('[data-href]').click(function(){
+        window.location.href = $(this).data('href');
+    });
+})
+</script>
+<!-- {/if} -->

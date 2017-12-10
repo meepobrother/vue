@@ -8,14 +8,19 @@ header {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 999;
     .city {
         display: inline-block;
         position: relative;
-        padding-right: 8px;
+        padding-right: 10px;
         vertical-align: middle;
-        margin: 0 8px;
+        margin: 0 10px;
         .city-text {
-            width: 33px;
+            min-width: 2em;
             font-size: 15px;
             overflow: hidden;
             white-space: nowrap;

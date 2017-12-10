@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { FoxModule } from './meepo-fox';
-import { AppCoach, AppField, AppStar, AppSetting, AppJoin } from './components';
+import { AppCoach, AppField, AppStar, AppSetting, AppJoin, AppCitys } from './components';
 import { CoachService } from './components/coach.service';
 @NgModule({
   declarations: [
@@ -14,7 +14,8 @@ import { CoachService } from './components/coach.service';
     AppField,
     AppStar,
     AppSetting,
-    AppJoin
+    AppJoin,
+    AppCitys
   ],
   imports: [
     BrowserModule,

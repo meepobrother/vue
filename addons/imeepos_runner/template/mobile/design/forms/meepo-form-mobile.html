@@ -1,0 +1,65 @@
+<!--{if $widget['type'] == 'meepo-form-mobile'}-->
+<div class="weui-cells weui-cells_form" style="
+    {loop $widget['containerStyle'] $key $value}
+        {$key}:{$value};
+    {/loop}
+">
+    <div class="weui-cell {if $widget['hasCode']}weui-cell_vcode{/if}">
+        <div class="weui-cell__hd">
+            <label class="weui-label" style="color: {$widget['data']['mobile']['color']};">{$widget['data']['mobile']['label']}</label>
+        </div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" id="mobile-{$widget['code']}" value="{php echo $member['mobile']}" type="tel" placeholder="{$widget['data']['mobile']['placeholder']}">
+        </div>
+        <!--{if $widget['hasCode']}-->
+        <div class="weui-cell__ft">
+            <button class="weui-vcode-btn" id="vcode-{$widget['code']}">{$widget['data']['mobile']['tip']}</button>
+        </div>
+        <!--{/if}-->
+    </div>
+    <!--{if $widget['hasCode']}-->
+    <div class="weui-cell">
+        <div class="weui-cell__hd">
+            <label class="weui-label" style="color: {$widget['data']['code']['color']};">{$widget['data']['code']['label']}</label>
+        </div>
+        <div class="weui-cell__bd">
+            <input type="hidden" id="codeid-{$widget['code']}">
+            <input class="weui-input" id="code-{$widget['code']}" type="text" placeholder="{$widget['data']['code']['placeholder']}">
+        </div>
+    </div>
+    <!--{/if}-->
+</div>
+</div>
+<script>
+    $(function() {
+
+        $("#mobile-{$widget['code']}").on('change', function() {
+            formsData['mobile'] = $(this).val();
+        });
+
+        $("#code-{$widget['code']}").on('change', function() {
+            formsData['code'] = $(this).val();
+        });
+
+        $("#vcode-{$widget['code']}").on('click', function() {
+            var total = 30;
+            var that = $(this);
+            that.html('获取中。');
+            meepo.util.post("sms.send", formsData, function(res) {
+                formsData['code_id'] = res.info;
+                setInterval(function() {
+                    total--;
+                    if (total <= 0) {
+                        that.html('重新获取');
+                    } else {
+                        that.html(total + 's');
+                    }
+                }, 1000);
+            }, function(res) {
+                that.html('重新获取');
+                weui.toast(res.msg, 1000);
+            });
+        });
+    });
+</script>
+<!--{/if}-->

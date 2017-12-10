@@ -1,0 +1,41 @@
+<!--{if $widget['type'] == 'uu-swiper'}-->
+<style>
+    .uu-swiper a {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .uu-swiper img {
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+    }
+    
+    .uu-swiper {
+        height: 120px;
+        overflow: hidden;
+    }
+</style>
+<div>
+    <div class="swiper-container swiper-container-horizontal uu-swiper">
+        <div class="swiper-wrapper">
+            <!--{loop $widget['children'] $item}-->
+            <div class="swiper-slide bannerbox">
+                <a href="{php echo $item['link']}">
+                    <img src="{$item['image']}">
+                </a>
+            </div>
+            <!--{/loop}-->
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+<script>
+    var uuSwiper = new Swiper('.uu-swiper', {
+        autoplay: 5000,
+        pagination: '.swiper-pagination',
+        autoHeight: true
+    });
+</script>
+<!--{/if}-->

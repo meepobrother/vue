@@ -1,0 +1,64 @@
+<!-- {if $widget['type'] == 'meepo-list'} -->
+<div class="meepo-list" style="
+    {loop $widget['containerStyle'] $key $value}
+        {$key}:{$value};
+    {/loop}
+">
+    <!-- 展示样式 -->
+    <ul class="{$widget['model']}" id="{$widget['code']}">
+
+    </ul>
+</div>
+<script id="meepoListItemTpl" type="text/template">
+    <li class="meepo-list-item" style="
+        {loop $widget['containerStyle'] $key $value}
+            {$key}:{$value};
+        {/loop}
+    ">
+        <div class="inner-content">
+            <img class="meepo-list-image" src="{{d.avatar}}" alt="">
+            <div class="title-container">
+                <p class="title">{{d.title}}</p>
+                <div class="seckill-list-bottom">
+                    <div>
+                        <span class="price">{{d.money}}</span>
+                    </div>
+                    <div>
+                        <div class="seckill-progress-wrap">
+                            {{# layui.each(d.tag, function(index, tag){ }}
+                            <span class="order-tag">{{tag.title}}</span> {{# }); }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+</script>
+<script>
+    $(function() {
+        layui.use('laytpl', function() {
+            var laytpl = layui.laytpl;
+            var tpl = $('#meepoListItemTpl').html();
+            var html = "";
+            var d = JSON.stringify({
+                page: '1',
+                psize: '30'
+            });
+            var encrypted = Base64.encode(d);
+            $.post("{php echo $this->createMobileUrl('open',array('__do'=>'orders.getListOrder'))}", {
+                __input: {
+                    encrypted: encrypted
+                }
+            }, function(res) {
+                var list = res.info;
+                list.map(item => {
+                    laytpl(tpl).render(item, function(string) {
+                        html += string;
+                    });
+                });
+                $("#{$widget['code']}").html(html);
+            }, 'json');
+        });
+    });
+</script>
+<!-- {/if} -->

@@ -1,0 +1,41 @@
+<!-- {if $widget['type'] == 'meepo-video'} -->
+<style>
+.fixed {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 99;
+    bottom: 0px;
+}
+video {
+    object-fit: fill;
+}
+</style>
+
+<div id="video-{$widget['code']}" class="{if $widget['fixed']}fixed{/if}" style="
+    {loop $widget['containerStyle'] $key $value}
+        {$key}:{$value};
+    {/loop}
+"></div>
+<!-- {if $widget['fixed']} -->
+<div style="
+    {loop $widget['containerStyle'] $key $value}
+        {$key}:{$value};
+    {/loop}
+"></div>
+<!-- {/if} -->
+<script src="https://meepo.com.cn/meepo/libs/chimee-player.browser.js"></script>
+<script>
+    $(function() {
+        player && player.destroy();
+        player = new ChimeePlayer({
+            src: "{php echo $widget['videoUrl']}",
+            wrapper: "#video-{$widget['code']}",
+            autoplay: true,
+            controls: true,
+            playsInline: true
+        });
+    });
+</script>
+<!-- {/if} -->

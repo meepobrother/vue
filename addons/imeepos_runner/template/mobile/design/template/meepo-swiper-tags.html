@@ -1,0 +1,33 @@
+<!-- {if $widget['type'] == 'meepo-swiper-tags'} -->
+<div class="swiper-container" style="
+{loop $widget['containerStyle'] $key $value}
+    {$key}:{$value};
+{/loop}
+height: {php echo $widget['styleObj']['height'] ? $widget['styleObj']['height'] : '120'}px;
+">
+    <div class="swiper-wrapper">
+        <!-- {loop $widget['children'] $item} -->
+        <div class="swiper-slide" style="height: {$widget['styleObj']['height']}px;">
+            <div class="meepo-swiper-tags-list">
+                <!-- {loop $item $tag} -->
+                <div class="meepo-swiper-tags-item">
+                    <img class="img" src="{$tag['image']}">
+                    <label>{$tag['title']}</label>
+                </div>
+                <!-- {/loop} -->
+            </div>
+        </div>
+        <!-- {/loop} -->
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="water">
+        <div class="water-c">
+            <div class="water-1"></div>
+            <div class="water-2"></div>
+        </div>
+    </div>
+</div>
+<script>
+    new Swiper('.swiper-container', {});
+</script>
+<!-- {/if} -->

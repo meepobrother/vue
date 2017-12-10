@@ -1,0 +1,48 @@
+{template 'design/tpl/runner-list-avatar'}
+{template 'design/tpl/task-list-avatar'}
+{template 'design/tpl/task-list-empty'}
+{template 'design/tpl/im-message-list'}
+{template 'design/tpl/im-friend'}
+{template 'design/tpl/util'}
+
+<script>
+    $(function(){
+        $(document).on('click','.btn-ajax',function(evt){
+            var action = $(this).data('action');
+            var post = $(this).data('post');
+            meepo.util.post(action,post,function(res){
+                weui.topTips(res.msg, 3000);
+                window.location.reload();
+            });
+        });
+
+        $(document).on('click','.btn-dialog',function(evt){
+            var id = $(this).data('id');
+            var action = $(this).data('action');
+            var post = $(this).data('post');
+            meepo.util.dialog(id,action,post);
+        });
+
+
+        $(document).on('click','.btn-location',function(evt){
+            var id = $(this).data('id');
+            var url = "{php echo $this->createMobileUrl('detail')}&id="+id;
+            window.location.href = url;
+        });
+        // 搜索框
+        $(document).on('change','.van-search__input',function(evt){
+            var keyword = $(this).val();
+        });
+        // 
+        $(document).on('click','.van-search__action',function(){
+            var target = $(this).data('target');
+            if(target == 'dialog-task-pai-runner'){
+
+            }
+        });
+
+        $(document).on('click','.btn-dialog-close',function(){
+            layer.closeAll();
+        });
+    });
+</script>

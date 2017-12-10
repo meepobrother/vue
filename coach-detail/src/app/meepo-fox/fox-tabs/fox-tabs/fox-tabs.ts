@@ -12,13 +12,18 @@ export class FoxTabs implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        const delIds = [];
         this.items.map((res, index) => {
             if (res.active) {
                 this._select(res);
             }
             if (this.roles.indexOf(res.role) === -1) {
-                this.items.splice(index, 1);
+                delIds.push(res);
             }
+        });
+        delIds.map(item => {
+            const index = this.items.indexOf(item);
+            this.items.splice(index, 1);
         });
     }
 

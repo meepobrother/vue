@@ -1,0 +1,136 @@
+<style>
+    body {
+        margin: 0px;
+        background: #efefef;
+        font-family: '微软雅黑';
+        -moz-appearance: none;
+    }
+    
+    * {
+        outline: none;
+    }
+    
+    .info_main {
+        height: auto;
+        background: #fff;
+        margin-top: 0px;
+        border-bottom: 1px solid #e8e8e8;
+        border-top: 1px solid #e8e8e8;
+    }
+    
+    .info_main .line {
+        margin: 0 10px;
+        height: 40px;
+        border-bottom: 1px solid #e8e8e8;
+        line-height: 40px;
+        color: #999;
+    }
+    
+    .info_main .line .title {
+        height: 40px;
+        width: 80px;
+        line-height: 40px;
+        color: #444;
+        float: left;
+        font-size: 16px;
+    }
+    
+    .info_main .line .info {
+        width: 100%;
+        float: right;
+        margin-left: -80px;
+    }
+    
+    .info_main .line .inner {
+        margin-left: 80px;
+    }
+    
+    .info_main .line .inner input {
+        height: 40px;
+        width: 100%;
+        display: block;
+        padding: 0px;
+        margin: 0px;
+        border: 0px;
+        float: left;
+        font-size: 16px;
+    }
+    
+    .info_main .line .inner .user_sex {
+        line-height: 40px;
+    }
+    
+    .info_sub {
+        height: 44px;
+        margin: 14px 5px;
+        background: #31cd00;
+        border-radius: 4px;
+        text-align: center;
+        font-size: 16px;
+        line-height: 44px;
+        color: #fff;
+    }
+    
+    .select {
+        border: 1px solid #ccc;
+        height: 25px;
+    }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<div class="info_main">
+    <div class="line">
+        <div class="title">姓名</div>
+        <div class='info'>
+            <div class='inner'>
+                <input type="text" id='realname' placeholder="请输入您的姓名" value="" />
+            </div>
+        </div>
+    </div>
+    <div class="line">
+        <div class="title">手机号码</div>
+        <div class='info'>
+            <div class='inner'>
+                <input type="text" id='mobile' placeholder="请输入您的手机号码" value="" />
+            </div>
+        </div>
+    </div>
+    <div class="line">
+        <div class="title">微信号</div>
+        <div class='info'>
+            <div class='inner'>
+                <input type="text" id='weixin' placeholder="请输入微信号" value="" />
+            </div>
+        </div>
+    </div>
+    <div class="line">
+        <div class="title">性别</div>
+        <div class='info'>
+            <div class='inner'>
+                <span class="gender" data-val="1"><i class="fa fa-check-circle-o" style="color:#0C9;"></i> 男</span>&nbsp;&nbsp;
+                <span class="gender" data-val="2"><i class="fa fa-circle-o" style="color:#0C9;"></i> 女
+                <input type="hidden" id="gender" value="" />
+                </div></div>
+        </div>
+        <div class="line">
+            <div class="title">所在城市</div><div class='info'><div class='inner'>
+            <select id="sel-provance" onChange="selectCity();" class="select">
+                <option value="" selected="true">省/直辖市</option>
+            </select>
+            <select id="sel-city" onChange="selectcounty()" class="select">
+                <option value="" selected="true">请选择</option>
+            </select>
+            <select id="sel-area" class="select" style="display:none">
+                <option value="" selected="true">请选择</option>
+            </select></div></div>
+        </div>
+        <div class="line"  style="border:0px;">
+            <div class="title">生日</div>
+            <div class='info'>
+                <div class='inner'>
+                    <input type="text" id="birthday" placeholder="点击选择日期" readonly value=''/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="info_sub">确认修改</div>
+</div>

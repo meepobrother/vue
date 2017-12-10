@@ -1,0 +1,21 @@
+<!--{if $widget['type'] == 'meepo-form-input'}-->
+<div class="weui-cells {if !$widget['show']}hidden{/if}" style="
+    {loop $widget['containerStyle'] $key $style}
+        {php echo $key}:{php echo $style};
+    {/loop}
+">
+    <div class="weui-cell ">
+        <div class="weui-cell__hd"><label class="weui-label">{$widget['title']}</label></div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" id="input-{$widget['code']}" type="{$widget['field_type']}" placeholder="{$widget['placeholder']}">
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#input-{$widget['code']}").on('change', function() {
+        formsData["{$widget['field_name']}"] = $(this).val();
+        console.log(formsData);
+    });
+</script>
+<!--{/if}-->

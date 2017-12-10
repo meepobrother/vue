@@ -1,0 +1,54 @@
+<div class="activity_address_city" id="activity_address_city" style="display: block; left: 0px; z-index: 3000; ">
+    <div class="activity_address_cont" id="activity_address_cont">
+        <div class="activity_address_con" id="activity_address_con">
+            <dl class="activity_address_box">
+                <dt>当前城市</dt>
+                <dd class="current_city" (click)="selectCity(coach.city)">{{coach.city.name}}</dd>
+            </dl>
+            <dl class="activity_address_box">
+                <dt>热门城市</dt>
+                <dd class="hot_city_list">
+                    <span class="hot_city_item" (click)="selectCity(item)" *ngFor="let item of hots">
+                        <a class="activity_address_tc_hot" href="javascript:;">{{item.name}}</a>
+                    </span>
+                </dd>
+            </dl>
+            <dl class="activity_address_box">
+                <dt>全部城市</dt>
+                <dd class="char_city_list">
+                    <span class="char_city_item"><a class="activity_address_tc_A" href="#A" ontouchstart="">A</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_B" href="#B" ontouchstart="">B</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_C" href="#C" ontouchstart="">C</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_D" href="#D" ontouchstart="">D</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_E" href="#E" ontouchstart="">E</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_F" href="#F" ontouchstart="">F</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_G" href="#G" ontouchstart="">G</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_H" href="#H" ontouchstart="">H</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_J" href="#J" ontouchstart="">J</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_K" href="#K" ontouchstart="">K</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_L" href="#L" ontouchstart="">L</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_M" href="#M" ontouchstart="">M</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_N" href="#N" ontouchstart="">N</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_P" href="#P" ontouchstart="">P</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_Q" href="#Q" ontouchstart="">Q</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_R" href="#R" ontouchstart="">R</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_S" href="#S" ontouchstart="">S</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_T" href="#T" ontouchstart="">T</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_W" href="#W" ontouchstart="">W</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_X" href="#X" ontouchstart="">X</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_Y" href="#Y" ontouchstart="">Y</a></span>
+                    <span class="char_city_item"><a class="activity_address_tc_Z" href="#Z" ontouchstart="">Z</a></span>
+                </dd>
+            </dl>
+            <dl [attr.id]="city.label" class="activity_address_box" *ngFor="let city of citys">
+                <dt [attr.name]="city.label">{{city.label}}</dt>
+                <dd class="all_city_list">
+                    <span class="all_city_item" (click)="selectCity(item)" *ngFor="let item of city.list">
+                        <a href="javascript:;">{{item.name}}</a>
+                    </span>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="return_top" (click)="goTop()" id="return_top" style="display: block; opacity: 1;"></div>
+</div>

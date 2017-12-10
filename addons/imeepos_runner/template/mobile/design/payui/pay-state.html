@@ -1,0 +1,80 @@
+<!-- {if $widget['type'] == 'pay-state'} -->
+
+<div class="weui-wepay-lists pay-state">
+    <div class="weui-wepay-lists__hd" style="
+        {loop $widget['listsStyle'] $key $value}
+        {$key}:{$value};
+        {/loop}
+    ">
+        <div class="weui-wepay-lists__menu">
+            {loop $widget['items'] $item}
+                <div data-do="{$item['__do']}" data-post={php echo json_encode($item[ '__post']) } class="weui-wepay-lists__menu__item {if $item['active']}weui-wepay-lists__menu__item_on{/if}" class="">{$item['title']}</div>
+            {/loop}
+        </div>
+    </div>
+    <div class="weui-wepay-lists__bd" #list style="background-color: #fff;">
+        <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
+</div>
+<script src="https://meepo.com.cn/meepo/libs/Chart.min.js"></script>
+
+<script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var __do = $('.weui-wepay-lists__menu__item_on').data('do');
+    var __post = $('.weui-wepay-lists__menu__item_on').data('post');
+    
+    $('.pay-state .weui-wepay-lists__menu__item').on('click', function() {
+        $('.weui-wepay-lists__menu__item').removeClass('weui-wepay-lists__menu__item_on');
+        $(this).addClass('weui-wepay-lists__menu__item_on');
+        __do = $(this).data('do');
+        __post = $(this).data('post');
+        payStateAction();
+    });
+
+    payStateAction();
+
+    function payStateAction(){
+        meepo.util.post(__do, __post, function(res){
+            var data = {
+                labels: res.info.labels,
+                datasets: [{
+                    label: res.info.label,
+                    data: res.info.data,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+    }
+</script>
+<!-- {/if} -->
+

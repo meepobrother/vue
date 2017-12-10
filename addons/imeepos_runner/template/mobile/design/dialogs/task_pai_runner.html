@@ -1,0 +1,28 @@
+<script id="task-pai-runner" type="text/x-handlebars-template">
+    <div class="van-search van-search--show-action" style="background-color: rgb(242, 242, 242);">
+        <div class="van-search__input-wrap">
+            <i class="fa fa-search van-search van-icon-search"></i>
+            <input type="search" class="van-search__input" placeholder="请输入关键字内容">
+            <i class="fa fa-clear" style="display: none;"></i>
+        </div>
+        <div class="van-search__action" data-target="dialog-task-pai-runner">
+            <div>搜索</div>
+        </div>
+    </div>
+    <div class="weui-cells">
+        {{#each data}}
+        <a class="weui-cell weui-cell_access btn-ajax" data-action="runner.pai_uid_task_id" data-post="{ id: {{id}}, task_id: {{task_id}} }" href="javascript:;">
+            <div class="weui-cell__hd">
+                <img src="{{avatar}}" style="width:20px;margin-right:5px;display:block;">
+            </div>
+            <div class="weui-cell__bd">
+                <p>{{nickname}}</p>
+                <p>{{realname}}</p>
+            </div>
+            <div class="weui-cell__ft">{{mobile}}</div>
+        </a>
+        {{/each}}
+    </div>
+</script>
+
+

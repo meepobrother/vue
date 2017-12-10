@@ -1,0 +1,31 @@
+<!--{if $widget['type'] == 'meepo-form-money'}-->
+<div class="weui-cells {if !$widget['show']}hidden{/if}" style="
+    {loop $widget['containerStyle'] $key $style}
+        {php echo $key}:{php echo $style};
+    {/loop}
+">
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">{$widget['title']}</label></div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" name="money" type="text" placeholder="{$widget['placeholder']}">
+        </div>
+        <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function() {
+        $('input[name="money"]').on('change', function() {
+            var val = $(this).val();
+            val = parseFloat(val);
+            val = isNaN(val) ? 0 : val;
+            $(this).val(val);
+
+            formsData['money'] = val;
+            console.log(formsData);
+        });
+    });
+</script>
+<!--{/if}-->

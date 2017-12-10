@@ -1,0 +1,92 @@
+<!-- {if $widget['type'] == 'task-list'} -->
+    <style>
+        .weui-cells {
+            margin-top: 0px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .btn-xs {
+            padding: 1px 5px;
+            font-size: 12px;
+            line-height: 1.5;
+            border-radius: 3px;
+        }
+        .btn {
+            border-radius: 3px;
+        }
+        .weui-cell__btns {
+            position: absolute;
+            right: 10px;
+        }
+        .weui-cell__btns .btn {
+            margin: 0 3px;
+        }
+    </style>
+    <div class="weui-wepay-lists task-list" id="task-list-{$widget['code']}">
+        <div class="weui-wepay-lists__hd" [ngStyle]="widget.listsStyle">
+            <div class="weui-wepay-lists__menu">
+                <!-- {loop $widget['items'] $item} -->
+                <div data-do="{$item['__do']}" data-post={php echo json_encode($item[ '__post']) } class="weui-wepay-lists__menu__item {if $item['active']}weui-wepay-lists__menu__item_on{/if}">{$item['title']}</div>
+                <!-- {/loop} -->
+            </div>
+        </div>
+        <div class="weui-wepay-lists__bd">
+            <div class="weui-cells" id="task-list-container-{$widget['code']}" style="margin-top:0"></div>
+        </div>
+    </div>
+
+    <script>
+        $(function() {
+            var __do = $('.weui-wepay-lists__menu__item_on').data('do');
+            var __post = $('.weui-wepay-lists__menu__item_on').data('post');
+    
+            $('.weui-wepay-lists__menu__item').on('click', function() {
+                $('.weui-wepay-lists__menu__item').removeClass('weui-wepay-lists__menu__item_on');
+                $(this).addClass('weui-wepay-lists__menu__item_on');
+                __do = $(this).data('do');
+                __post = $(this).data('post');
+    
+                loadData();
+            });
+            loadData();
+    
+            function loadData() {
+                __post['openid'] = "{$_W['openid']}";
+                meepo.util.post(__do,__post,function(res){
+                    if (res.info.length > 0) {
+                        var source = document.getElementById("task-list-avatar").innerHTML;
+                        var template = Handlebars.compile(source);
+                    } else {
+                        var source = document.getElementById("task-list-empty").innerHTML;
+                        var template = Handlebars.compile(source);
+                    }
+                    var context = {
+                        items: res.info
+                    };
+                    var html = template(context);
+                    $("#task-list-container-{$widget['code']}").html(html);
+                });
+            }
+        });
+    </script>
+
+    <!-- {/if} -->

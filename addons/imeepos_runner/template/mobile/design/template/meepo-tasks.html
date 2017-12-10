@@ -1,0 +1,58 @@
+<!-- {if $widget['type'] == 'meepo-tasks'} -->
+<div class="tasks-list" id="tasksList" style="
+    {loop $widget['containerStyle'] $key $value}
+        {$key}:{$value};
+    {/loop}
+">
+
+</div>
+
+<script>
+    var d = JSON.stringify({
+        action: 'index'
+    });
+    var encrypted = Base64.encode(d);
+    $.post("{php echo $this->createMobileUrl('open',array('__do'=>'task.getAll'))}", {
+        __input: {
+            encrypted: encrypted
+        }
+    }, function(res) {
+        var list = res.info;
+        if (list) {
+            var html = '';
+            list.map(function(task) {
+                html += '<div class="tasks-item hvr-box-shadow-outset">';
+                html += '<div class="tasks-item-avatar"><img src="' + task.avatar + '" alt=""><div class="tasks-item-nickname">' + task.nickname + '</div></div>';
+                html += `
+                <div class="tasks-item-content">
+                    <div class="tasks-item-title">${task.tag}</div>
+                    <div class="tasks-item-desc">
+                        ${task.message}
+                    </div>
+                    <div class="tasks-item-tags">
+                        <ul>
+                            <li>
+                                <i class="fa fa-android"></i> ${task.receiveaddress}
+                            </li>
+                            <li>
+                                <i class="fa fa-clock-o"></i> ${task.pickupdate}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                `
+                html += '</div>';
+            });
+
+            $('#tasksList').html(html);
+        }
+    }, 'json');
+
+
+    // hover模拟
+    $(document).on("touchstart", ".tasks-item", function(e) {
+        $('.tasks-item').removeClass('active');
+        $(this).addClass("active");
+    });
+</script>
+<!-- {/if} -->

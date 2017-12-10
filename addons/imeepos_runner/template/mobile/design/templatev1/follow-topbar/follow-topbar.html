@@ -1,0 +1,23 @@
+<!-- {if $widget['type']=='follow_topbar'} -->
+<style>
+
+</style>
+<div class="follow_topbar">
+    <div class="headimg">
+        <img src="{php echo $widget['content']['headimg']}">
+    </div>
+    <div class="info">
+        <div class="i">{php echo $widget['content']['title']}</div>
+        <div class="i">{php echo $widget['content']['desc']}</div>
+    </div>
+    <div class="sub" id="attent_btn">{php echo $widget['content']['btn']}</div>
+</div>
+<div style='height:44px;'>&nbsp;</div>
+<script>
+    $(() => {
+        $('#attent_btn').click(() => {
+            window.location.href = "{php echo $widget['content']['url']}";
+        });
+    });
+</script>
+<!-- {/if} -->

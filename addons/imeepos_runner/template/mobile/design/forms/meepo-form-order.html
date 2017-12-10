@@ -1,0 +1,40 @@
+<!--{if $widget['type'] == 'meepo-form-order'}-->
+<div class="cap-pay-order" style="
+    {loop $widget['containerStyle'] $key $style}
+        {php echo $key}:{php echo $style};
+    {/loop}
+    position: fixed;
+">
+    <div class="cap-pay-order__tip"></div>
+    <div class="cap-pay-order__bar">
+        <div class="cap-pay-order__price" (click)="detail()">
+            <span class="cap-pay-order__price-text">合计：</span>
+            <span class="cap-pay-order__price-interger">¥0.</span>
+            <span class="cap-pay-order__price-decimal">0.00</span>
+        </div>
+        <button id="order{$widget['code']}" class="van-button van-button--danger van-button--normal ">
+            <span class="van-button__text" >{php echo $widget['btnTitle']}</span>
+        </button>
+    </div>
+</div>
+
+<script>
+    $(function() {
+
+        $("#order{$widget['code']}").on('click', function() {
+            console.log(formsData);
+            if ($(this).hasClass('van-button--disabled')) {
+                return false;
+            }
+            var span = $(this).find('.van-button__text');
+            span.html('提交中。。');
+            $(this).addClass('van-button--disabled');
+            $.post('', formsData, function(res) {
+                setTimeout(function() {
+                    span.html("提交成功");
+                }, 800);
+            }, 'json');
+        });
+    });
+</script>
+<!--{/if}-->

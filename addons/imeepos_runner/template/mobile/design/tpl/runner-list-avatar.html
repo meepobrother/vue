@@ -1,0 +1,25 @@
+<script id="runner-list-avatar" type="text/x-handlebars-template">
+    {{#each items}}
+    <div class="weui-cell weui-cell_primary" href="javascript:;">
+        <div class="weui-cell__hd">
+            <img src="{{avatar}}" style="width: 2em;">
+        </div>
+        <div class="weui-cell__bd" style="padding-bottom: 20px;">
+            <div class="weui-cell__title">
+                <span>{{nickname}}</span>
+            </div>
+            <div class="weui-cell__info">{{create_time}}</div>
+            <p class="weui-cell__btns">
+                <a class="btn btn-info btn-xs btn-outline btn-dialog" data-id="runner-detail-dialog" data-post="{id: {{id}} }" data-action="runner.actionDetail">资料</a>                    
+                <a class="btn btn-primary btn-xs btn-outline btn-dialog" data-id="runner-detail-dialog" data-post="{id: {{id}} }" data-action="runner.actionCheck">审核</a>
+                <a class="btn btn-danger btn-xs btn-outline btn-ajax" data-post="{id: {{id}} }" data-action="runner.actionForbid">禁止</a>
+                <a class="btn btn-warning btn-xs btn-outline btn-ajax" data-post="{id: {{id}} }" data-action="runner.actionUnforbid">解封</a>
+            </p>
+        </div>
+        <div class="weui-cell__ft">
+            <div class="weui-cell__title weui-wepay-color-orange">{{credit}}</div>
+            <div class="weui-cell__info">{{tag}}</div>
+        </div>
+    </div>
+    {{/each}}
+</script>

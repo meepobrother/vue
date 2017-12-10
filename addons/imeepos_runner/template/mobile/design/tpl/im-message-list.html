@@ -1,0 +1,36 @@
+<script id="im-message-list" type="text/x-handlebars-template">
+    {{#each data}}
+    {{#meepo_eq openid 'system'}}
+    <div class="layim-chat-system">
+        <span>
+            {{content}}
+        </span>
+    </div>
+    {{/meepo_eq}}
+
+    {{#meepo_eq openid mopenid}}
+    <div class="layim-chat-mine" >
+        <div class="layim-chat-user">
+            <img src="{{avatar}}" alt="">
+            <cite>{{nickname}}</cite>
+        </div>
+        <div class="layim-chat-text">
+            {{content}}
+        </div>
+    </div>
+    {{/meepo_eq}}
+
+    {{#meepo_neq openid mopenid}}
+    <div class="layim-chat-li">
+        <div class="layim-chat-user">
+            <img src="{{avatar}}" alt="">
+            <cite>{{nickname}}</cite>
+        </div>
+        <div class="layim-chat-text">
+             {{content}}
+        </div>
+    </div>
+    {{/meepo_neq}}
+
+    {{/each}}
+</script>

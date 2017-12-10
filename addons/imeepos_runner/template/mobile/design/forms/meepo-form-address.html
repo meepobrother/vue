@@ -1,0 +1,14 @@
+<!--{if ($widget['type'] == 'meepo-form-address' || $widget['type'] == 'meepo-form-address-start' || $widget['type'] == 'meepo-form-address-end') }-->
+<div class="weui-cells" style="
+    {loop $widget['containerStyle'] $key $style}
+        {php echo $key}:{php echo $style};
+    {/loop}
+">
+    <a class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__bd">
+            <p>{$widget['title']}</p>
+        </div>
+        <div class="weui-cell__ft"> {$widget['placeholder']}</div>
+    </a>
+</div>
+<!--{/if}-->

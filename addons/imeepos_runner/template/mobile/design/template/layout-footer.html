@@ -1,0 +1,37 @@
+<!--{if $data['footer']['show']}-->
+<style>
+    .layout-footer{
+        overflow-x: hidden;
+        background-color: #fff;
+        box-shadow: 0 0 10px 0 hsla(0,6%,58%,.6);
+        -webkit-box-shadow: 0 0 10px 0 hsla(0,6%,58%,.6);
+        -moz-box-shadow: 0 0 10px 0 hsla(0,6%,58%,.6);
+        position: relative;
+    }
+    .weui-wepay-lists__hd{
+        box-shadow: 0 0 10px 0 hsla(0,6%,58%,.6);
+        -webkit-box-shadow: 0 0 10px 0 hsla(0,6%,58%,.6);
+        -moz-box-shadow: 0 0 10px 0 hsla(0,6%,58%,.6);
+    }
+    .layout-footer .footer-item {
+        height: 44px;
+    }
+</style>
+<layout-footer-view class="layout-footer" style="
+    {loop $data['footer']['containerStyle'] $key $style}
+        {php echo $key}:{php echo $style};
+    {/loop}
+">
+    <!--{loop $data['footer']['children'] $footer}-->
+    <div class="footer-item" style="{if $footer['active']}{loop $data['footer']['activeStyle'] $key $style}{php echo $key}:{php echo $style};{/loop}{else}{/if}" data-link="{php echo $footer[ 'link']} ">
+        <i class="{php echo $footer['icon']}"></i> {$footer['title']} </div>
+    <!--{/loop}-->
+</layout-footer-view>
+
+<script>
+    $('.footer-item').click(function() {
+        var link = $(this).data('link');
+        window.location.href = link;
+    })
+</script>
+<!--{/if}-->

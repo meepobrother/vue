@@ -3,29 +3,76 @@ import { ApiService } from '../meepo-fox';
 import {
     defaultCoach,
     defaultWidget,
-    defaultForm
+    defaultForm,
+    defaultHeader
 } from './init.data';
 @Injectable()
 export class CoachService {
-
-    roles: string[] = ['member', 'owner'];
-
+    // 角色
+    roles: string[] = ['member'];
+    // 详情
     coach: any = defaultCoach;
+    // 设置
     widget: any = defaultWidget;
+    // 预约表单
     form: any = defaultForm;
+    // 今天
     day: number;
+    // 年
     year: number;
+    // 月
     month: number;
+    // 已经选择
     hasSelect: any[] = [];
+    // 时间列表
     timeList: any[] = [];
+    // 显示条款
     showTiaokuan: boolean = false;
-
+    // 是否初始化
     hasInit: boolean = false;
+    // 显示入驻
+    showJoin: boolean = false;
+    // 城市列表
+    showCitys: boolean = false;
+    // 标签
+    tags: any = [];
+    // 城市
+    city: any = {};
+    joinForm: any = {
+        mobile: '',
+        title: '',
+        desc: '',
+        setting: [],
+        fee: '',
+        city: ''
+    };
+
+
+    header: any = defaultHeader;
     constructor(
         public api: ApiService
     ) { }
 
     selectTabs(e) {
+
+    }
+
+    getCity() {
+        return this.api.get('https://meepo.com.cn/v1/cities');
+    }
+
+    getCitys() {
+        return this.api.get('https://meepo.com.cn/v1/cities/?type=group');
+    }
+
+    getHotCitys() {
+        return this.api.get('https://meepo.com.cn/v1/cities/?type=hot');
+    }
+
+    setCity(res: any) {
+        this.city = res;
+        this.header.city = res.name;
+        this.joinForm.city = res.name;
     }
 
     onInit(cache = true) {
@@ -61,6 +108,11 @@ export class CoachService {
     }
 
     init() {
+        this.getCity().subscribe((res: any) => {
+            this.city = res;
+            this.header.city = res.name;
+            this.joinForm.city = res.name;
+        });
         const url = this.api.getUrl('coach_detail', {
             id: this.coach.id,
             act: 'detail',
@@ -71,6 +123,7 @@ export class CoachService {
         this.api.get(url).subscribe((res: any) => {
             this.hasSelect = res.hasSelect;
             this.coach = res.detail;
+            this.tags = res.tags;
             this.widget = { ...this.widget, ...res.detail.setting };
             this.widget.tabs[1].num = res.starsTotal;
             this.coach.stars = res.stars;
@@ -153,6 +206,11 @@ export class CoachService {
     getSkillGroup() {
         const url = this.api.getUrl('coach_detail', { act: 'groups' }, false);
         return this.api.get(url);
+    }
+
+    skillJoin(data: any) {
+        const url = this.api.getUrl('coach_detail', { act: 'add_skill' }, false);
+        return this.api.post(url, data);
     }
 }
 

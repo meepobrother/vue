@@ -1,0 +1,32 @@
+<!-- {if $widget['type'] == 'jd-home-money'} -->
+<ul class="bdbt-1px">
+    <li class="myJD-banner bdbt-1px">
+    <a href="javascript:;" class="myJD-link">
+        <div class="my-item">
+            <div class="fl">
+                <span class="couponIn-icon w-15">
+                    <img src="http://m.360buyimg.com/mobilecms/jfs/t2203/304/2666723295/1196/73933439/57147bc1N111ca2fd.png">
+                </span>
+                <span class="myJD-Order">{$widget['leftTitle']}</span>
+            </div>
+            <div class="fr" (click)="myorder()">
+                <span class="myJD-AllOrder">{$widget['rightTitle']}</span>
+                <span class="myJD-arrow"></span>
+            </div>
+        </div>
+    </a>
+    </li>
+    <li class="myJD-item bdbt-1px">
+        <!-- {loop $widget['items'] $item} -->
+        <a href="javascript:;" class="bdr-1px">
+            <div class="myID-part w-3">
+                <span class="myID-num">
+                    <span>{if $item['num']}{$item['num']}{else}0{/if}</span>
+                </span>
+                <span class="myID-text">{$item['title']}</span>
+            </div>
+        </a>
+        <!-- {/loop} -->
+    </li>
+</ul>
+<!-- {/if} -->

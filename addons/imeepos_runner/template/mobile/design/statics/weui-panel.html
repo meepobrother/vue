@@ -1,0 +1,25 @@
+<!-- {if $widget['type'] == 'weui-panel'} -->
+<style>
+	.weui-panel{
+		margin-top: 0px;
+	}
+</style>
+<div class="weui-panel weui-panel_access">
+	<!-- {if !empty($widget['title'])} -->
+    <div class="weui-panel__hd">{$widget['title']}</div>
+    <!-- {/if} -->
+    <div class="weui-panel__bd">
+    <!-- {loop $widget['list'] $item} -->
+        <a href="{$item['link']}" class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-media-box__hd">
+                <img class="weui-media-box__thumb" src="{$item['image']}">
+            </div>
+            <div class="weui-media-box__bd">
+                <h4 class="weui-media-box__title">{$item['title']}</h4>
+                <p class="weui-media-box__desc">{$item['desc']}</p>
+            </div>
+        </a>
+    <!-- {/loop} -->
+    </div>
+</div>
+<!-- {/if}

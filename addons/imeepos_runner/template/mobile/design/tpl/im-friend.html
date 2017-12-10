@@ -1,0 +1,16 @@
+<script id="im-friend-tpl" type="text/x-handlebars-template">
+    <div class="weui-cells">
+        {{#each data}}
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__hd">
+                    <img src="{{avatar}}">
+                </div>
+                <div class="weui-cell__bd">
+                    <span>{{nickname}}</span>
+                    <p>{{desc}}</p>
+                </div>
+                <div class="weui-cell__ft"></div>
+            </div>
+        {{/each}}
+    </div>
+</script>

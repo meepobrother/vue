@@ -1,0 +1,65 @@
+<!-- {$widget['type']} -->
+<!-- {if $widget['type'] == 'pay-select-money'} -->
+<style>
+    .weui-toast {
+        visibility: inherit;
+    }
+</style>
+<div class="weui-wepay-pay-select" style="background:#fff;">
+    <div class="weui-wepay-pay-select__hd">
+        <h1 class="weui-wepay-pay-select__title">{$widget['payTitle']}</h1>
+        <p class="weui-wepay-pay-select__info">{$widget['payDesc']}</p>
+    </div>
+    <div class="weui-wepay-pay-select__bd">
+        <ul class="weui-wepay-pay-select__element">
+            {loop $widget['children'] $item}
+            <li class="weui-wepay-pay-select__li">
+                <a href="javascript:;" data-title="{$item['title']}" data-money="{$item['money']}" class="weui-wepay-pay-select__item {if $item['active']}weui-wepay-pay-select__item_on{/if}">{$item['title']}</a>
+            </li>
+            {/loop}
+        </ul>
+    </div>
+    <div class="weui-wepay-pay-select__ft">
+        <div class="weui-wepay-pay__btn">
+            <a href="javascript:;" style="color: #fff;" class="weui-btn weui-btn_primary" id="payBtn-{$widget['code']}">{$widget['btn']}</a>
+        </div>
+        <p class="weui-wepay-pay__info">{$widget['tip']}</p>
+    </div>
+</div>
+<script>
+    $(function() {
+        var money = $('.weui-wepay-pay-select__item_on').data('money');
+        var title = $('.weui-wepay-pay-select__item_on').data('title');
+        $('.weui-wepay-pay-select__item').on('click', function() {
+            $('.weui-wepay-pay-select__item').removeClass('weui-wepay-pay-select__item_on');
+            $(this).addClass('weui-wepay-pay-select__item_on');
+
+            money = $('.weui-wepay-pay-select__item_on').data('money');
+            title = $('.weui-wepay-pay-select__item_on').data('title');
+        });
+
+        $("#payBtn-{$widget['code']}").on('click', function() {
+            var d = JSON.stringify({
+                openid: "{$_W['openid']}",
+                tixian: {
+                    value: money,
+                    title: title
+                }
+            });
+            var encrypted = Base64.encode(d);
+            $.post("{php echo $this->createMobileUrl('open')}&__do=tixian.post", {
+                __input: {
+                    encrypted: encrypted
+                }
+            }, function(res) {
+                if (res.code == 1) {
+                    weui.topTips(res.msg, 1500);
+                    window.location.href = "{php echo $widget['__success']}";
+                } else {
+                    weui.toast(res.msg, 1500);
+                }
+            }, 'json');
+        });
+    })
+</script>
+<!-- {/if} -->

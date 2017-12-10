@@ -24,4 +24,15 @@ export class AppComponent implements OnInit {
     this.coach$.selectTabs(e);
   }
 
+  onHeader(type) {
+    if (type === 'post') {
+      this.coach$.showJoin = true;
+    }
+    if (type === 'my') {
+      location.href = this.coach$.api.getUrl('coach_my', {});
+    }
+    if (type === 'city') {
+      this.coach$.showCitys = true;
+    }
+  }
 }

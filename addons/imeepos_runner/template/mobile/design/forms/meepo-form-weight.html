@@ -1,0 +1,17 @@
+<!--{if $widget['type'] == 'meepo-form-weight'}-->
+<div class="weui-cells {if !$widget['show']}hidden{/if}" style="
+    {loop $widget['containerStyle'] $key $style}
+        {php echo $key}:{php echo $style};
+    {/loop}
+">
+    <div class="weui-cell {if $widget['required']}weui-cell_warn{/if}">
+        <div class="weui-cell__hd"><label class="weui-label">{$widget['title']}</label></div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" type="number" placeholder="{$widget['placeholder']}">
+        </div>
+        <div class="weui-cell__ft {if $widget['required']}weui-cell_warn{/if}">
+            <i class="weui-icon-warn"></i>
+        </div>
+    </div>
+</div>
+<!--{/if}-->

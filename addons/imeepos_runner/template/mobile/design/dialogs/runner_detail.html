@@ -1,0 +1,54 @@
+<script id="runner-detail-dialog" type="text/x-handlebars-template">
+    <div class="weui-panel weui-panel_access">
+        <div class="weui-panel__bd">
+            <div class="weui-cells">
+                <a class="weui-cell weui-cell_access" href="javascript:;">
+                    <div class="weui-cell__bd">
+                        <p>{{data.nickname}}</p>
+                        <p>{{data.create_time}}</p>                        
+                    </div>
+                    <div class="weui-cell__ft">
+                        <img src="{{data.avatar}}" style="height: 2em;"/>
+                    </div>
+                </a>
+                <a class="weui-cell weui-cell_access" href="javascript:;">
+                    <div class="weui-cell__bd">
+                        <p>姓名: {{data.realname}}</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                        电话: {{data.mobile}}
+                    </div>
+                </a>
+            </div>
+
+            <div class="imgs">
+                <div class="swiper-container" style="height: 150px;width: 300px;">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" style="height: 150px;">
+                            <img src="{{data.card_image1}}" alt="">
+                        </div>
+                        <div class="swiper-slide" style="height: 150px;">
+                            <img src="{{data.card_image2}}" alt="">
+                        </div>
+                        <div class="swiper-slide" style="height: 150px;">
+                            <img src="{{data.card_image3}}" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+
+            <div class="opts" style="margin: 10px 0px;text-align: center;">
+                <a class="btn btn-primary btn-xs btn-outline">站长</a>
+                <a class="btn btn-danger btn-xs btn-outline">管理员</a>
+                <a class="btn btn-info btn-xs btn-outline">跑腿</a>
+            </div>
+
+            <div class="mt10" style="margin: 10px 0px;text-align: center;">
+                <a class="btn btn-primary btn-ajax" data-post="{id: {{data.id}} }" data-action="runner.actionSuccess">通过</a>
+                <a class="btn btn-dark btn-ajax" data-post="{id: {{data.id}} }" data-action="runner.actionFail">驳回</a>  
+                <a class="btn btn-default btn-dialog-close">取消</a>
+            </div>
+        </div>
+    </div>
+</script>

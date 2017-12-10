@@ -1,0 +1,15 @@
+<!-- {if $widget['type'] == 'im-friend'} -->
+<div class="im-friend" id="im-friend-container">
+    
+</div>
+
+<script>
+    $(function(){
+        meepo.util.post('runner.getall',{},function(res){
+            var list = res.info;
+            var html = meepo.util.html('im-friend-tpl',list);
+            $("#im-friend-container").html(html);
+        },function(){});
+    });
+</script>
+<!-- {/if} -->

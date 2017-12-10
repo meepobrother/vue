@@ -14,4 +14,8 @@ export class FoxTextarea implements OnInit {
     constructor() { }
 
     ngOnInit() { }
+
+    _change() {
+        this.modelChange.emit(this.model);
+    }
 }

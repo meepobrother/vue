@@ -1,0 +1,17 @@
+<!-- {if $widget['type'] == 'uu-home-item'} -->
+<div class="uu-home-list" style="
+    {loop $widget['containerStyle'] $key $value}
+        {$key}:{$value};
+    {/loop}
+">
+    <!-- {loop $widget['children'] $item} -->
+    <a href="javascript:;" class="uu-home-item">
+        <div class="uu-home-item-left">
+            <i class="{$item['left']}"></i>
+            <span class="title">{$item['title']}</span>
+        </div>
+        <i class="{$item['right']}"></i>
+    </a>
+    <!-- {/loop} -->
+</div>
+<!-- {/if} -->

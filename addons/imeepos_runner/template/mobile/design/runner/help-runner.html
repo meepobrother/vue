@@ -1,0 +1,16 @@
+<!-- {if $widget['type'] == 'help-runner'} -->
+<dl id="faq">
+    <!-- {loop $widget['items'] $key $item} -->
+        <dt data-id="{$key}"><i>{$key}</i>{$item['title']}</dt>
+        <dd id="meepo-dd-{$key}" data-id="{$key}" style="display: none;">{$item['desc']}</dd>
+    <!-- {/loop} -->
+</dl>
+<script>
+$(function(){
+    $('#faq dt').click(function(){
+        var id = $(this).data('id');
+        $('#meepo-dd-'+id).toggle();
+    });
+});
+</script>
+<!-- {/if} -->

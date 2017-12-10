@@ -2,7 +2,7 @@
 <div class="weui-cells weui-cells_form" style="margin: 0px;">
     <div class="weui-cell">
         <div class="weui-cell__bd">
-            <textarea class="weui-textarea" [(ngModel)]="model" [attr.placeholder]="placeholder" rows="3"></textarea>
+            <textarea class="weui-textarea" (change)="_change()" [(ngModel)]="model" [attr.placeholder]="placeholder" rows="3"></textarea>
             <div class="weui-textarea-counter"><span>{{model.length}}</span>/{{max}}</div>
         </div>
     </div>

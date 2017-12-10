@@ -1,0 +1,20 @@
+<!-- {if $widget['type'] == 'meepo-filter'} -->
+<div class="meepo-filter-tabs">
+    <!-- {loop $widget['children'] $item} -->
+    <div class="meepo-filter-tabs-item" data-link="{$item['link']}">
+        {$item['title']}
+    </div>
+    <!-- {/loop} -->
+</div>
+
+<script>
+    $(document).on("touchstart", ".meepo-filter-tabs-item", function(e) {
+        $('.meepo-filter-tabs-item').removeClass('active');
+        $(this).addClass("active");
+        var link = $(this).data('link');
+        if (link) {
+            window.location.href = "./index.php?i=41&c=entry&do=design&m=imeepos_runner&id=" + link;
+        }
+    });
+</script>
+<!-- {/if} -->

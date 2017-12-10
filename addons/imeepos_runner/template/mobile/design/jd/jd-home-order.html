@@ -1,0 +1,34 @@
+<!-- {if $widget['type'] == 'jd-home-order'} -->
+<ul class="bdbt-1px">
+    <li class="myJD-banner bdbt-1px">
+    <a href="javascript:;" class="myJD-link">
+        <div class="my-item">
+        <div class="fl">
+            <span class="couponIn-icon w-15">
+            <img src="http://m.360buyimg.com/mobilecms/jfs/t2782/329/448284447/1176/f4bdcb20/57147ba3Ne2fccde3.png">
+            </span>
+            <span class="myJD-Order">{$widget['leftTitle']}</span>
+        </div>
+        <div class="fr" (click)="myorder()">
+            <span class="myJD-AllOrder">{$widget['rightTitle']}</span>
+            <span class="myJD-arrow"></span>
+        </div>
+        </div>
+    </a>
+    </li>
+    <li class="myJD-item bdbt-1px">
+        {loop $widget['items'] $order}
+        <a href="javascript:;" class="bdr-1px">
+            <div class="myID-part w-3">
+                <span class="myID-img">
+                    <img src="{$order['icon']}">
+                    <span name="daifukuan"></span>
+                </span>
+                <span class="myID-text">{$order['title']}</span>
+            </div>
+        </a>
+        {/loop}
+    </li>
+</ul>
+    
+<!-- {/if} -->

@@ -1,0 +1,19 @@
+<!--{if $widget['type'] === 'meepo-form-tag'}-->
+<div style="position: relative;min-height: 80px;">
+    <div class="w_tag bor-b marbot10">
+        <!-- {loop $widget['children'] $item} -->
+        <a href="javascript:;" data-value="{$item['title']}" class="tab_btn marbot20 {if $item['active']}on{/if}" (click)="select(item)">{$item['title']}</a>
+        <!-- {/loop} -->
+    </div>
+</div>
+<script>
+    $(function() {
+        $('.tab_btn').click(function() {
+            $('.tab_btn').removeClass('on');
+            $(this).addClass('on');
+            var value = $(this).data('value');
+            formsData['tag'] = value;
+        });
+    });
+</script>
+<!--{/if}-->

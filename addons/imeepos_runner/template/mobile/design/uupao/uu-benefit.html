@@ -1,0 +1,14 @@
+<!-- {if $widget['type'] == 'uu-benefit'} -->
+<div class="benefit bor-b marbot20">
+    <ul class="itembox">
+        <!-- {loop $widget['children'] $item} -->
+        <li>
+            <a href="{$item['link']}">
+                <img src="{$item['image']}" alt="">
+                <p>{$item['title']}</p>
+            </a>
+        </li>
+        <!-- {/loop} -->
+    </ul>
+</div>
+<!-- {/if} -->

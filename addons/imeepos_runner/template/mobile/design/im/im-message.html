@@ -1,0 +1,21 @@
+<!-- {if $widget['type'] == 'im-message'} -->
+<div id="J_Scroll">
+  <div class="xs-container">
+    <div class="xs-content">
+        <div id="im-message-list-container" ></div>
+    </div>
+  </div>
+</div>
+<div class="im-message-view" id="im-message-list-empty-container">
+    <p>没有收到信息</p>
+</div>
+<script>
+$(function(){
+    __do = "{$widget['__do']}";
+    meepo.im.getMessage("{$widget['__do']}");
+    setInterval(function(){
+        meepo.im.getMessage("{$widget['__do']}");
+    },3000)
+});
+</script>
+<!-- {/if} -->

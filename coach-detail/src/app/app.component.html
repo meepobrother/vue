@@ -1,9 +1,12 @@
-<fox-header></fox-header>
+<fox-header [widget]="coach$.header" (onClick)="onHeader($event)"></fox-header>
+<div class="h50"></div>
 <fox-main [widget]="coach$.widget.detail"></fox-main>
 <fox-tabs [roles]="coach$.roles" [items]="coach$.widget.tabs" (onSelect)="selectTabs($event)">
     <app-coach *ngIf="tab.code === 'coach'"></app-coach>
     <app-star *ngIf="tab.code === 'star'"></app-star>
     <app-field *ngIf="tab.code === 'field'"></app-field>
     <app-setting *ngIf="tab.code === 'setting'"></app-setting>
-    <app-join *ngIf="tab.code === 'join'"></app-join>
 </fox-tabs>
+
+<app-join *ngIf="coach$.showJoin"></app-join>
+<app-citys *ngIf="coach$.showCitys"></app-citys>

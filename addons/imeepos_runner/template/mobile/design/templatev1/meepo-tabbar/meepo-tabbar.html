@@ -1,0 +1,18 @@
+<!-- {if $widget['type'] === 'meepo-tabbar'} -->
+<ul class="meepo-tabbar">
+    <!-- {loop $widget['children'] $item} -->
+    <li class="meepo-tabbar-item">
+        <a href="{$item['link']}">
+            <span class="meepo-tabbar-item-icon">
+                <!-- {if $item['type'] == 'icon'} -->
+                <i class="{$item['icon']}"></i>
+                <!-- {else} -->
+                <img sr="{$item['icon']}"/>
+                <!-- {/if} -->
+            </span>
+            <span>{$item['title']}</span>
+        </a>
+    </li>
+    <!-- {/loop} -->
+</ul>
+<!-- {/if} -->

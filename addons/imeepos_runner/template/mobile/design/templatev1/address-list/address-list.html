@@ -1,0 +1,27 @@
+<!-- {if $widget['type'] == 'address-list'} -->
+<!-- {loop $widget['children'] $item} -->
+<div class="address_list">
+    <div class="ico">
+        <i class="fa {if $item['isdefault'] == 1}fa-check-circle-o{else}fa-circle-o{/if}" style="{if $item[ 'isdefault'] == 1}color:#0c9;{/if}"></i>
+    </div>
+    <div class="info">
+        <div class='inner'>
+            <div class="addr">
+                {$item['address']}
+            </div>
+            <div class="user">
+                <span>{$item['realname']} {$item['mobile']}</span>
+            </div>
+        </div>
+    </div>
+    <div class='btn'>
+        <div class="remove">
+            <i class="fa fa-remove" style="margin-top:13px"></i>
+        </div>
+        <div class="edit">
+            <i class="fa fa-pencil" style="margin-top:14px"></i>
+        </div>
+    </div>
+</div>
+<!-- {/loop} -->
+<!-- {/if} -->

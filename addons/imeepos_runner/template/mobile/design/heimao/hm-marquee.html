@@ -1,0 +1,15 @@
+<!--{if $widget['type'] == 'hm-marquee'}-->
+<section class="marquee-box" style="
+    {loop $widget['containerStyle'] $key $style}
+        {php echo $key}:{php echo $style};
+    {/loop}
+">
+    <marquee behavior="{$widget['behavior']}" bgcolor="{$widget['color']['bgcolor']}" direction="{$widget['direction']}" class="marquee" scrollamount="4">
+        <!--{loop $widget['items'] $item}-->
+        <a href="javascript:;" style="color: {$widget['color']['color']}">
+            <img class="laba" src="{$item['icon']}"> &nbsp;&nbsp;{$item['title']}
+        </a>
+        <!--{/loop}-->
+    </marquee>
+</section>
+<!--{/if}-->

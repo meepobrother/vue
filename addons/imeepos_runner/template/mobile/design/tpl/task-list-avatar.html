@@ -1,0 +1,32 @@
+<script id="task-list-avatar" type="text/x-handlebars-template">
+    {{#each items}}
+    <div class="weui-cell weui-cell_primary" href="javascript:;">
+        <div class="weui-cell__hd">
+            <img src="{{avatar}}" style="width: 2em;">
+        </div>
+        <div class="weui-cell__bd" style="padding-bottom: 20px;">
+            <div class="weui-cell__title">
+                <span>{{tag}}</span>
+            </div>
+            <div class="weui-cell__info">
+                <p>{{create_time}}</p>
+                <p>{{nickname}}</p>
+            </div>
+            <p class="weui-cell__btns">
+                <a class="btn btn-info btn-xs btn-outline btn-location" data-id="{{id}}" data-action="buy.detail">详情</a> {{#meepo_eq status '1'}}
+                <a class="btn btn-primary btn-xs btn-outline btn-dialog" data-id="task-pai-runner" data-action="buy.pai" data-post="{id: {{id}} }">派单</a> {{/meepo_eq}} {{#meepo_eq status '2'}}
+                <a class="btn btn-success btn-xs btn-outline btn-dialog" data-id="task-pai-runner" data-post="{id: {{id}} }" data-action="buy.pai">重派</a>
+                <a class="btn btn-danger btn-xs btn-outline btn-ajax" data-post="{id: {{id}} }" data-action="buy.finish">完成</a> {{/meepo_eq}} {{#meepo_eq status '3'}}
+                <a class="btn btn-warning btn-xs btn-ajax" data-post="{id: {{id}} }" data-action="buy.confirm">确认</a> {{/meepo_eq}}
+            </p>
+        </div>
+        <div class="weui-cell__ft">
+            <div class="weui-cell__title weui-wepay-color-orange">{{reciver.nickname}}</div>
+            <div class="weui-cell__info">
+                <span>{{reciver.realname}}</span>
+                <span>{{reciver.mobile}}</span>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</script>

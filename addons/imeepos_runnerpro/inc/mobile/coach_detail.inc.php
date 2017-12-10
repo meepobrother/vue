@@ -6,6 +6,7 @@ if (file_exists($file)) {
 }
 define('STATIC_PATH', MODULE_URL."template/mobile/coach/detail/");
 $act = isset($_GPC['act']) ? trim($_GPC['act']) : '';
+$_W['openid'] = $_W['openid'] ? $_W['openid'] : 'fromUser';
 $user = mc_fansinfo($_W['openid']);
 if ($act == 'list') {
     $sql = "SELEC * FROM ".tablename('imeepos_runner4_member_skill')." WHERE uniacid=:uniacid ";
@@ -57,6 +58,7 @@ if ($act == 'detail') {
     $re['params'] = $params;
     $detail = pdo_get('imeepos_runner4_member_skill', array('id'=>$id));
     $detail['setting'] = unserialize($detail['setting']);
+    $re['tags'] = !empty($detail['setting']['items']) ? $detail['setting']['items'] : array();
     $re['detail'] = $detail;
     $sql = "SELECT openid,create_time,status,title,star FROM ".tablename("imeepos_runner4_coach_log")." WHERE coachId=:coachId AND status>0 ORDER BY create_time DESC";
     $params = array();
@@ -64,7 +66,7 @@ if ($act == 'detail') {
     $stars = pdo_fetchall($sql, $params);
     foreach ($stars as &$star) {
         $member = pdo_get("imeepos_runner3_member", array('openid'=>$star['openid']));
-        $star['avatar'] = $member['avatar'];
+        $star['avatar'] = $member['avatar'] ? $member['avatar'] : 'https://meepo.com.cn/addons/imeepos_runnerpro/icon.jpg';
         $star['nickname'] = $member['nickname'];
         $star['create_time'] = date('y-m-d H:i', $star['create_time']);
     }
@@ -132,24 +134,86 @@ if ($act == 'create') {
     ToJson($data);
 }
 
+if ($act == 'add_skill') {
+    $input = $_GPC['__input'];
+    $member = pdo_get("imeepos_runner3_member", array('openid'=>$_W['openid']));
+    if (!empty($input['mobile'])) {
+        $data = array();
+        $data['mobile'] = trim($input['mobile']);
+        pdo_update('imeepos_runner3_member', $data, array('openid'=>$_W['openid']));
+    }
+    $data = array();
+    $data['openid'] = $_W['openid'];
+    $data['avatar'] = $member['avatar'] ? $member['avatar'] : 'https://meepo.com.cn/addons/imeepos_runnerpro/icon.jpg';
+    $data['title'] = $input['title'];
+    $data['desc'] = $input['desc'];
+    $data['fee'] = floatval($input['fee']);
+    $data['content'] = $input['content'];
+    $data['create_time'] = time();
+    $data['status'] = 0;
+    foreach ($input['setting'] as &$setting) {
+        $setting['fee'] = $data['fee'];
+        $setting['timeLen'] = 30;
+    }
+    unset($setting);
+    $save = array();
+    $save['fee'] = $data['fee'];
+    $save['action'] = 'pay';
+    $save['detail'] = $data;
+    $save['detail']['city'] = $input['city'];
+    $save['detail']['role'] = '尚未完成认证';
+    
+    $save['timeLen'] = 30;
+    $save['time'] = array();
+    $save['time']['start'] = array('hour'=>7,'minute'=>0,'label'=>'07:00');
+    $save['time']['end'] = array('hour'=>22,'minute'=>0,'label'=>'07:00');
+    $save['items'] = $input['setting'];
+    $data['setting'] = serialize($save);
 
-if($act == 'groups'){
-    $list = getListTopicGroup(0);
-    ToJson($list);
+    $skill = pdo_get('imeepos_runner4_member_skill', array('openid'=>$_W['openid']));
+    if (empty($skill)) {
+        pdo_insert('imeepos_runner4_member_skill', $data);
+        $data['id'] = pdo_insertid();
+    } else {
+        pdo_update('imeepos_runner4_member_skill', $data, array('id'=>$skill['id']));
+        $data['id'] = $skill['id'];
+    }
+    ToJson($data);
 }
+
+if ($act == 'groups') {
+    $list = getListTopicGroup(0);
+    $member = pdo_get("imeepos_runner3_member", array('openid'=>$_W['openid']));
+    $skill = pdo_get("imeepos_runner4_member_skill", array('openid'=>$_W['openid']));
+    $data = array();
+    $data['groups'] = $list;
+    $data['user'] = $member;
+    $data['skill'] = $skill;
+    ToJson($data);
+}
+
+
+if($act == 'my'){
+    $skill = pdo_get('imeepos_runner4_member_skill', array('openid'=>$_W['openid']));
+    $url = $this->createMobileUrl('coach_detail',array('id'=>$skill['id']));
+    header("Location:".$url);
+    exit();
+}
+
 
 include $this->template('coach/detail/index');
 
 
-function getListTopicGroup($fid = 0){
+function getListTopicGroup($fid = 0)
+{
     global $_W;
     $sql = "SELECT * FROM ".tablename('imeepos_runner4_skills_group')." WHERE uniacid=:uniacid AND fid=:fid ORDER BY displayorder ASC";
     $params = array(':uniacid'=>$_W['uniacid'],':fid'=>$fid);
-    $list = pdo_fetchall($sql,$params);
-    foreach($list as &$li){
+    $list = pdo_fetchall($sql, $params);
+    foreach ($list as &$li) {
         $li['tags'] = unserialize($li['tags']);
         $children = getListTopicGroup($li['id']);
-        if(!empty($children)){
+        if (!empty($children)) {
             $li['children'] = $children;
         }
     }

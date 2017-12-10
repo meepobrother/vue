@@ -1,0 +1,25 @@
+<!--{if $widget['type'] == 'meepo-form-textarea'}-->
+<div class="weui-cells weui-cells_form" style="
+    {loop $widget['containerStyle'] $key $style}
+        {php echo $key}:{php echo $style};
+    {/loop}
+">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" id="textarea{$widget['code']}" placeholder="{$widget['placeholder']}" rows="3"></textarea>
+        </div>
+        <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function() {
+        $("#textarea{$widget['code']}").on('change', function() {
+            formsData["{$widget['field_name']}"] = $(this).val();
+            console.log(formsData);
+        });
+    });
+</script>
+<!--{/if}-->

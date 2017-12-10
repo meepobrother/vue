@@ -1,0 +1,26 @@
+<!--{if $widget['type']=='meepo-marquee'}-->
+<div id="{$widget['code']}" class="marquee" style="
+    {loop $widget['styleObj'] $key $value}
+        {$key}:{$value};
+    {/loop}
+">
+    <!--{loop $widget['items'] $item}-->
+    <div style="
+        {loop $widget['styleObj'] $key $value}
+            {$key}:{$value};
+        {/loop}
+    ">
+        <!--{if $item['image']}-->
+        <img src="{$item['image']}" style="width: 2em;" />
+        <!--{/if}-->
+        <a href="javascript:;" style="color: {$widget['styleObj']['color']}" target="_blank">{$item['title']}</a>
+    </div>
+    <!--{/loop}-->
+</div>
+<script src="https://meepo.com.cn/meepo/libs/jquery.marquee/jquery.marquee.min.js"></script>
+<script>
+    $(function() {
+        $("#{$widget['code']}").marquee();
+    });
+</script>
+<!--{/if}-->

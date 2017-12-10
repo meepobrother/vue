@@ -1,0 +1,15 @@
+<!-- {if $widget['type'] == 'meepo-title'} -->
+<div class="gray-text" style="
+    {loop $widget['containerStyle'] $key $value}
+        {$key}:{$value};
+    {/loop}
+">
+    <div class="gray-layout" style="
+    {loop $widget['styleObj'] $key $value}
+        {$key}:{$value};
+    {/loop}
+">
+        <span class="gray-text-img" style="background-image:url({php echo $widget[ 'icon']});"></span> {$widget['title']}
+    </div>
+</div>
+<!-- {/if} -->

@@ -1,0 +1,160 @@
+<!-- {if $widget['type'] == 'pay-record'} -->
+<style>
+    .weui-cells {
+        margin-top: 0px;
+    }
+    
+    .btn {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+    
+    
+    .btn-xs {
+        padding: 1px 5px;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 3px;
+    }
+    
+    .btn {
+        border-radius: 3px;
+    }
+    
+    .btn-outline {
+        color: inherit;
+        background-color: transparent;
+        transition: all .5s;
+    }
+    
+    .btn-primary.btn-outline {
+        color: #1ab394;
+    }
+
+    .btn-primary:hover {
+        background-color: #1ab394;
+        border-color: #1ab394;
+        color: #FFFFFF;
+    }
+    
+    .btn-danger.btn-outline {
+        color: #ed5565;
+    }
+    
+    .btn-danger:hover {
+        background-color: #ec4758;
+        border-color: #ec4758;
+        color: #FFFFFF;
+    }
+    
+    .weui-cell__btns {
+        position: absolute;
+        right: 10px;
+    }
+    
+    .weui-cell__btns .btn {
+        margin: 0 3px;
+    }
+</style>
+<div class="weui-wepay-lists" id="pay-record-{$widget['code']}">
+    <div class="weui-wepay-lists__hd" [ngStyle]="widget.listsStyle">
+        <div class="weui-wepay-lists__menu">
+            <!-- {loop $widget['items'] $item} -->
+            <div data-do="{$item['__do']}" data-post={php echo json_encode($item[ '__post']) } class="weui-wepay-lists__menu__item {if $item['active']}weui-wepay-lists__menu__item_on{/if}">{$item['title']}</div>
+            <!-- {/loop} -->
+        </div>
+    </div>
+    <div class="weui-wepay-lists__bd">
+        <div class="weui-cells" id="pay-record-avatar-container" style="margin-top:0"></div>
+    </div>
+</div>
+<script id="pay-record-avatar" type="text/x-handlebars-template">
+    {{#each items}}
+    <div class="weui-cell weui-cell_primary" href="javascript:;">
+        <div class="weui-cell__hd">
+            <img src="{{avatar}}" style="width: 2em;">
+        </div>
+        <div class="weui-cell__bd" style="padding-bottom: 20px;">
+            <div class="weui-cell__title">
+                <span>{{nickname}}</span>
+            </div>
+            <div class="weui-cell__info">{{create_time}}</div>
+            <p class="weui-cell__btns">
+                <!--{loop $widget['btns'] $btn}-->
+                <!--{if !empty($btn['title'])}-->
+                <a class="btn {$btn['color']} {$btn['size']} {$btn['style']}">{php echo $btn['title']}</a>
+                <!--{/if}-->
+                <!--{/loop}-->
+            </p>
+        </div>
+        <div class="weui-cell__ft">
+            <div class="weui-cell__title weui-wepay-color-orange">{{credit}}元</div>
+            <div class="weui-cell__info">{{tag}}</div>
+        </div>
+    </div>
+    {{/each}}
+</script>
+
+<script id="pay-record-empty" type="text/x-handlebars-template">
+    <div class="weui-cells">
+        <p style="color: gray;text-align: center;padding: 30px;">暂无记录</p>
+    </div>
+</script>
+<script>
+    $(function() {
+        var __do = $('.weui-wepay-lists__menu__item_on').data('do');
+        var __post = $('.weui-wepay-lists__menu__item_on').data('post');
+
+        $('.weui-wepay-lists__menu__item').on('click', function() {
+            $('.weui-wepay-lists__menu__item').removeClass('weui-wepay-lists__menu__item_on');
+            $(this).addClass('weui-wepay-lists__menu__item_on');
+            __do = $(this).data('do');
+            __post = $(this).data('post');
+
+            loadData();
+        });
+        loadData();
+
+        function loadData() {
+            __post['openid'] = "{$_W['openid']}";
+            var d = JSON.stringify(__post);
+            var encrypted = Base64.encode(d);
+            $.post("{php echo $this->createMobileUrl('open')}&__do=" + __do, {
+                __input: {
+                    encrypted: encrypted
+                }
+            }, function(res) {
+                if (res.info.length > 0) {
+                    var source = document.getElementById("pay-record-{php echo $widget['styleType']}").innerHTML;
+                    var template = Handlebars.compile(source);
+                } else {
+                    var source = document.getElementById("pay-record-empty").innerHTML;
+                    var template = Handlebars.compile(source);
+                }
+                var context = {
+                    items: res.info
+                };
+                var html = template(context);
+                $("#pay-record-{$widget['styleType']}-container").html(html);
+            }, 'json');
+        }
+    });
+</script>
+<!-- {/if} -->

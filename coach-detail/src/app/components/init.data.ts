@@ -7,7 +7,7 @@ export const defaultCoach = {
     desc: '同城预约专注即时同城快递，提供10分钟上门59分钟送达全城的同城快递及跑腿服务。同城快递找小明跑腿，7*24提供安全、高效、便捷的高端服务！小明跑腿，让生活更高效！',
     fee: 10,
     timeLen: 30,
-    id: parsed.id ? parsed.id : 1,
+    id: parsed.id ? parsed.id : 7,
     itmes: [],
     stars: [{
         avatar: 'https://images.daojia.com/dop/custom/12601bba1ccb4b4af531e3a9ed5265ee.png@300w_300h_1wh.jpg',
@@ -65,19 +65,13 @@ export const defaultWidget = {
             title: '二维码',
             active: false,
             code: 'field',
-            role: 'member'
+            role: 'owner'
         },
         {
             title: '设置',
             active: false,
             code: 'setting',
             role: 'owner'
-        },
-        {
-            title: '入驻',
-            active: false,
-            code: 'join',
-            role: 'member'
         }
     ]
 };
@@ -85,7 +79,14 @@ export const defaultWidget = {
 export const defaultForm = {
     desc: '',
     time: [],
-    id: 1
+    id: 7
+};
+
+export const defaultHeader = {
+    title: '找任务 找服务',
+    my: '我的',
+    post: '入驻',
+    city: '杭州'
 };
 
 

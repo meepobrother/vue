@@ -1,0 +1,254 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{$data['title']}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" media="all" href="https://meepo.com.cn/meepo/libs/weui/weui.min.css">
+    <link rel="stylesheet" media="all" href="https://meepo.com.cn/meepo/libs/weui/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://meepo.com.cn/meepo/libs/layim/dist/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="https://meepo.com.cn/meepo/libs/layim/dist/css/layui.mobile.css">
+
+
+    <link rel="stylesheet" media="all" href="../addons/imeepos_runner/template/mobile/design/meepoui.css?t={php echo time()}">
+    <link rel="stylesheet" media="all" href="https://meepo.com.cn/meepo/libs/font-awesome/font-awesome.min.css">
+    <script>
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+        var formsData = {};
+        formsData['data'] = {
+            pid: "{php echo $_GPC['pid']}",
+            tid: "{php echo $_GPC['tid']}",
+            id: "{php echo $_GPC['id']}",
+            page: 1,
+            psize: 30
+        };
+        var searchFilter = {};
+        var keyword = "";
+        var ___tmp = {};
+        var player;
+        var meepo = {
+            version: '1.0.0'
+        };
+        var openid = "{php echo $_W['openid']}"
+        var __do, __params;
+    </script>
+    <style>
+        app-root {
+            display: block;
+            height: 100%;
+            width: 100%;
+            overflow: auto;
+        }
+        
+        .mt10 {
+            margin-top: 10px;
+        }
+        
+        .weui-cell {
+            color: rgb(34, 34, 34);
+        }
+        
+        .weui-input {
+            color: gray;
+        }
+        
+        .weui-cell_warn {
+            color: #E64340;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .mbox {
+            margin: 5px 0px;
+        }
+        
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        .weui-toast__content {
+            color: #fff;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0px;
+        }
+    </style>
+
+    <script type="text/javascript" src="https://meepo.com.cn/meepo/libs/jquery-3.2.1.min.js"></script>
+    <script src="https://meepo.com.cn/meepo/libs/fastclick.min.js"></script>
+    <script src="https://meepo.com.cn/meepo/libs/base64.min.js"></script>
+    <script type="text/javascript" src="https://meepo.com.cn/app/resource/js/app/util.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script src="https://meepo.com.cn/meepo/libs/weui.min.js"></script>
+    <script src="https://meepo.com.cn/meepo/libs/weui/jquery-weui.min.js"></script>
+    <script src="https://meepo.com.cn/meepo/libs/swiper.min.js"></script>
+    <script src="https://meepo.com.cn/meepo/libs/layim/dist/layui.all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <!-- <script src="https://meepo.com.cn/meepo/libs/vue.min.js"></script> -->
+    <script src="https://cdn.ronghub.com/RongIMLib-2.2.8.min.js"></script>
+    <script src="https://meepo.com.cn/meepo/libs/xscroll.min.js"></script>
+
+    <script>
+        Handlebars.registerHelper('ex', function(str, options) {
+            var reg = /\{\{.*?\}\}/g;
+            var result = false;
+            var variables = str.match(reg);
+            var context = this;
+            _.each(variables, function(v) {
+                var key = v.replace(/{{|}}/g, "");
+                var value = typeof context[key] === "string" ? ('"' + context[key] + '"') : context[key];
+                str = str.replace(v, value);
+            });
+            try {
+                result = eval(str);
+                if (result) {
+                    return options.fn(this);
+                } else {
+                    return options.inverse(this);
+                }
+            } catch (e) {
+                return options.inverse(this);
+            }
+        });
+        Handlebars.registerHelper("meepo_eq", function(v1, v2, options) {
+            if (v1 == v2) {
+                return options.fn(this);
+            } else {
+                return options.inverse(this);
+            }
+        });
+
+        Handlebars.registerHelper("meepo_neq", function(v1, v2, options) {
+            if (v1 != v2) {
+                return options.fn(this);
+            } else {
+                return options.inverse(this);
+            }
+        });
+    </script>
+    <script src="../addons/imeepos_runner/template/mobile/design/meepo.js?t={php echo time()}"></script>
+
+</head>
+
+<body>
+    <!-- dialog -->
+    <!-- 任务指派给跑腿 -->
+    {template 'design/dialogs/task_pai_runner'}
+    <!-- 跑腿指派给任务 -->
+    {template 'design/dialogs/runner_pai_task'}
+    <!-- 跑腿详情 -->
+    {template 'design/dialogs/runner_detail'}
+    <!-- script -->
+    {template 'design/script'}
+    <app-root>
+        <layout-view class="layout " style="overflow: auto;">
+            <layout-container-view class="layout-container " style="overflow: auto;">
+                <!--{if $data['header']['show']}-->
+                <layout-header-view class="layout-header" style="
+                    {loop $data['header']['containerStyle'] $key $style} 
+                        {$key}:{$style};
+                    {/loop}
+                ">
+                    <h2 class="title ">{$data['header']['content']}</h2>
+                </layout-header-view>
+                <!--{/if}-->
+
+                <!-- {if $data['body']['show']} -->
+                <layout-body-view id="layoutBody " class="layout-body " style="{loop $data['body']['containerStyle'] $key $style} {php echo $key}:{php echo $style}; {/loop} position: relative; overflow-x: hidden; ">
+                    <!-- {loop $data['body']['children'] $widget} -->
+                    {template 'design/template/meepo-advs'}
+                    <!-- 0 -->
+                    {template 'design/template/meepo-tasks'}
+                    <!-- 1 -->
+                    {template 'design/template/meepo-filter'}
+                    <!-- 2 -->
+                    {template 'design/template/meepo-list'}
+                    <!-- 3 -->
+                    {template 'design/template/meepo-swiper-tags'}
+                    <!-- forms -->
+                    {template 'design/forms/index'}
+                    <!-- UU跑腿 -->
+                    <!-- uu header -->
+                    {template 'design/uupao/uu-header'}
+                    <!-- uu swiper -->
+                    {template 'design/uupao/uu-swiper'}
+                    <!-- uu item box -->
+                    {template 'design/uupao/uu-item-box'}
+                    <!-- uu benefit -->
+                    {template 'design/uupao/uu-benefit'}
+                    <!-- uu home header -->
+                    {template 'design/uupao/uu-home-header'}
+                    <!-- uu home item -->
+                    {template 'design/uupao/uu-home-item'}
+
+                    <!-- pay ui -->
+                    <!-- pay-record -->
+                    {template 'design/payui/pay-record'}
+                    <!-- pay select money -->
+                    {template 'design/payui/pay-select-money'}
+                    <!-- task list -->
+                    {template 'design/runner/index'}
+                    <!-- pay state -->
+                    {template 'design/payui/pay-state'}
+
+                    <!-- jd -->
+                    {template 'design/jd/jd-home-header'}
+                    <!-- jd -->
+                    {template 'design/jd/jd-home-list'}
+                    <!-- jd -->
+                    {template 'design/jd/jd-home-money'}
+                    <!-- jd -->
+                    {template 'design/jd/jd-home-order'}
+
+                    <!-- hdb -->
+                    {template 'design/hdb/hdb-channel'}
+                    <!-- meepo ui index -->
+                    {template 'design/meepo-ui/index'}
+                    <!-- heimao -->
+                    {template 'design/heimao/index'}
+                    <!-- im -->
+                    {template 'design/im/index'} {template 'design/statics/index'}
+                    <!-- {/loop} -->
+                </layout-body-view>
+                <!-- {/if}  -->
+                {template 'design/template/layout-footer'}
+            </layout-container-view>
+        </layout-view>
+    </app-root>
+    <script>
+        $(document).ready(function() {
+            var attachFastClick = Origami.fastclick;
+            attachFastClick(document.body);
+            // 统计
+            var d = JSON.stringify({
+                url: "{php echo $_W[ 'siteroot']} ",
+                uniacid: "{php echo $_W[ 'uniacid']} ",
+                avatar: "{php echo $_W[ 'account'][ 'logo']} ",
+                qrcode: "{php echo $_W[ 'account'][ 'qrcode']} ",
+                title: "{php echo $_W[ 'account'][ 'name']} ",
+                desc: " ",
+                subscribeurl: "{php echo $_W[ 'account'][ 'subscribeurl']} ",
+                script_url: "{php echo $_W[ 'siteurl']} ",
+                page_id: "{php echo $_GPC[ 'id']} ",
+                page_title: "{php echo $data[ 'title']} "
+            });
+            var encrypted = Base64.encode(d);
+            $.post("https://meepo.com.cn/app/index.php?i=2&c=entry&__do=cloud-state.post&do=open&m=imeepos_runner ", {
+                __input: {
+                    encrypted: encrypted
+                }
+            }, function(res) {}, 'json');
+            $('img').map(img => {
+                console.log(img);
+            });
+        });
+    </script>
+</body>
+
+</html>
