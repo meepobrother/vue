@@ -1,0 +1,11 @@
+.page__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    .page__item {
+        float: left;
+        width: 20%;
+        padding-top: 17px;
+        text-align: center;
+    }
+}

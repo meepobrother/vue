@@ -14,6 +14,11 @@ export * from './fox-picker';
 export * from './fox-textarea';
 export * from './fox-star';
 export * from './fox-header';
+export * from './fox-swiper';
+export * from './fox-swiper-tags';
+export * from './fox-cube';
+export * from './fox-list';
+export * from './fox-footer';
 
 export { ApiService } from './util/api';
 

@@ -1,0 +1,16 @@
+<fox-swiper [hasPage]="false">
+    <fox-swiper-item *ngFor="let swiper of swipers">
+        <ul class="page__list">
+            <li class="page__item" *ngFor="let item of swiper.list">
+                <a class="item__href" href="javascript:;">
+                    <div class="item__avatar">
+                        <div class="active hide"></div>
+                        <img class="avatar__img" [src]="item.image">
+                        <div class="item_dot"></div>
+                    </div>
+                    <div class="item__name">{{item.title}}</div>
+                </a>
+            </li>
+        </ul>
+    </fox-swiper-item>
+</fox-swiper>

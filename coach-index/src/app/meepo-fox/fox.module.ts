@@ -19,7 +19,13 @@ import {
     FoxPickerTimeLen,
     FoxTextarea,
     FoxStar,
-    FoxHeader
+    FoxHeader,
+    FoxSwiper,
+    FoxSwiperItem,
+    FoxSwiperTags,
+    FoxCube,
+    FoxList,
+    FoxFooter
 } from './public_api';
 
 const commponents = [
@@ -38,7 +44,13 @@ const commponents = [
     FoxPickerTimeLen,
     FoxTextarea,
     FoxStar,
-    FoxHeader
+    FoxHeader,
+    FoxSwiper,
+    FoxSwiperItem,
+    FoxSwiperTags,
+    FoxCube,
+    FoxList,
+    FoxFooter
 ];
 
 @NgModule({
