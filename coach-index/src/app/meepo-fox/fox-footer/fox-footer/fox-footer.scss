@@ -35,6 +35,18 @@
         .fox-footer-item {
             flex: 1;
             position: relative;
+            &:before {
+                position: absolute;
+                bottom: 0px;
+                right: -1px;
+                top: 0px;
+                content: " ";
+                display: block;
+                width: 1px;
+                background-color: #d0d0d0;
+                transform: scaleY(0.5);
+                z-index: 888;
+            }
             .icon {
                 position: relative;
                 height: 25px;
@@ -42,6 +54,11 @@
                 padding: 5px 0 0;
                 -webkit-box-sizing: content-box;
                 box-sizing: content-box;
+                img {
+                    width: 25px;
+                    border-radius: 50%;
+                    height: 25px;
+                }
             }
             .wx-index__footer--title {
                 font-size: 10px;

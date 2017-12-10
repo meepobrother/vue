@@ -58,7 +58,7 @@ export class AppJoin implements OnInit {
         if (this.isInner) {
             this.coach.showJoin = false;
         } else {
-            window.location.href = this.coach.api.getUrl('coach_index', {});
+            window.location.href = this.coach.api.getUrl('coach_my', {});
         }
     }
 

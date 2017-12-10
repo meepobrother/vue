@@ -10,63 +10,75 @@ const parsed = queryString.parse(location.search);
 })
 export class AppComponent implements OnInit {
   widget: any = {
+    footer: [
+      {
+        title: '服务大厅',
+        isImage: true,
+        icon: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/002.jpg',
+        link: this.coach.api.getUrl('coach_index', {})
+      }, {
+        title: '个人中心',
+        isImage: true,
+        icon: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/001.jpg',
+        link: this.coach.api.getUrl('coach_home', {})
+      }
+    ],
     advs: [{
       image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/001.jpg'
-    },{
+    }, {
       image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/002.jpg'
-    },{
+    }, {
       image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/003.jpg'
     }],
     items: [{
       title: '测试',
-      image: ''
+      image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/002.jpg'
     }, {
       title: '测试',
-      image: ''
+      image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/001.jpg'
     }, {
       title: '测试',
-      image: ''
+      image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/003.jpg'
     }, {
       title: '测试',
-      image: ''
+      image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/002.jpg'
     }, {
       title: '测试',
-      image: ''
+      image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/001.jpg'
     }, {
       title: '测试',
-      image: ''
+      image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/003.jpg'
     }, {
       title: '测试',
-      image: ''
+      image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/002.jpg'
     }, {
       title: '测试',
-      image: ''
+      image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/001.jpg'
     }, {
       title: '测试',
-      image: ''
+      image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/003.jpg'
     }, {
       title: '测试',
-      image: ''
+      image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/002.jpg'
     }, {
       title: '测试',
-      image: ''
+      image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/001.jpg'
     }, {
       title: '测试',
-      image: ''
-    }, {
-      title: '测试',
-      image: ''
-    }],
+      image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/003.jpg'
+    },],
     cubes: [
       {
-        title: '标题',
-        desc: '简介',
-        image: ''
+        title: '找服务',
+        desc: '服务上门，预约附近服务人员！',
+        image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/002.jpg',
+        link: this.coach.api.getUrl('coach_index', {})
       },
       {
-        title: '标题',
-        desc: '简介',
-        image: ''
+        title: '发任务',
+        desc: '有需求，发布悬赏，全网抢单！',
+        image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/001.jpg',
+        link: this.coach.api.getUrl('index', { m: 'imeepos_runner' })
       }
     ]
   };
@@ -116,5 +128,17 @@ export class AppComponent implements OnInit {
 
   onItem(item: any) {
     window.location.href = this.coach.api.getUrl('coach_detail', { id: item.id });
+  }
+
+  onFooterItem(item: any) {
+    if (item.link) {
+      window.location.href = item.link;
+    }
+  }
+
+  onCubeItem(item: any) {
+    if (item.link) {
+      window.location.href = item.link;
+    }
   }
 }

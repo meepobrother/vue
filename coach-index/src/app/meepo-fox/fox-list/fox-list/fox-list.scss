@@ -15,8 +15,13 @@
         flex-direction: row;
     }
     .item__thumb {
-        width: 82px;
         height: 82px;
+        img {
+            width: 60px;
+            width: 60px;
+            border-radius: 10px;
+            vertical-align: middle;
+        }
     }
     .item__entry {
         height: 82px;

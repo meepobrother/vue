@@ -1,28 +1,11 @@
 <div class="fox-footer">
     <div class="fox-footer-container">
-        <div class="fox-footer-item">
+        <div class="fox-footer-item" (click)="_onItem(item)" *ngFor="let item of items;index as i;">
             <div class="icon">
-                <i class="fa fa-home"></i>
+                <i [ngClass]="item.icon" *ngIf="item.isIcon"></i>
+                <img [src]="item.icon" *ngIf="item.isImage">
             </div>
-            <div class="wx-index__footer--title">服务</div>
-        </div>
-        <div class="fox-footer-item">
-            <div class="icon">
-                <i class="fa fa-task"></i>
-            </div>
-            <div class="wx-index__footer--title">任务</div>
-        </div>
-        <div class="fox-footer-item">
-            <div class="icon">
-                <i class="fa fa-post"></i>
-            </div>
-            <div class="wx-index__footer--title">发布</div>
-        </div>
-        <div class="fox-footer-item">
-            <div class="icon">
-                <i class="fa fa-mine"></i>
-            </div>
-            <div class="wx-index__footer--title">我的</div>
+            <div class="wx-index__footer--title">{{item.title}}</div>
         </div>
     </div>
 </div>

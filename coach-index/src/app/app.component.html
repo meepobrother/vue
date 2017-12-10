@@ -5,6 +5,6 @@
     </fox-swiper-item>
 </fox-swiper>
 <fox-swiper-tags [items]="widget.items"></fox-swiper-tags>
-<fox-cube [items]="widget.cubes"></fox-cube>
+<fox-cube (onItem)="onCubeItem($event)" [items]="widget.cubes"></fox-cube>
 <fox-list [items]="list" (onItem)="onItem($event)"></fox-list>
-<fox-footer></fox-footer>
+<fox-footer [items]="widget.footer" (onItem)="onFooterItem($event)"></fox-footer>

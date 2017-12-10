@@ -2,10 +2,17 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     .page__item {
-        float: left;
         width: 20%;
         padding-top: 17px;
         text-align: center;
+        img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
     }
 }

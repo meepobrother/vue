@@ -19,7 +19,7 @@
 }
 
 .item__entry {
-    margin-right: 3.45%;
+    margin-right: 50px;
 }
 
 .item {
@@ -64,4 +64,9 @@ img {
     right: 5.9%;
     text-align: center;
     transform: translate(0, -50%);
+    margin-left: 5px;
+    img {
+        width: 100%;
+        vertical-align: middle;
+    }
 }

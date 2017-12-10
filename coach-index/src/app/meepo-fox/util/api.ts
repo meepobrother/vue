@@ -59,7 +59,12 @@ export class ApiService {
 
     getUrl(routes, params, full = false) {
         routes = routes.replace(/\//ig, ".");
-        let url = `${this.options.siteroot}app/index.php?c=entry&i=${this.options.uniacid}&do=${routes}&m=imeepos_runnerpro`
+        let url;
+        if (params.m) {
+            url = `${this.options.siteroot}app/index.php?c=entry&i=${this.options.uniacid}&do=${routes}`;
+        } else {
+            url = `${this.options.siteroot}app/index.php?c=entry&i=${this.options.uniacid}&do=${routes}&m=imeepos_runnerpro`;
+        }
         if (params) {
             if (typeof (params) === 'object') {
                 url += "&" + this.toQueryString(params);
