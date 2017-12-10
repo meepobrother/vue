@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CoachService } from '../coach.service';
 @Component({
     selector: 'app-citys',
@@ -8,6 +8,8 @@ import { CoachService } from '../coach.service';
 export class AppCitys implements OnInit {
     hots: any[] = [];
     citys: any[] = [];
+
+    @Input() isInner: boolean = true;
     constructor(
         public coach: CoachService
     ) { }
@@ -23,6 +25,7 @@ export class AppCitys implements OnInit {
             }
             this.citys = list;
         });
+        this.coach.onInit();
         this.coach.getHotCitys().subscribe((res: any) => {
             this.hots = res;
         });
@@ -33,8 +36,16 @@ export class AppCitys implements OnInit {
     }
 
     selectCity(city: any) {
-        this.goTop();
-        this.coach.setCity(city);
-        this.coach.showCitys = false;
+        if (this.isInner) {
+            this.goTop();
+            this.coach.setCity(city);
+            this.coach.showCitys = false;
+        } else {
+            const params = {};
+            params['name'] = city.name;
+            params['latitude'] = city.latitude;
+            params['longitude'] = city.longitude;
+            location.href = this.coach.api.getUrl('coach_index', params);
+        }
     }
 }
