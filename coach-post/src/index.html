@@ -1,14 +1,49 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>CoachPost</title>
-  <base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<head>
+    <meta charset="utf-8">
+    <title>发布悬赏</title>
+    <!-- <base href="{STATIC_PATH}"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- {if !empty($_GPC['c'])} -->
+    <script type="text/javascript">
+        if (navigator.appName == 'Microsoft Internet Explorer') {
+            if (navigator.userAgent.indexOf("MSIE 5.0") > 0 || navigator.userAgent.indexOf("MSIE 6.0") > 0 || navigator.userAgent.indexOf("MSIE 7.0") > 0) {
+                alert('您使用的 IE 浏览器版本过低, 推荐使用 Chrome 浏览器或 IE8 及以上版本浏览器.');
+            }
+        }
+    </script>
+    {php echo register_jssdk()}
+    <script>
+        var config = {
+            siteroot: "{php echo $_W['siteroot']}",
+            openid: "{php echo $_W['openid']}",
+            uniacid: "{php echo $_W['uniacid']}",
+            staticUrl: "{STATIC_PATH}",
+            baseUrl: "{php echo $_W['siteurl']}",
+            id: "{php echo $_GPC['id']}"
+        };
+    </script>
+    <!-- {else} -->
+    <script>
+        var config = {
+            siteroot: "https://meepo.com.cn/",
+            openid: "fromUser",
+            uniacid: "2",
+            staticUrl: "./",
+            baseUrl: "https://meepo.com.cn/",
+            id: 1
+        };
+    </script>
+    <!-- {/if} -->
+    <link href="https://meepo.com.cn/meepo/libs/weui/weui.min.css" rel="stylesheet">
+    <script src="https://meepo.com.cn/meepo/libs/swiper.min.js"></script>
 </head>
+
 <body>
-  <app-root></app-root>
+    <app-root></app-root>
 </body>
+
 </html>
