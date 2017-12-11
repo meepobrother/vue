@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FoxModule } from './meepo-fox';
 import { AppCoach, AppField, AppStar, AppSetting, AppJoin, AppCitys } from './components';
-import { CoachService } from './components/coach.service';
+import { CoachService } from 'meepo-runnerpro';
 
 @NgModule({
   declarations: [

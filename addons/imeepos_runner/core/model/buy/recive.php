@@ -17,9 +17,6 @@ if(empty($detail)){
 	$this->code = 0;
 	$this->msg = '订单不存在或已删除';
 }
-
-
-
 //检查是否自己订单
 $openid = $_W['openid'];
 if(!$debug){
@@ -81,7 +78,7 @@ $recive['openid'] = !empty($_W['openid']) ? $_W['openid'] : 'fromUser';
 $recive['taskid'] = $id;
 $recive['create_time'] = time();
 $recive['status'] = 0;
-
+// 添加唯一索引
 if(pdo_insert('imeepos_runner3_recive',$recive)){
 	$recive['id'] = pdo_insertid();
 	pdo_update('imeepos_runner3_tasks',array('status'=>2),array('id'=>$id));
@@ -94,7 +91,6 @@ if(pdo_insert('imeepos_runner3_recive',$recive)){
 	$openid = $order['openid'];
 	$url = $_W['siteroot'].'app/index.php?i='.$_W['uniacid'].'&c=entry&do=detail&id='.$order['id'].'&m=imeepos_runner';
 	M('common')->mc_notice_consume2($openid,$title,$content,$url);
-
 	
 	$this->info = $recive['id'];
 	$this->msg = '恭喜您,接单成功';

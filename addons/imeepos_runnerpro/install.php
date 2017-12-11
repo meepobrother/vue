@@ -193,3 +193,20 @@ if (!pdo_fieldexists('imeepos_runner4_coach_log_time', 'timeInt')) {
 if (!pdo_fieldexists('imeepos_runner4_coach_log_time', 'status')) {
     pdo_query("ALTER TABLE ".tablename('imeepos_runner4_coach_log_time')." ADD COLUMN `status` tinyint(2) NULL DEFAULT '0';");
 }
+
+if(!pdo_tableexists('imeepos_runner3_recive')){
+    pdo_query("CREATE TABLE ".tablename('imeepos_runner3_recive')." (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `uniacid` int(11) DEFAULT '0',
+        `openid` varchar(64) DEFAULT '',
+        `taskid` int(11) DEFAULT '0',
+        `create_time` int(11) DEFAULT '0',
+        `fee` float(10,2) DEFAULT '0.00',
+        `update_time` int(11) DEFAULT '0',
+        `status` tinyint(2) DEFAULT '0',
+        PRIMARY KEY (`id`),
+        UNIQUE KEY `INDEX_TASKID` (`taskid`),
+        KEY `INDEX_OPENID` (`openid`),
+        KEY `INDEX_UNIACID` (`uniacid`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;");
+}
