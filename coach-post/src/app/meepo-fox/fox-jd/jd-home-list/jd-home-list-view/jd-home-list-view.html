@@ -1,0 +1,17 @@
+<ul class="in-list bdt-1px bdb-1px" [ngStyle]="widget.containerStyle">
+    <li *ngFor="let item of widget.items">
+        <div class="in-item my-item">
+            <div class="couponIn-icon w-18">
+                <img [src]="item.image">
+            </div>
+            <div class="in-item-info my-item bdb-1px">
+                <div class="fl">
+                    <span class="myJD-Order">{{item.title}}</span>
+                </div>
+                <div class="fr">
+                    <span class="myJD-arrow"></span>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>

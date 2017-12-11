@@ -1,0 +1,8 @@
+<header class="header fixed">
+    <a class="city" href="javascript:;" (click)="_onClick('city')" *ngIf="widget.city">
+        <span class="city-text">{{widget.city || '杭州'}}</span>
+    </a>
+    <a id="searchUrl" class="search-input" (click)="_onClick('title')" href="javascript:;" *ngIf="widget.title">{{widget.title}}</a>
+    <a href="javascript:;" class="my" (click)="_onClick('my')" *ngIf="widget.my">{{widget.my}}</a>
+    <a href="javascript:;" class="post" (click)="_onClick('post')" *ngIf="widget.post">{{widget.post}}</a>
+</header>

@@ -1,0 +1,58 @@
+header {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background-color: #fff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 999;
+    .city {
+        display: inline-block;
+        position: relative;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin: 0 10px;
+        .city-text {
+            min-width: 2em;
+            font-size: 15px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            display: block;
+        }
+        &.city:after {
+            content: "";
+            border: 5.625px solid #000;
+            border-color: #007aff transparent transparent transparent;
+            position: absolute;
+            top: 22.5px;
+            right: 0;
+            border-left-width: 4.5px;
+            border-right-width: 4.5px;
+        }
+    }
+    .search-input {
+        flex: 1;
+        background-color: rgba(232, 232, 232, 0.9);
+        text-align: center;
+        color: #000;
+        height: 35px;
+        line-height: 35px;
+    }
+    .my,
+    .post {
+        font-size: 15px;
+        margin: 0px 8px 0px 8px;
+        text-align: center;
+    }
+    .my {
+        margin-left: 8px;
+    }
+}

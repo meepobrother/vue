@@ -10,4 +10,4 @@ define('STATIC_PATH', MODULE_URL."template/mobile/coach/add/");
 $act = isset($_GPC['act']) ? trim($_GPC['act']) : '';
 $_W['openid'] = $_W['openid'] ? $_W['openid'] : 'fromUser';
 
-include $this->template('coach/add/index');
+include $this->template('coach/post/index');

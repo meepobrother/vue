@@ -1,0 +1,39 @@
+<div class="head-img" [ngStyle]="widget.containerStyle">
+    <div class="my-id-pic" [ngStyle]="widget.bgStyle">
+        <img [src]="widget.bgImg">
+    </div>
+    <a href="javascript:;">
+        <div class="my-info cf">
+            <div class="my-img-wrap">
+                <span class="my-img">
+                <img [src]="widget.info.avatar"></span>
+            </div>
+            <div class="my-person-info">
+                <p class="my-jd-head-name">{{widget.info.nickname}} </p>
+                <p class="my-jd-head-moible">{{widget.info.mobile}}</p>
+                <div class="my-jd-head-member">
+                    <span class="my-jd-head-type">{{widget.info.tag}}</span>
+                    <div class="my-jd-head-plus">
+                        <span class="plus-icon-wrap">
+                            <img class="plus-icon" src="https://meepo.com.cn/addons/imeepos_runnerpro/assets/jd/03.png">
+                        </span>
+                        <span class="plus-icon-text">{{widget.info.desc}}</span>
+                        <span class="info-hint"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="head-meassage" (click)="_onAccount()">
+                <span class="head-meassage-name">{{widget.account}}</span>
+                <span class="info-hint"></span>
+            </div>
+        </div>
+    </a>
+    <ul class="my-watch cf">
+        <a href="javascript:;" *ngFor="let item of widget.items">
+            <li>
+                <span class="watch-goods"><em class="watch-re">{{item['num']}}</em></span>
+                <span class="watch-shop">{{item['title']}}</span>
+            </li>
+        </a>
+    </ul>
+</div>

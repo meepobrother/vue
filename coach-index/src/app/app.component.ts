@@ -10,19 +10,7 @@ const parsed = queryString.parse(location.search);
 })
 export class AppComponent implements OnInit {
   widget: any = {
-    footer: [
-      {
-        title: '服务大厅',
-        isImage: true,
-        icon: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/002.jpg',
-        link: this.coach.api.getUrl('coach_index', {})
-      }, {
-        title: '个人中心',
-        isImage: true,
-        icon: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/001.jpg',
-        link: this.coach.api.getUrl('coach_home', {})
-      }
-    ],
+    footer: this.coach.footer,
     advs: [{
       image: 'https://meepo.com.cn/addons/imeepos_runnerpro/assets/pc/001.jpg'
     }, {

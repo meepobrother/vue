@@ -147,7 +147,7 @@ if ($act == 'add_skill') {
     }
     $data = array();
     $data['openid'] = $_W['openid'];
-    $data['avatar'] = $member['avatar'] ? $member['avatar'] : 'https://meepo.com.cn/addons/imeepos_runnerpro/icon.jpg';
+    $data['avatar'] = $user['avatar'] ? $user['avatar'] : $member['avatar'];
     $data['title'] = $input['title'];
     $data['desc'] = $input['desc'];
     $data['fee'] = floatval($input['fee']);

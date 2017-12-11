@@ -3,7 +3,7 @@
 	<application setting="false">
 		<name><![CDATA[跑腿2.0]]></name>
 		<identifie><![CDATA[imeepos_runnerpro]]></identifie>
-		<version><![CDATA[2.0.2]]></version>
+		<version><![CDATA[2.0.3]]></version>
 		<type><![CDATA[business]]></type>
 		<ability><![CDATA[跑腿2.0]]></ability>
 		<description><![CDATA[跑腿2.0]]></description>
@@ -21,13 +21,10 @@
 		</supports>
 	</platform>
 	<bindings>
-		<cover>
-			<entry title="同城跑腿" do="index" state="" direct="false" />
-		</cover>
+		<cover call="getCover"></cover>
 		<menu call="getMenus"></menu>
 	</bindings>
-	<permissions>
-	</permissions>
+	<permissions></permissions>
 	<install><![CDATA[install.php]]></install>
 	<uninstall><![CDATA[]]></uninstall>
 	<upgrade><![CDATA[update.php]]></upgrade>

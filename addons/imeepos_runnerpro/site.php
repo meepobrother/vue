@@ -23,6 +23,16 @@ class Imeepos_runnerproModuleSite extends WeModuleSite
             array('title' => '管理后台', 'icon' => 'fa fa-shopping-cart', 'url' => $this->createWebUrl('index'))
         );
     }
+
+    public function getCover()
+    {
+        global $_W;
+        return array(
+            array('title' => '服务大厅', 'do' => 'coach_index', 'url' => $this->createMobileUrl('coach_index'),'from'=>'call'),
+            array('title' => '个人中心', 'do' => 'coach_home', 'url' => $this->createMobileUrl('coach_home'),'from'=>'call'),
+            array('title' => '我的小店', 'do' => 'coach_my', 'url' => $this->createMobileUrl('coach_my'),'from'=>'call'),
+        );
+    }
     public function doWebWeb()
     {
         // m('route')->run();
