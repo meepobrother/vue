@@ -5,7 +5,7 @@ import {
     CoachService
 } from './public_api';
 
-import { FoxModule } from '../meepo-fox';
+import { FoxModule } from 'imeepos-foxui';
 
 @NgModule({
     declarations: [

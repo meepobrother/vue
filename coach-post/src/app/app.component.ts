@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CoachService } from 'meepo-runnerpro';
+import { CoachService } from 'runner-components';
 
 @Component({
   selector: 'app-root',

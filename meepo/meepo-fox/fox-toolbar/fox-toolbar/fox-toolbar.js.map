@@ -1,1 +1,0 @@
-{"version":3,"file":"fox-toolbar.js","sourceRoot":"","sources":["fox-toolbar.ts"],"names":[],"mappings":";;;;;;;;;;;AAAA,wCAAqE;AAUrE,IAAa,UAAU,GAAvB;IACI,gBAAgB,CAAC;IAEjB,QAAQ,KAAK,CAAC;CACjB,CAAA;AAJY,UAAU;IARtB,gBAAS,CAAC;QACP,QAAQ,EAAE,aAAa;QACvB,QAAQ,EAAE;;KAET;QACD,SAAS,EAAE,CAAC,oBAAoB,CAAC;QACjC,aAAa,EAAE,wBAAiB,CAAC,IAAI;KACxC,CAAC;;GACW,UAAU,CAItB;AAJY,gCAAU"}

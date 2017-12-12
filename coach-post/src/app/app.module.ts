@@ -7,9 +7,8 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {
-  MeepoComponentsModule,
-  FoxModule, CoachService
-} from 'meepo-runnerpro';
+  MeepoComponentsModule, CoachService
+} from 'runner-components';
 
 @NgModule({
   declarations: [
@@ -19,7 +18,6 @@ import {
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    FoxModule,
     MeepoComponentsModule
   ],
   providers: [
