@@ -5,7 +5,6 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "prebuild": "yarn upgrade",
         "build": "ng build --prod --deploy-url=../addons/imeepos_runnerpro/template/mobile/coach/post/",
         "test": "ng test",
         "lint": "ng lint",
