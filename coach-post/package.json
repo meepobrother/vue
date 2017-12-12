@@ -5,6 +5,7 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
+        "prebuild": "yarn upgrade",
         "build": "ng build --prod --deploy-url=../addons/imeepos_runnerpro/template/mobile/coach/post/",
         "test": "ng test",
         "lint": "ng lint",
@@ -22,7 +23,7 @@
         "@angular/platform-browser-dynamic": "^5.0.0",
         "@angular/router": "^5.0.0",
         "core-js": "^2.4.1",
-        "runner-components": "^1.0.3",
+        "runner-components": "^1.0.5",
         "rxjs": "^5.5.2",
         "zone.js": "^0.8.14"
     },
